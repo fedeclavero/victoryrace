@@ -4,39 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VICTORY RACE II — 11 de Septiembre 2026</title>
-
+    <title>LA CARRERA — VICTORY RACE II</title>
     <!-- SEO -->
-    <meta name="description"
-        content="Victory Race II - La competencia de CrossFit más intensa en Villa Carlos Paz. Inscribite ahora y desafiá tus límites.">
-
+    <meta name="description" content="Detalles sobre Victory Race II. La carrera de obstáculos más exigente.">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Rajdhani:wght@400;600;700&display=swap"
         rel="stylesheet">
-
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header id="navbar">
+    <header id="navbar" class="scrolled">
         <nav class="container">
             <div class="logo">
                 <span class="victory">VICTORY</span> <span class="race">RACE</span>
             </div>
-
             <button class="menu-toggle" id="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
-
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="la-carrera.html">La Carrera</a></li>
@@ -48,49 +39,35 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero">
-            <div class="hero-overlay"></div>
-            <div class="lightning-container" id="lightning-container"></div>
-
-            <div class="hero-content container">
-                <div class="hero-logo-box">
-                    <h1 class="hero-title" id="main-title">VICTORY RACE</h1>
-                    <h2 class="hero-subtitle" id="sub-title">2DA EDICIÓN</h2>
-                </div>
-
-                <div class="hero-info" id="hero-info">
-                    <p class="hero-date">11 de Septiembre 2026</p>
-                    <p class="hero-location">Playón Municipal — Villa Carlos Paz</p>
-                </div>
-
-                <div class="countdown-container" id="countdown">
-                    <div class="countdown-item"><span id="days">00</span><label>DÍAS</label></div>
-                    <div class="countdown-item"><span id="hours">00</span><label>HORAS</label></div>
-                    <div class="countdown-item"><span id="minutes">00</span><label>MIN</label></div>
-                    <div class="countdown-item"><span id="seconds">00</span><label>SEG</label></div>
-                </div>
-
-                <a href="#inscripcion" class="btn btn-primary btn-glow btn-lg pulsate">¡INSCRIBITE AHORA!</a>
-            </div>
-
-            <a href="#la-carrera" class="scroll-down">
-                <span></span>
-            </a>
-        </section>
-
-        <!-- SECCIÓN: SPONSORS -->
-        <section id="sponsors" class="section">
+    <main style="padding-top: 100px;">
+        <section id="la-carrera" class="section">
             <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">NUESTROS SPONSORS</h2>
+                <div class="section-header reveal active">
+                    <h2 class="section-title">¿QUÉ ES VICTORY RACE?</h2>
+                    <p class="section-subtitle">Una competencia de CrossFit que desafía tus límites. Diseñada para los
+                        atletas que buscan superarse, forjar comunidad y vivir una experiencia épica en el corazón de
+                        Villa Carlos Paz.</p>
                 </div>
-
-                <div class="sponsors-grid">
-                    <div class="sponsor-card reveal">
-                        <!-- TODO: Reemplazar por logo real cuando esté disponible -->
-                        <div class="sponsor-logo-placeholder">OPUS SUPLEMENTOS</div>
+                <div class="pillars-grid">
+                    <div class="pillar-card reveal active">
+                        <div class="pillar-icon">💪</div>
+                        <h3>Intensidad Máxima</h3>
+                        <p>Workouts diseñados para poner a prueba cada capacidad física y mental.</p>
+                    </div>
+                    <div class="pillar-card reveal active">
+                        <div class="pillar-icon">🏆</div>
+                        <h3>Competencia Real</h3>
+                        <p>Jueces capacitados y estándares de alto nivel para una competencia justa.</p>
+                    </div>
+                    <div class="pillar-card reveal active">
+                        <div class="pillar-icon">👥</div>
+                        <h3>Comunidad</h3>
+                        <p>El espíritu del CrossFit se vive en cada aliento y cada repetición.</p>
+                    </div>
+                    <div class="pillar-card reveal active">
+                        <div class="pillar-icon">📍</div>
+                        <h3>Villa Carlos Paz</h3>
+                        <p>El mejor escenario natural: la costanera y el Playón Municipal.</p>
                     </div>
                 </div>
             </div>
@@ -111,12 +88,9 @@
             </div>
             <div class="footer-legal">
                 <p>Copyright &copy; 2026 Victory Race. Todos los derechos reservados.</p>
-                <p class="small">La participación es a riesgo del atleta.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 

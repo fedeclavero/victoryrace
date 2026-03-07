@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSCRIBITE — VICTORY RACE II</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Rajdhani:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="registration-page">
+    <header id="navbar" class="scrolled">
+        <nav class="container">
+            <div class="logo">
+                <span class="victory">VICTORY</span> <span class="race">RACE</span>
+            </div>
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="la-carrera.html">La Carrera</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="wods.html">WODs</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="inscripcion.html" class="btn btn-accent">¡INSCRIBITE!</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding-top: 100px;">
+        <section id="inscripcion" class="section">
+            <div class="container">
+                <div class="section-header reveal active">
+                    <h2 class="section-title">INSCRIBITE</h2>
+                    <p class="section-subtitle">Completá tus datos para asegurar tu lugar en la competencia.</p>
+                </div>
+
+                <div class="registration-form-container reveal active" id="registration-container">
+                    <form id="inscription-form" class="registration-form">
+                        <div class="form-steps-container">
+                            <!-- Step 1: Personal Info -->
+                            <div class="form-step active" data-step="1">
+                                <h3 class="step-title">DATOS PERSONALES</h3>
+                                <div class="form-grid">
+                                    <div class="form-group anime-item">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="apellido">Apellido</label>
+                                        <input type="text" id="apellido" name="apellido" required
+                                            placeholder="Tu apellido">
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="ciudad">Ciudad</label>
+                                        <input type="text" id="ciudad" name="ciudad" required
+                                            placeholder="Ciudad, Provincia">
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="dni">DNI / Documento</label>
+                                        <input type="number" id="dni" name="dni" required
+                                            placeholder="Número de documento">
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="telefono">WhatsApp / Teléfono</label>
+                                        <input type="tel" id="telefono" name="telefono" placeholder="+54 9 ...">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary next-step anime-item">SIGUIENTE</button>
+                            </div>
+
+                            <!-- Step 2: Categories -->
+                            <div class="form-step" data-step="2">
+                                <h3 class="step-title">CATEGORÍAS</h3>
+                                <div class="form-group anime-item">
+                                    <label>Elegí una o más categorías</label>
+                                    <div class="categories-selection">
+                                        <div class="cat-option">
+                                            <input type="checkbox" id="cat-1" name="categorias"
+                                                value="Indiv - Open Recreativo">
+                                            <label for="cat-1">Indiv - Open Recreativo</label>
+                                        </div>
+                                        <div class="cat-option">
+                                            <input type="checkbox" id="cat-2" name="categorias"
+                                                value="Indiv - Intermedio">
+                                            <label for="cat-2">Indiv - Intermedio</label>
+                                        </div>
+                                        <div class="cat-option">
+                                            <input type="checkbox" id="cat-3" name="categorias"
+                                                value="Indiv - Avanzado">
+                                            <label for="cat-3">Indiv - Avanzado</label>
+                                        </div>
+                                        <div class="cat-option team-option">
+                                            <input type="checkbox" id="cat-4" name="categorias"
+                                                value="Eq - Principiante">
+                                            <label for="cat-4">Eq - Principiante</label>
+                                        </div>
+                                        <div class="cat-option team-option">
+                                            <input type="checkbox" id="cat-5" name="categorias" value="Eq - Intermedio">
+                                            <label for="cat-5">Eq - Intermedio</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="partner-fields" class="partner-fields anime-item" style="display: none;">
+                                    <h4 class="form-substep">Datos del Compañero/a</h4>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="nombreCompanero">Nombre Compañero</label>
+                                            <input type="text" id="nombreCompanero" name="nombreCompanero"
+                                                placeholder="Nombre">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apellidoCompanero">Apellido Compañero</label>
+                                            <input type="text" id="apellidoCompanero" name="apellidoCompanero"
+                                                placeholder="Apellido">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group anime-item">
+                                    <button type="button" class="btn btn-outline prev-step">VOLVER</button>
+                                    <button type="button" class="btn btn-primary next-step">SIGUIENTE</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Disclaimer & Send -->
+                            <div class="form-step" data-step="3">
+                                <h3 class="step-title">FINALIZAR</h3>
+                                <div class="disclaimer-box anime-item">
+                                    <input type="checkbox" id="disclaimer" required>
+                                    <label for="disclaimer">
+                                        He leído y acepto el <strong>deslinde de responsabilidad</strong>. La
+                                        participación es bajo mi propia responsabilidad.
+                                    </label>
+                                </div>
+                                <div class="btn-group anime-item">
+                                    <button type="button" class="btn btn-outline prev-step">VOLVER</button>
+                                    <button type="submit" id="submit-btn" class="btn btn-primary btn-glow"
+                                        disabled>ENVIAR INSCRIPCIÓN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="loading-spinner" style="display: none; text-align: center; padding: 40px;">
+                        <div class="spinner"></div>
+                        <p>Enviando datos...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <span class="victory">VICTORY</span> <span class="race">RACE</span>
+            </div>
+            <div class="footer-info">
+                <p>11 de Septiembre 2026 | Villa Carlos Paz</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/victoryrace.arg/" target="_blank">Instagram: @victoryrace.arg</a>
+                    <a href="https://wa.me/5493541690852" target="_blank">WhatsApp: +54 9 3541 690852</a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <p>Copyright &copy; 2026 Victory Race. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

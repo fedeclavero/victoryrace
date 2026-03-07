@@ -16,11 +16,30 @@ document.addEventListener('DOMContentLoaded', () => {
     initLightning();
     initLightbox();
     initForm();
+    highlightActiveLink();
 });
 
-// --- FORM LOGIC ---
+// --- NAV ACTIVE STATE ---
+function highlightActiveLink() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// --- FORM LOGIC (MULTI-STEP) ---
 function initForm() {
     const form = document.getElementById('inscription-form');
+    if (!form) return;
+
+    const steps = document.querySelectorAll('.form-step');
+    const nextBtns = document.querySelectorAll('.next-step');
+    const prevBtns = document.querySelectorAll('.prev-step');
     const disclaimer = document.getElementById('disclaimer');
     const submitBtn = document.getElementById('submit-btn');
     const partnerFields = document.getElementById('partner-fields');
@@ -28,12 +47,97 @@ function initForm() {
     const container = document.getElementById('registration-container');
     const spinner = document.getElementById('loading-spinner');
 
-    // Habilitar botón si disclaimer está marcado
+    let currentStep = 1;
+
+    // Next Step Logic
+    nextBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                goToStep(currentStep + 1);
+            }
+        });
+    });
+
+    // Prev Step Logic
+    prevBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            goToStep(currentStep - 1);
+        });
+    });
+
+    function validateStep(step) {
+        const activeStepEl = document.querySelector(`.form-step[data-step="${step}"]`);
+        const inputs = activeStepEl.querySelectorAll('input[required]');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (!input.value) {
+                valid = false;
+                input.style.borderColor = 'red';
+                anime({
+                    targets: input,
+                    translateX: [0, -10, 10, -10, 10, 0],
+                    duration: 400,
+                    easing: 'easeInOutQuad'
+                });
+            } else {
+                input.style.borderColor = '';
+            }
+        });
+
+        // Step 2 validation (at least one category)
+        if (step === 2) {
+            const checked = Array.from(categoriesCheckboxes).some(cb => cb.checked);
+            if (!checked) {
+                valid = false;
+                alert("Seleccioná al menos una categoría.");
+            }
+        }
+
+        return valid;
+    }
+
+    function goToStep(step) {
+        const currentEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+        const nextEl = document.querySelector(`.form-step[data-step="${step}"]`);
+
+        anime({
+            targets: currentEl,
+            opacity: 0,
+            translateX: -20,
+            duration: 300,
+            easing: 'easeInQuad',
+            complete: () => {
+                currentEl.classList.remove('active');
+                nextEl.classList.add('active');
+                currentStep = step;
+
+                anime({
+                    targets: nextEl,
+                    opacity: [0, 1],
+                    translateX: [20, 0],
+                    duration: 500,
+                    easing: 'easeOutExpo'
+                });
+
+                // Stagger items inside the new step
+                anime({
+                    targets: nextEl.querySelectorAll('.anime-item'),
+                    opacity: [0, 1],
+                    translateY: [20, 0],
+                    delay: anime.stagger(100),
+                    easing: 'easeOutExpo'
+                });
+            }
+        });
+    }
+
+    // Disclaimer
     disclaimer.addEventListener('change', () => {
         submitBtn.disabled = !disclaimer.checked;
     });
 
-    // Mostrar campos de compañero si se selecciona equipo
+    // Team logic
     categoriesCheckboxes.forEach(cb => {
         cb.addEventListener('change', () => {
             const hasTeam = Array.from(categoriesCheckboxes)
@@ -41,12 +145,12 @@ function initForm() {
                 .some(c => c.parentElement.classList.contains('team-option'));
 
             if (hasTeam) {
+                partnerFields.style.display = 'block';
                 anime({
                     targets: partnerFields,
-                    height: [0, 200],
+                    height: [0, 'auto'],
                     opacity: [0, 1],
                     duration: 500,
-                    begin: () => partnerFields.style.display = 'block',
                     easing: 'easeOutQuad'
                 });
             } else {
@@ -62,91 +166,70 @@ function initForm() {
         });
     });
 
-    // Submit logica
+    // Submit
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        // Categorias multiple
         data.categorias = Array.from(formData.getAll('categorias'));
 
-        // UI feedback
-        form.style.display = 'none';
+        document.querySelector('.form-steps-container').style.display = 'none';
         spinner.style.display = 'block';
 
         fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors', // Apps Script requiere no-cors a veces para redirecciones, pero perdemos el response
+            mode: 'no-cors',
             body: JSON.stringify(data)
         }).then(() => {
             showConfirmation(data.nombre);
-        }).catch(err => {
-            console.error(err);
-            alert("Error al enviar. Por favor intenta de nuevo o contactanos por WhatsApp.");
-            form.style.display = 'block';
+        }).catch(() => {
+            alert("Error al enviar. Intenta de nuevo.");
+            document.querySelector('.form-steps-container').style.display = 'block';
             spinner.style.display = 'none';
         });
     });
 
     function showConfirmation(nombre) {
         spinner.style.display = 'none';
-
         const confirmationHTML = `
             <div class="confirmation-screen" id="confirmation-screen">
                 <div class="confetti-container" id="confetti"></div>
-                <h3 class="conf-title">¡INSCRIPCIÓN RECIBIDA, ${nombre.toUpperCase()}!</h3>
-                <p>Tu pre-inscripción fue registrada correctamente.</p>
+                <h3 class="conf-title">¡ÉPICO, ${nombre.toUpperCase()}!</h3>
+                <p>Estás a un paso de la gloria. Tu pre-inscripción fue registrada.</p>
                 <div class="payment-steps">
-                    <h4>PARA CONFIRMAR TU LUGAR:</h4>
-                    <div class="step">
-                        <span class="step-num">1</span>
-                        <p>Realizá una transferencia bancaria al alias:<br><strong>${BANK_ALIAS}</strong></p>
-                    </div>
-                    <div class="step">
-                        <span class="step-num">2</span>
-                        <p>Enviá la captura de pantalla del comprobante por WhatsApp:</p>
-                        <a href="https://wa.me/${WHATSAPP_NUMBER}" class="btn btn-accent" target="_blank">ENVIAR COMPROBANTE</a>
-                    </div>
+                    <div class="step anime-item"><span class="step-num">1</span><p>Transferí al alias: <strong>${BANK_ALIAS}</strong></p></div>
+                    <div class="step anime-item"><span class="step-num">2</span><p>WhatsApp captura: <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" class="btn btn-accent btn-sm">ENVIAR AQUÍ</a></p></div>
                 </div>
-                <p class="final-note">Una vez confirmado el pago, recibirás un email de confirmación oficial.</p>
             </div>
         `;
-
         container.innerHTML = confirmationHTML;
-
         anime({
             targets: '#confirmation-screen',
             opacity: [0, 1],
-            translateY: [20, 0],
-            duration: 800,
-            easing: 'easeOutExpo'
+            scale: [0.9, 1],
+            duration: 1000,
+            easing: 'easeOutElastic(1, .8)'
         });
-
         initConfetti();
     }
 }
 
 function initConfetti() {
-    // Simple confetti with anime.js
     const container = document.getElementById('confetti');
     if (!container) return;
-
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 60; i++) {
         const particle = document.createElement('div');
         particle.className = 'confetti-particle';
-        particle.style.backgroundColor = i % 2 === 0 ? '#00aaff' : '#ffffff';
+        particle.style.backgroundColor = i % 2 === 0 ? 'var(--blue-electric)' : '#fff';
         particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = -10 + 'px';
         container.appendChild(particle);
-
         anime({
             targets: particle,
-            translateY: [0, 500],
-            translateX: () => (Math.random() - 0.5) * 200,
-            rotate: () => Math.random() * 360,
+            translateY: [0, 600],
+            translateX: () => (Math.random() - 0.5) * 300,
+            rotate: () => Math.random() * 720,
             opacity: [1, 0],
-            duration: 1500 + Math.random() * 2000,
+            duration: 2000 + Math.random() * 3000,
             easing: 'easeOutQuad',
             complete: () => particle.remove()
         });
@@ -156,216 +239,83 @@ function initConfetti() {
 // --- LIGHTBOX ---
 function initLightbox() {
     const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.close-lightbox');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
     galleryItems.forEach(item => {
         item.addEventListener('click', () => {
-            const imgSrc = item.querySelector('img').src;
-            lightboxImg.src = imgSrc;
+            lightboxImg.src = item.querySelector('img').src;
             lightbox.style.display = 'block';
-
-            anime({
-                targets: '#lightbox',
-                opacity: [0, 1],
-                duration: 400,
-                easing: 'easeOutQuad'
-            });
-
-            anime({
-                targets: '.lightbox-content',
-                scale: [0.8, 1],
-                opacity: [0, 1],
-                duration: 500,
-                easing: 'easeOutElastic(1, .8)'
-            });
+            anime({ targets: '#lightbox', opacity: [0, 1], duration: 400, easing: 'easeOutQuad' });
+            anime({ targets: '.lightbox-content', scale: [0.8, 1], opacity: [0, 1], duration: 500, easing: 'easeOutExpo' });
         });
     });
 
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-    });
+    closeBtn.onclick = () => lightbox.style.display = 'none';
+    lightbox.onclick = (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; };
+}
 
-    function closeLightbox() {
-        anime({
-            targets: '#lightbox',
-            opacity: 0,
-            duration: 300,
-            easing: 'easeInQuad',
-            complete: () => {
-                lightbox.style.display = 'none';
-            }
-        });
-    }
+// --- LIGHTNING ---
+function initLightning() {
+    const container = document.getElementById('lightning-container');
+    if (!container) return;
+    setInterval(() => {
+        if (Math.random() > 0.95) {
+            const bolt = document.createElement('div');
+            bolt.className = 'lightning-bolt';
+            bolt.style.left = Math.random() * 100 + '%';
+            bolt.style.width = (1 + Math.random() * 2) + 'px';
+            container.appendChild(bolt);
+            anime({ targets: bolt, opacity: [0.8, 0], duration: 200 + Math.random() * 400, easing: 'easeOutExpo', complete: () => bolt.remove() });
+        }
+    }, 200);
 }
 
 // --- SCROLL REVEAL ---
 function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal');
-
-    const revealCallback = (entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                // Optional: apply staggered delay for grids
-                if (entry.target.classList.contains('pillar-card') || entry.target.classList.contains('category-card')) {
-                    // Handled by CSS transition or specialized anime.js call if needed
-                }
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
-    };
-
-    const revealObserver = new IntersectionObserver(revealCallback, {
-        threshold: 0.15
-    });
-
-    reveals.forEach(el => revealObserver.observe(el));
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
 }
 
-// --- LIGHTNING EFFECT ---
-function initLightning() {
-    const container = document.getElementById('lightning-container');
-    if (!container) return;
-
-    function createLightning() {
-        const bolt = document.createElement('div');
-        bolt.className = 'lightning-bolt';
-
-        const left = Math.random() * 100;
-        const width = 1 + Math.random() * 2;
-        const opacity = 0.3 + Math.random() * 0.7;
-
-        bolt.style.left = `${left}%`;
-        bolt.style.width = `${width}px`;
-        bolt.style.opacity = opacity;
-
-        container.appendChild(bolt);
-
-        anime({
-            targets: bolt,
-            opacity: [opacity, 0],
-            duration: 100 + Math.random() * 400,
-            easing: 'easeOutExpo',
-            complete: () => bolt.remove()
-        });
-    }
-
-    // Occasional flashes
-    setInterval(() => {
-        if (Math.random() > 0.95) {
-            createLightning();
-            if (Math.random() > 0.5) setTimeout(createLightning, 100); // Double flash
-        }
-    }, 200);
-}
+// --- NAVBAR ---
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-    menuToggle.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('active');
+    if (!navbar) return;
+    window.onscroll = () => window.scrollY > 50 ? navbar.classList.add('scrolled') : navbar.classList.remove('scrolled');
+    menuToggle.onclick = () => {
+        const open = navLinks.classList.toggle('active');
         menuToggle.classList.toggle('active');
-
-        if (isOpen) {
-            anime({
-                targets: '.nav-links li',
-                opacity: [0, 1],
-                translateX: [20, 0],
-                delay: anime.stagger(100),
-                easing: 'easeOutExpo'
-            });
-        }
-    });
-
-    // Close menu when link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuToggle.classList.remove('active');
-        });
-    });
+        if (open) anime({ targets: '.nav-links li', opacity: [0, 1], translateX: [20, 0], delay: anime.stagger(100), easing: 'easeOutExpo' });
+    };
 }
 
-// --- HERO ANIMATIONS ---
+// --- HERO ---
 function initHeroAnimations() {
-    // Fade in Title
-    anime({
-        targets: '#main-title',
-        opacity: [0, 1],
-        translateY: [50, 0],
-        duration: 1200,
-        easing: 'easeOutExpo',
-        delay: 500
-    });
-
-    // Fade in Subtitle
-    anime({
-        targets: '#sub-title',
-        opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 1000,
-        easing: 'easeOutExpo',
-        delay: 800
-    });
-
-    // Fade in Info
-    anime({
-        targets: '#hero-info',
-        opacity: [0, 1],
-        duration: 1000,
-        easing: 'linear',
-        delay: 1200
-    });
-
-    // Fade in Countdown
-    anime({
-        targets: '#countdown',
-        opacity: [0, 1],
-        duration: 1000,
-        easing: 'linear',
-        delay: 1400
-    });
+    if (!document.getElementById('main-title')) return;
+    anime({ targets: '#main-title', opacity: [0, 1], translateY: [50, 0], duration: 1200, easing: 'easeOutExpo', delay: 300 });
+    anime({ targets: '#sub-title', opacity: [0, 1], translateY: [30, 0], duration: 1000, easing: 'easeOutExpo', delay: 500 });
+    anime({ targets: '.hero-info, #countdown, .hero-content .btn', opacity: [0, 1], duration: 1000, delay: anime.stagger(200, { start: 800 }), easing: 'linear' });
 }
 
-// --- COUNTDOWN TIMER ---
+// --- COUNTDOWN ---
 function initCountdown() {
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-
-    function updateTimer() {
-        const now = new Date().getTime();
-        const distance = RACE_DATE - now;
-
-        if (distance < 0) {
-            clearInterval(timerInterval);
-            // Handle race day or past race
-            return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        daysEl.innerText = String(days).padStart(2, '0');
-        hoursEl.innerText = String(hours).padStart(2, '0');
-        minutesEl.innerText = String(minutes).padStart(2, '0');
-        secondsEl.innerText = String(seconds).padStart(2, '0');
-    }
-
-    const timerInterval = setInterval(updateTimer, 1000);
-    updateTimer(); // Initial call
+    const elements = ['days', 'hours', 'minutes', 'seconds'].map(id => document.getElementById(id));
+    if (elements.some(el => !el)) return;
+    const timer = setInterval(() => {
+        const dist = RACE_DATE - new Date().getTime();
+        if (dist < 0) return clearInterval(timer);
+        elements[0].innerText = String(Math.floor(dist / 864e5)).padStart(2, '0');
+        elements[1].innerText = String(Math.floor((dist % 864e5) / 36e5)).padStart(2, '0');
+        elements[2].innerText = String(Math.floor((dist % 36e5) / 6e4)).padStart(2, '0');
+        elements[3].innerText = String(Math.floor((dist % 6e4) / 1e3)).padStart(2, '0');
+    }, 1000);
 }

@@ -1008,3 +1008,116 @@ img {
         padding: 60px 20px;
     }
 }
+
+/* Nav Active Link */
+.nav-links a.active {
+    color: var(--blue-electric);
+    text-shadow: 0 0 10px var(--blue-electric);
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Multi-step Form */
+.form-step {
+    display: none;
+    opacity: 0;
+}
+
+.form-step.active {
+    display: block;
+    opacity: 1;
+}
+
+.form-steps-container {
+    min-height: 400px;
+    position: relative;
+}
+
+.step-title {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--blue-electric);
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--blue-electric);
+    color: var(--white);
+    padding: 12px 25px;
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+    transition: var(--transition-fast);
+}
+
+.btn-outline:hover {
+    background: var(--blue-electric);
+    color: black;
+}
+
+/* Animations item initial states */
+.anime-item {
+    opacity: 0;
+}
+
+.form-step.active .anime-item {
+    opacity: 1;
+    /* Fallback if script fails */
+}
+
+/* Registration Page specific */
+.registration-page {
+    background: radial-gradient(circle at top, #111 0%, #050505 100%);
+}
+
+.registration-form-container {
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 170, 255, 0.2);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+/* Input validation feedback */
+input:focus {
+    box-shadow: 0 0 15px var(--blue-electric);
+    transform: translateY(-2px);
+}
+
+@keyframes pulse-border {
+    0% {
+        border-color: rgba(0, 170, 255, 0.3);
+    }
+
+    50% {
+        border-color: rgba(0, 170, 255, 1);
+    }
+
+    100% {
+        border-color: rgba(0, 170, 255, 0.3);
+    }
+}
+
+.registration-form input:focus {
+    animation: pulse-border 2s infinite;
+}
+
+/* Confetti particles */
+.confetti-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    z-index: 100;
+}
