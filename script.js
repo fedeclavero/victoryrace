@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroAnimations();
     initCountdown();
     initScrollReveal();
-    initLightning();
+    // initLightning(); // Disabled in favor of new SVG v4 system
     initLightbox();
     initForm();
     highlightActiveLink();
