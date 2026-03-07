@@ -201,7 +201,7 @@ img {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('https://qu.ax/unfYn');
+    background-image: url('assets/img/hero-bg.jpg');
     /* Real Hero Image */
     background-size: cover;
     background-position: center;
@@ -224,23 +224,15 @@ img {
     padding-top: 60px;
 }
 
-.lightning-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
+/* Legacy Lightning (Removed) */
+.lightning-container,
+.lightning-bolt,
+#lightning-canvas {
+    display: none !important;
 }
 
-.lightning-bolt {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-    filter: blur(2px);
-    box-shadow: 0 0 10px var(--accent);
+#lightning-svg {
+    z-index: 1;
 }
 
 .hero-title {
