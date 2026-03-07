@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VICTORY RACE II — 11 de Septiembre 2026</title>
+
+    <!-- SEO -->
+    <meta name="description"
+        content="Victory Race II - La competencia de CrossFit más intensa en Villa Carlos Paz. Inscribite ahora y desafiá tus límites.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Rajdhani:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="navbar">
+        <nav class="container">
+            <div class="logo">
+                <span class="victory">VICTORY</span> <span class="race">RACE</span>
+            </div>
+
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#la-carrera">La Carrera</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#wods">WODs</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#sponsors">Sponsors</a></li>
+                <li><a href="#inscripcion" class="btn btn-accent">¡INSCRIBITE!</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-overlay"></div>
+            <div class="lightning-container" id="lightning-container"></div>
+
+            <div class="hero-content container">
+                <div class="hero-logo-box">
+                    <h1 class="hero-title" id="main-title">VICTORY RACE</h1>
+                    <h2 class="hero-subtitle" id="sub-title">2DA EDICIÓN</h2>
+                </div>
+
+                <div class="hero-info" id="hero-info">
+                    <p class="hero-date">11 de Septiembre 2026</p>
+                    <p class="hero-location">Playón Municipal — Villa Carlos Paz</p>
+                </div>
+
+                <div class="countdown-container" id="countdown">
+                    <div class="countdown-item"><span id="days">00</span><label>DÍAS</label></div>
+                    <div class="countdown-item"><span id="hours">00</span><label>HORAS</label></div>
+                    <div class="countdown-item"><span id="minutes">00</span><label>MIN</label></div>
+                    <div class="countdown-item"><span id="seconds">00</span><label>SEG</label></div>
+                </div>
+
+                <a href="#inscripcion" class="btn btn-primary btn-glow btn-lg pulsate">¡INSCRIBITE AHORA!</a>
+            </div>
+
+            <a href="#la-carrera" class="scroll-down">
+                <span></span>
+            </a>
+        </section>
+
+        <!-- SECCIÓN: LA CARRERA -->
+        <section id="la-carrera" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">¿QUÉ ES VICTORY RACE?</h2>
+                    <p class="section-subtitle">Una competencia de CrossFit que desafía tus límites. Diseñada para los
+                        atletas que buscan superarse, forjar comunidad y vivir una experiencia épica en el corazón de
+                        Villa Carlos Paz.</p>
+                </div>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card reveal">
+                        <div class="pillar-icon">💪</div>
+                        <h3>Intensidad Máxima</h3>
+                        <p>Workouts diseñados para poner a prueba cada capacidad física y mental.</p>
+                    </div>
+                    <div class="pillar-card reveal">
+                        <div class="pillar-icon">🏆</div>
+                        <h3>Competencia Real</h3>
+                        <p>Jueces capacitados y estándares de alto nivel para una competencia justa.</p>
+                    </div>
+                    <div class="pillar-card reveal">
+                        <div class="pillar-icon">👥</div>
+                        <h3>Comunidad</h3>
+                        <p>El espíritu del CrossFit se vive en cada aliento y cada repetición.</p>
+                    </div>
+                    <div class="pillar-card reveal">
+                        <div class="pillar-icon">📍</div>
+                        <h3>Villa Carlos Paz</h3>
+                        <p>El mejor escenario natural: la costanera y el Playón Municipal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CATEGORÍAS -->
+        <section id="categorias" class="section alt-bg">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">CATEGORÍAS</h2>
+                    <p class="section-subtitle">Elegí tu desafío. Contamos con categorías individuales y por equipos
+                        (duplas).</p>
+                </div>
+
+                <div class="category-group">
+                    <h3 class="group-title reveal">INDIVIDUALES</h3>
+                    <div class="categories-grid">
+                        <!-- Individual Cards -->
+                        <div class="category-card reveal" data-type="individual" data-level="recreativo">
+                            <div class="cat-badge">INDIVIDUAL</div>
+                            <h4>Open Recreativo</h4>
+                            <div class="cat-level recreativo">Recreativo</div>
+                            <p class="cat-sex">Hombre / Mujer</p>
+                            <p class="cat-price">Precio: A CONFIRMAR</p>
+                        </div>
+                        <div class="category-card reveal" data-type="individual" data-level="intermedio">
+                            <div class="cat-badge">INDIVIDUAL</div>
+                            <h4>Intermedio</h4>
+                            <div class="cat-level intermedio">Intermedio</div>
+                            <p class="cat-sex">Hombre / Mujer</p>
+                            <p class="cat-price">Precio: A CONFIRMAR</p>
+                        </div>
+                        <div class="category-card reveal" data-type="individual" data-level="avanzado">
+                            <div class="cat-badge">INDIVIDUAL</div>
+                            <h4>Avanzado</h4>
+                            <div class="cat-level avanzado">Avanzado</div>
+                            <p class="cat-sex">Hombre / Mujer</p>
+                            <p class="cat-price">Precio: A CONFIRMAR</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-group">
+                    <h3 class="group-title reveal">EQUIPOS (DUPLAS)</h3>
+                    <div class="categories-grid">
+                        <div class="category-card reveal" data-type="team" data-level="principiante">
+                            <div class="cat-badge">EQUIPO</div>
+                            <h4>Principiante</h4>
+                            <div class="cat-level principiante">Principiante</div>
+                            <p class="cat-sex">H&H / M&M / Mixto</p>
+                            <p class="cat-price">Precio: A CONFIRMAR</p>
+                        </div>
+                        <div class="category-card reveal" data-type="team" data-level="intermedio">
+                            <div class="cat-badge">EQUIPO</div>
+                            <h4>Intermedio</h4>
+                            <div class="cat-level intermedio">Intermedio</div>
+                            <p class="cat-sex">H&H / M&M / Mixto</p>
+                            <p class="cat-price">Precio: A CONFIRMAR</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SECCIÓN: WODs -->
+        <section id="wods" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">LOS WODs</h2>
+                    <p class="section-subtitle">Los desafíos que pondrán a prueba tu temple.</p>
+                </div>
+
+                <div class="coming-soon-box reveal">
+                    <div class="cs-content">
+                        <h3>PRÓXIMAMENTE</h3>
+                        <p>Los workouts serán revelados próximamente. ¡Preparate para lo que viene!</p>
+                        <div class="loading-bar">
+                            <div class="bar-progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: GALERÍA -->
+        <section id="galeria" class="section alt-bg">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">VICTORY RACE I — REVIVILA</h2>
+                    <p class="section-subtitle">Momentos de pura intensidad en nuestra edición anterior.</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item reveal">
+                        <img src="https://files.catbox.moe/x56mvd.jpg" alt="Victory Race I" class="img-zoom">
+                        <div class="gallery-overlay"><span>VER</span></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://files.catbox.moe/9ram4f.jpg" alt="Victory Race I" class="img-zoom">
+                        <div class="gallery-overlay"><span>VER</span></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://files.catbox.moe/b8rc1t.jpg" alt="Victory Race I" class="img-zoom">
+                        <div class="gallery-overlay"><span>VER</span></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://files.catbox.moe/sfr0a9.jpg" alt="Victory Race I" class="img-zoom">
+                        <div class="gallery-overlay"><span>VER</span></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://files.catbox.moe/3ckn38.jpg" alt="Victory Race I" class="img-zoom">
+                        <div class="gallery-overlay"><span>VER</span></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://files.catbox.moe/x56mvd.jpg" alt="Victory Race I" class="img-zoom">
+                        <div class="gallery-overlay"><span>VER</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox">
+            <span class="close-lightbox">&times;</span>
+            <img class="lightbox-content" id="lightbox-img">
+        </div>
+        <!-- SECCIÓN: SPONSORS -->
+        <section id="sponsors" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">NUESTROS SPONSORS</h2>
+                </div>
+
+                <div class="sponsors-grid">
+                    <div class="sponsor-card reveal">
+                        <!-- TODO: Reemplazar por logo real cuando esté disponible -->
+                        <div class="sponsor-logo-placeholder">OPUS SUPLEMENTOS</div>
+                    </div>
+                    <!-- Dejado preparado para más sponsors -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: INSCRIPCIÓN -->
+        <section id="inscripcion" class="section alt-bg">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">INSCRIBITE</h2>
+                    <p class="section-subtitle">Completá tus datos para asegurar tu lugar en la competencia.</p>
+                </div>
+
+                <div class="registration-form-container reveal" id="registration-container">
+                    <form id="inscription-form" class="registration-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido">
+                            </div>
+                            <div class="form-group">
+                                <label for="ciudad">Ciudad</label>
+                                <input type="text" id="ciudad" name="ciudad" required placeholder="Ciudad, Provincia">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="dni">DNI / Documento</label>
+                                <input type="number" id="dni" name="dni" required placeholder="Número de documento">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">WhatsApp / Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" placeholder="+54 9 ...">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Categorías (Podés elegir más de una)</label>
+                            <div class="categories-selection" id="categories-selection">
+                                <!-- Individuales -->
+                                <div class="cat-option">
+                                    <input type="checkbox" id="cat-1" name="categorias"
+                                        value="Individual - Open Recreativo">
+                                    <label for="cat-1">Indiv - Open Recreativo</label>
+                                </div>
+                                <div class="cat-option">
+                                    <input type="checkbox" id="cat-2" name="categorias" value="Individual - Intermedio">
+                                    <label for="cat-2">Indiv - Intermedio</label>
+                                </div>
+                                <div class="cat-option">
+                                    <input type="checkbox" id="cat-3" name="categorias" value="Individual - Avanzado">
+                                    <label for="cat-3">Indiv - Avanzado</label>
+                                </div>
+                                <!-- Equipos -->
+                                <div class="cat-option team-option">
+                                    <input type="checkbox" id="cat-4" name="categorias" value="Equipos - Principiante">
+                                    <label for="cat-4">Eq - Principiante</label>
+                                </div>
+                                <div class="cat-option team-option">
+                                    <input type="checkbox" id="cat-5" name="categorias" value="Equipos - Intermedio">
+                                    <label for="cat-5">Eq - Intermedio</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Campos dinámicos para equipos -->
+                        <div id="partner-fields" class="partner-fields" style="display: none;">
+                            <h3 class="form-substep">Datos del Compañero/a (Solo para equipos)</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="nombreCompanero">Nombre Compañero</label>
+                                    <input type="text" id="nombreCompanero" name="nombreCompanero"
+                                        placeholder="Nombre compañero">
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellidoCompanero">Apellido Compañero</label>
+                                    <input type="text" id="apellidoCompanero" name="apellidoCompanero"
+                                        placeholder="Apellido compañero">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="disclaimer-box">
+                            <input type="checkbox" id="disclaimer" required>
+                            <label for="disclaimer">
+                                He leído y acepto el <strong>deslinde de responsabilidad</strong>:
+                                Los organizadores de Victory Race no se responsabilizan por lesiones, accidentes u
+                                cualquier daño físico o material que pueda ocurrir durante la competencia. La
+                                participación es bajo mi propia responsabilidad.
+                            </label>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn btn-primary btn-glow btn-block" disabled>ENVIAR
+                            INSCRIPCIÓN</button>
+                    </form>
+
+                    <div id="loading-spinner" style="display: none; text-align: center; padding: 40px;">
+                        <div class="spinner"></div>
+                        <p>Enviando datos...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <span class="victory">VICTORY</span> <span class="race">RACE</span>
+            </div>
+            <div class="footer-info">
+                <p>11 de Septiembre 2026 | Villa Carlos Paz</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/victory.race" target="_blank">Instagram: @victory.race</a>
+                    <a href="https://wa.me/5493541690852" target="_blank">WhatsApp: +54 9 3541 690852</a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <p>Copyright &copy; 2026 Victory Race. Todos los derechos reservados.</p>
+                <p class="small">La participación es a riesgo del atleta.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
