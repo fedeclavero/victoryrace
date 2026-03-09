@@ -10,8 +10,22 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Rajdhani:wght@400;600;700&display=swap"
         rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://victoryrace.pages.dev/galeria.html">
+    <meta name="theme-color" content="#00f2ff">
+
+    <!-- SEO & OG -->
+    <meta name="description"
+        content="Galería de fotos de Victory Race I. Reviví los mejores momentos de la competencia en Villa Carlos Paz.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://victoryrace.pages.dev/galeria.html">
+    <meta property="og:title" content="Galería | Victory Race I — Revivilo">
+    <meta property="og:description"
+        content="Momentos de pura intensidad en nuestra edición anterior. Reviví Victory Race I.">
+    <meta property="og:image" content="https://victoryrace.pages.dev/assets/img/gallery-1.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galería | Victory Race I">
+    <meta name="twitter:image" content="https://victoryrace.pages.dev/assets/img/gallery-1.webp">
 </head>
 
 <body>
@@ -43,27 +57,54 @@
                 </div>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="assets/img/gallery-1.jpg" alt="Victory Race I" class="gallery-img">
+                        <picture>
+                            <source srcset="assets/img/gallery-1.webp" type="image/webp">
+                            <img src="assets/img/gallery-1-original.jpg"
+                                alt="Atletas compitiendo en Victory Race I, Villa Carlos Paz" class="gallery-img"
+                                loading="lazy">
+                        </picture>
                         <div class="gallery-overlay"><span>VER</span></div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/img/gallery-2.jpg" alt="Victory Race I" class="gallery-img">
+                        <picture>
+                            <source srcset="assets/img/gallery-2.webp" type="image/webp">
+                            <img src="assets/img/gallery-2-original.jpg"
+                                alt="Esfuerzo máximo en la pista de Victory Race I" class="gallery-img" loading="lazy">
+                        </picture>
                         <div class="gallery-overlay"><span>VER</span></div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/img/gallery-3.jpg" alt="Victory Race I" class="gallery-img">
+                        <picture>
+                            <source srcset="assets/img/gallery-3.webp" type="image/webp">
+                            <img src="assets/img/gallery-3-original.jpg" alt="Comunidad CrossFit en Victory Race II"
+                                class="gallery-img" loading="lazy">
+                        </picture>
                         <div class="gallery-overlay"><span>VER</span></div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/img/gallery-4.jpg" alt="Victory Race I" class="gallery-img">
+                        <picture>
+                            <source srcset="assets/img/gallery-4.webp" type="image/webp">
+                            <img src="assets/img/gallery-4-original.jpg" alt="Podio y premiación Victory Race I"
+                                class="gallery-img" loading="lazy">
+                        </picture>
                         <div class="gallery-overlay"><span>VER</span></div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/img/gallery-5.jpg" alt="Victory Race I" class="gallery-img">
+                        <picture>
+                            <source srcset="assets/img/gallery-5.webp" type="image/webp">
+                            <img src="assets/img/gallery-5-original.jpg"
+                                alt="Atleta realizando levantamiento olímpico en VR I" class="gallery-img"
+                                loading="lazy">
+                        </picture>
                         <div class="gallery-overlay"><span>VER</span></div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/img/gallery-6.jpg" alt="Victory Race I" class="gallery-img">
+                        <picture>
+                            <source srcset="assets/img/gallery-6.webp" type="image/webp">
+                            <img src="assets/img/gallery-6-original.jpg"
+                                alt="Obstáculos y barro en la edición anterior de Victory Race" class="gallery-img"
+                                loading="lazy">
+                        </picture>
                         <div class="gallery-overlay"><span>VER</span></div>
                     </div>
                 </div>
@@ -92,8 +133,10 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
-    <script type="module" src="js/lightning-v4.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <script type="module" src="js/lightning-v4.js" defer></script>
 </body>
 
 </html>

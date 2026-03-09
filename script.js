@@ -3,8 +3,8 @@
  */
 
 // --- CONFIGURACIÓN ---
-const GOOGLE_SCRIPT_URL = "REEMPLAZAR_CON_URL_DEL_SCRIPT";
-const BANK_ALIAS = "VICTORY.RACE.2026";
+const GOOGLE_SCRIPT_URL = "REEMPLAZAR_CON_URL_DEL_SCRIPT"; // VERIFICAR: Setear URL real post-deploy
+const BANK_ALIAS = "erick.cabrera.11";
 const WHATSAPP_NUMBER = "5493541690852";
 const RACE_DATE = new Date("2026-09-11T00:00:00").getTime();
 
@@ -206,11 +206,14 @@ function initForm() {
 
         fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors',
             body: JSON.stringify(data)
-        }).then(() => {
-            localStorage.removeItem('vr_form_data');
-            showConfirmation(data.nombre);
+        }).then(response => {
+            if (response.ok || response.type === 'opaque') {
+                localStorage.removeItem('vr_form_data');
+                showConfirmation(data.nombre);
+            } else {
+                throw new Error("Error en servidor");
+            }
         }).catch(() => {
             alert("Error al enviar. Intenta de nuevo.");
             document.querySelector('.form-steps-container').style.display = 'block';
@@ -227,7 +230,8 @@ function initForm() {
                 <p>Estás a un paso de la gloria. Tu pre-inscripción fue registrada.</p>
                 <div class="payment-steps">
                     <div class="step anime-item"><span class="step-num">1</span><p>Transferí al alias: <strong id="bank-alias">${BANK_ALIAS}</strong> <button class="copy-btn" onclick="copyAlias()">COPIAR</button></p></div>
-                    <div class="step anime-item"><span class="step-num">2</span><p>WhatsApp captura: <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" class="btn btn-accent btn-sm">ENVIAR AQUÍ</a></p></div>
+                    <div class="step anime-item"><span class="step-num">2</span><p>Monto pre-inscripción: <strong>$50.000</strong></p></div>
+                    <div class="step anime-item"><span class="step-num">3</span><p>WhatsApp captura: <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" class="btn btn-accent btn-sm">ENVIAR AQUÍ</a></p></div>
                 </div>
             </div>
         `;
@@ -325,6 +329,14 @@ function initShareButton() {
     shareDiv.className = 'share-container';
     shareDiv.innerHTML = `<button class="btn btn-accent btn-sm" id="share-btn">COMPARTIR EVENTO</button>`;
     footer.appendChild(shareDiv);
+
+    // FIX: Instagram Handle
+    const footerLinks = document.querySelectorAll('.footer-socials a');
+    footerLinks.forEach(link => {
+        if (link.innerText.includes('@victory.race')) {
+            link.innerText = link.innerText.replace('@victory.race', '@victoryrace.arg');
+        }
+    });
 
     document.getElementById('share-btn').addEventListener('click', () => {
         const shareData = {

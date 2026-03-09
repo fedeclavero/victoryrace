@@ -5,7 +5,8 @@
     --bg-dark: #0a0a0a;
     --bg-darker: #050505;
     --bg-card: #111111;
-    --accent: #00f2ff; /* Updated to Electric Blue */
+    --accent: #00f2ff;
+    /* Updated to Electric Blue */
     --accent-dark: #0088cc;
     --accent-glow: rgba(0, 242, 255, 0.4);
     --text-primary: #ffffff;
@@ -30,13 +31,16 @@
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: var(--bg-dark);
 }
+
 ::-webkit-scrollbar-thumb {
     background: var(--accent);
     border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-dark);
 }
@@ -216,7 +220,7 @@ img {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('assets/img/hero-bg.jpg');
+    background-image: url('assets/img/hero-bg.webp');
     /* Real Hero Image */
     background-size: cover;
     background-position: center;
@@ -889,11 +893,23 @@ img {
 }
 
 @keyframes flicker-text {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
         text-shadow: 0 0 15px var(--accent-glow);
         opacity: 1;
     }
-    20%, 22%, 24%, 55% {
+
+    20%,
+    22%,
+    24%,
+    55% {
         text-shadow: none;
         opacity: 0.8;
     }
