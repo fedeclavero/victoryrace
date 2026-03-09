@@ -43,6 +43,9 @@
                 </div>
 
                 <div class="registration-form-container reveal active" id="registration-container">
+                    <div class="registration-progress-container">
+                        <div class="registration-progress-bar"></div>
+                    </div>
                     <form id="inscription-form" class="registration-form">
                         <div class="form-steps-container">
                             <!-- Step 1: Personal Info -->
@@ -86,30 +89,7 @@
                                 <div class="form-group anime-item">
                                     <label>Elegí una o más categorías</label>
                                     <div class="categories-selection">
-                                        <div class="cat-option">
-                                            <input type="checkbox" id="cat-1" name="categorias"
-                                                value="Indiv - Open Recreativo">
-                                            <label for="cat-1">Indiv - Open Recreativo</label>
-                                        </div>
-                                        <div class="cat-option">
-                                            <input type="checkbox" id="cat-2" name="categorias"
-                                                value="Indiv - Intermedio">
-                                            <label for="cat-2">Indiv - Intermedio</label>
-                                        </div>
-                                        <div class="cat-option">
-                                            <input type="checkbox" id="cat-3" name="categorias"
-                                                value="Indiv - Avanzado">
-                                            <label for="cat-3">Indiv - Avanzado</label>
-                                        </div>
-                                        <div class="cat-option team-option">
-                                            <input type="checkbox" id="cat-4" name="categorias"
-                                                value="Eq - Principiante">
-                                            <label for="cat-4">Eq - Principiante</label>
-                                        </div>
-                                        <div class="cat-option team-option">
-                                            <input type="checkbox" id="cat-5" name="categorias" value="Eq - Intermedio">
-                                            <label for="cat-5">Eq - Intermedio</label>
-                                        </div>
+                                        <!-- Dynamically rendered -->
                                     </div>
                                 </div>
                                 <div id="partner-fields" class="partner-fields anime-item" style="display: none;">

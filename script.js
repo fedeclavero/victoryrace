@@ -8,16 +8,69 @@ const BANK_ALIAS = "VICTORY.RACE.2026";
 const WHATSAPP_NUMBER = "5493541690852";
 const RACE_DATE = new Date("2026-09-11T00:00:00").getTime();
 
+// --- DATA ---
+const CATEGORIES = [
+    { id: 'cat-1', name: 'Indiv - Open Recreativo', type: 'individual', level: 'recreativo', sex: 'Hombre / Mujer' },
+    { id: 'cat-2', name: 'Indiv - Intermedio', type: 'individual', level: 'intermedio', sex: 'Hombre / Mujer' },
+    { id: 'cat-3', name: 'Indiv - Avanzado', type: 'individual', level: 'avanzado', sex: 'Hombre / Mujer' },
+    { id: 'cat-4', name: 'Eq - Principiante', type: 'team', level: 'principiante', sex: 'H&H / M&M / Mixto' },
+    { id: 'cat-5', name: 'Eq - Intermedio', type: 'team', level: 'intermedio', sex: 'H&H / M&M / Mixto' }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initHeroAnimations();
     initCountdown();
     initScrollReveal();
-    // initLightning(); // Disabled in favor of new SVG v4 system
     initLightbox();
     initForm();
     highlightActiveLink();
+    renderCategories();
+    initLazyLoading();
+    initShareButton();
 });
+
+// --- RENDER DYNAMIC CONTENT ---
+function renderCategories() {
+    // Render in categories.html
+    const gridIndividual = document.querySelector('#categorias [data-type="individual"]')?.parentElement;
+    const gridTeam = document.querySelector('#categorias [data-type="team"]')?.parentElement;
+
+    if (gridIndividual && gridTeam) {
+        gridIndividual.innerHTML = '';
+        gridTeam.innerHTML = '';
+
+        CATEGORIES.forEach(cat => {
+            const card = `
+                <div class="category-card reveal" data-type="${cat.type}">
+                    <div class="cat-badge">${cat.type === 'individual' ? 'INDIVIDUAL' : 'EQUIPO'}</div>
+                    <h4>${cat.name.replace('Indiv - ', '').replace('Eq - ', '')}</h4>
+                    <div class="cat-level ${cat.level}">${cat.level.charAt(0).toUpperCase() + cat.level.slice(1)}</div>
+                    <p class="cat-sex">${cat.sex}</p>
+                </div>
+            `;
+            if (cat.type === 'individual') gridIndividual.innerHTML += card;
+            else gridTeam.innerHTML += card;
+        });
+    }
+
+    // Render in inscription form
+    const formGrid = document.querySelector('.categories-selection');
+    if (formGrid) {
+        formGrid.innerHTML = '';
+        CATEGORIES.forEach(cat => {
+            const option = `
+                <div class="cat-option ${cat.type === 'team' ? 'team-option' : ''}">
+                    <input type="checkbox" id="${cat.id}" name="categorias" value="${cat.name}">
+                    <label for="${cat.id}">${cat.name}</label>
+                </div>
+            `;
+            formGrid.innerHTML += option;
+        });
+        // Re-bind team logic after render
+        bindTeamLogic();
+    }
+}
 
 // --- NAV ACTIVE STATE ---
 function highlightActiveLink() {
@@ -42,12 +95,13 @@ function initForm() {
     const prevBtns = document.querySelectorAll('.prev-step');
     const disclaimer = document.getElementById('disclaimer');
     const submitBtn = document.getElementById('submit-btn');
-    const partnerFields = document.getElementById('partner-fields');
-    const categoriesCheckboxes = document.querySelectorAll('input[name="categorias"]');
     const container = document.getElementById('registration-container');
     const spinner = document.getElementById('loading-spinner');
 
     let currentStep = 1;
+
+    // Load persisted data
+    loadFormData(form);
 
     // Next Step Logic
     nextBtns.forEach(btn => {
@@ -63,6 +117,11 @@ function initForm() {
         btn.addEventListener('click', () => {
             goToStep(currentStep - 1);
         });
+    });
+
+    // Persistence on change
+    form.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => saveFormData(form));
     });
 
     function validateStep(step) {
@@ -85,9 +144,8 @@ function initForm() {
             }
         });
 
-        // Step 2 validation (at least one category)
         if (step === 2) {
-            const checked = Array.from(categoriesCheckboxes).some(cb => cb.checked);
+            const checked = Array.from(document.querySelectorAll('input[name="categorias"]')).some(cb => cb.checked);
             if (!checked) {
                 valid = false;
                 alert("Seleccioná al menos una categoría.");
@@ -100,6 +158,8 @@ function initForm() {
     function goToStep(step) {
         const currentEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
         const nextEl = document.querySelector(`.form-step[data-step="${step}"]`);
+
+        updateProgressBar(step);
 
         anime({
             targets: currentEl,
@@ -120,7 +180,6 @@ function initForm() {
                     easing: 'easeOutExpo'
                 });
 
-                // Stagger items inside the new step
                 anime({
                     targets: nextEl.querySelectorAll('.anime-item'),
                     opacity: [0, 1],
@@ -132,41 +191,10 @@ function initForm() {
         });
     }
 
-    // Disclaimer
     disclaimer.addEventListener('change', () => {
         submitBtn.disabled = !disclaimer.checked;
     });
 
-    // Team logic
-    categoriesCheckboxes.forEach(cb => {
-        cb.addEventListener('change', () => {
-            const hasTeam = Array.from(categoriesCheckboxes)
-                .filter(c => c.checked)
-                .some(c => c.parentElement.classList.contains('team-option'));
-
-            if (hasTeam) {
-                partnerFields.style.display = 'block';
-                anime({
-                    targets: partnerFields,
-                    height: [0, 'auto'],
-                    opacity: [0, 1],
-                    duration: 500,
-                    easing: 'easeOutQuad'
-                });
-            } else {
-                anime({
-                    targets: partnerFields,
-                    opacity: 0,
-                    height: 0,
-                    duration: 300,
-                    easing: 'easeInQuad',
-                    complete: () => partnerFields.style.display = 'none'
-                });
-            }
-        });
-    });
-
-    // Submit
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(form);
@@ -181,6 +209,7 @@ function initForm() {
             mode: 'no-cors',
             body: JSON.stringify(data)
         }).then(() => {
+            localStorage.removeItem('vr_form_data');
             showConfirmation(data.nombre);
         }).catch(() => {
             alert("Error al enviar. Intenta de nuevo.");
@@ -197,7 +226,7 @@ function initForm() {
                 <h3 class="conf-title">¡ÉPICO, ${nombre.toUpperCase()}!</h3>
                 <p>Estás a un paso de la gloria. Tu pre-inscripción fue registrada.</p>
                 <div class="payment-steps">
-                    <div class="step anime-item"><span class="step-num">1</span><p>Transferí al alias: <strong>${BANK_ALIAS}</strong></p></div>
+                    <div class="step anime-item"><span class="step-num">1</span><p>Transferí al alias: <strong id="bank-alias">${BANK_ALIAS}</strong> <button class="copy-btn" onclick="copyAlias()">COPIAR</button></p></div>
                     <div class="step anime-item"><span class="step-num">2</span><p>WhatsApp captura: <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" class="btn btn-accent btn-sm">ENVIAR AQUÍ</a></p></div>
                 </div>
             </div>
@@ -214,24 +243,131 @@ function initForm() {
     }
 }
 
+function bindTeamLogic() {
+    const partnerFields = document.getElementById('partner-fields');
+    const categoriesCheckboxes = document.querySelectorAll('input[name="categorias"]');
+    if (!partnerFields) return;
+
+    categoriesCheckboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+            const hasTeam = Array.from(categoriesCheckboxes)
+                .filter(c => c.checked)
+                .some(c => c.parentElement.classList.contains('team-option'));
+
+            if (hasTeam) {
+                partnerFields.style.display = 'block';
+                anime({ targets: partnerFields, height: [0, 'auto'], opacity: [0, 1], duration: 500, easing: 'easeOutQuad' });
+            } else {
+                anime({
+                    targets: partnerFields, opacity: 0, height: 0, duration: 300, easing: 'easeInQuad',
+                    complete: () => partnerFields.style.display = 'none'
+                });
+            }
+        });
+    });
+}
+
+function updateProgressBar(step) {
+    const bar = document.querySelector('.registration-progress-bar');
+    if (bar) {
+        const percent = (step / 3) * 100;
+        bar.style.width = percent + '%';
+    }
+}
+
+function copyAlias() {
+    const btn = document.querySelector('.copy-btn');
+    navigator.clipboard.writeText(BANK_ALIAS).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = '¡COPIADO!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+function saveFormData(form) {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    data.categorias = Array.from(formData.getAll('categorias'));
+    localStorage.setItem('vr_form_data', JSON.stringify(data));
+}
+
+function loadFormData(form) {
+    const saved = localStorage.getItem('vr_form_data');
+    if (!saved) return;
+    const data = JSON.parse(saved);
+    Object.keys(data).forEach(key => {
+        const input = form.querySelector(`[name="${key}"]`);
+        if (input) {
+            if (input.type === 'checkbox') {
+                if (Array.isArray(data[key])) {
+                    const checkboxes = form.querySelectorAll(`[name="${key}"]`);
+                    checkboxes.forEach(cb => { if (data[key].includes(cb.value)) cb.checked = true; });
+                } else {
+                    input.checked = !!data[key];
+                }
+            } else {
+                input.value = data[key];
+            }
+        }
+    });
+}
+
+// --- UTILITIES ---
+function initShareButton() {
+    const footer = document.querySelector('.footer-content');
+    if (!footer) return;
+
+    const shareDiv = document.createElement('div');
+    shareDiv.className = 'share-container';
+    shareDiv.innerHTML = `<button class="btn btn-accent btn-sm" id="share-btn">COMPARTIR EVENTO</button>`;
+    footer.appendChild(shareDiv);
+
+    document.getElementById('share-btn').addEventListener('click', () => {
+        const shareData = {
+            title: 'Victory Race II',
+            text: '¡Vuelve la carrera de CrossFit más intensa! Inscribite acá:',
+            url: window.location.origin + window.location.pathname.replace(window.location.pathname.split('/').pop(), 'index.html')
+        };
+
+        if (navigator.share) {
+            navigator.share(shareData);
+        } else {
+            navigator.clipboard.writeText(shareData.url);
+            alert('¡Link copiado al portapapeles!');
+        }
+    });
+}
+
+function initLazyLoading() {
+    const images = document.querySelectorAll('.gallery-img');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('lazy-loaded');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    images.forEach(img => observer.observe(img));
+}
+
 function initConfetti() {
     const container = document.getElementById('confetti');
     if (!container) return;
     for (let i = 0; i < 60; i++) {
         const particle = document.createElement('div');
         particle.className = 'confetti-particle';
-        particle.style.backgroundColor = i % 2 === 0 ? 'var(--blue-electric)' : '#fff';
+        particle.style.backgroundColor = i % 2 === 0 ? 'var(--accent)' : '#fff';
         particle.style.left = Math.random() * 100 + '%';
         container.appendChild(particle);
         anime({
-            targets: particle,
-            translateY: [0, 600],
-            translateX: () => (Math.random() - 0.5) * 300,
-            rotate: () => Math.random() * 720,
-            opacity: [1, 0],
-            duration: 2000 + Math.random() * 3000,
-            easing: 'easeOutQuad',
-            complete: () => particle.remove()
+            targets: particle, translateY: [0, 600], translateX: () => (Math.random() - 0.5) * 300,
+            rotate: () => Math.random() * 720, opacity: [1, 0], duration: 2000 + Math.random() * 3000,
+            easing: 'easeOutQuad', complete: () => particle.remove()
         });
     }
 }
@@ -246,7 +382,8 @@ function initLightbox() {
 
     galleryItems.forEach(item => {
         item.addEventListener('click', () => {
-            lightboxImg.src = item.querySelector('img').src;
+            const img = item.querySelector('img');
+            lightboxImg.src = img.src;
             lightbox.style.display = 'block';
             anime({ targets: '#lightbox', opacity: [0, 1], duration: 400, easing: 'easeOutQuad' });
             anime({ targets: '.lightbox-content', scale: [0.8, 1], opacity: [0, 1], duration: 500, easing: 'easeOutExpo' });
@@ -255,22 +392,6 @@ function initLightbox() {
 
     closeBtn.onclick = () => lightbox.style.display = 'none';
     lightbox.onclick = (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; };
-}
-
-// --- LIGHTNING ---
-function initLightning() {
-    const container = document.getElementById('lightning-container');
-    if (!container) return;
-    setInterval(() => {
-        if (Math.random() > 0.95) {
-            const bolt = document.createElement('div');
-            bolt.className = 'lightning-bolt';
-            bolt.style.left = Math.random() * 100 + '%';
-            bolt.style.width = (1 + Math.random() * 2) + 'px';
-            container.appendChild(bolt);
-            anime({ targets: bolt, opacity: [0.8, 0], duration: 200 + Math.random() * 400, easing: 'easeOutExpo', complete: () => bolt.remove() });
-        }
-    }, 200);
 }
 
 // --- SCROLL REVEAL ---
