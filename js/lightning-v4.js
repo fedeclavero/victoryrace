@@ -97,11 +97,38 @@
         });
     }
 
+    let loopTimeout = null;
+    let isRunning = false;
+
     function loop() {
+        // Pause generation when the tab is hidden
+        if (document.hidden) {
+            isRunning = false;
+            return;
+        }
         createBolt();
-        setTimeout(loop, 1500 + Math.random() * 3000);
+        loopTimeout = setTimeout(loop, 1500 + Math.random() * 3000);
     }
 
-    loop();
-    setTimeout(loop, 2000);
+    function startLoop() {
+        if (!isRunning) {
+            isRunning = true;
+            loop();
+        }
+    }
+
+    // Listen for tab visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            // Tab became visible again — restart the loop
+            startLoop();
+        }
+        // When hidden, the loop stops itself on next tick
+    });
+
+    startLoop();
+    // Stagger a second independent bolt stream
+    setTimeout(() => {
+        if (!document.hidden) startLoop();
+    }, 2000);
 })();
