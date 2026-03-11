@@ -185,10 +185,11 @@ img {
 }
 
 .nav-links a {
-    font-family: var(--font-accent);
-    font-weight: 600;
-    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
     color: var(--text-secondary);
+    letter-spacing: 0.02em;
 }
 
 .nav-links a:not(.btn):hover {
@@ -1054,6 +1055,22 @@ img {
 .footer-legal {
     font-size: 0.8rem;
     color: var(--text-muted);
+    margin-top: 20px;
+}
+
+.footer-dev {
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.footer-dev a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.footer-dev a:hover {
+    text-decoration: underline;
 }
 
 /* Confirmation Screen */
@@ -1246,4 +1263,86 @@ input:focus {
     width: 8px;
     height: 8px;
     z-index: 100;
+}
+/* --- BRANDING FIXES --- */
+
+/* Racing Border Animation */
+.btn-racing {
+    position: relative;
+    z-index: 0;
+}
+
+.btn-racing::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--angle),
+        transparent 70%,
+        #00f2ff 80%,
+        rgba(0, 242, 255, 0.8) 85%,
+        #00f2ff 90%,
+        transparent 100%
+    );
+    animation: racing-border 2s linear infinite;
+}
+
+.btn-racing::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: var(--bg-dark);
+    z-index: -1;
+}
+
+/* Specific button backgrounds for racing border */
+.btn-primary.btn-racing::after { background: var(--accent); }
+#navbar .btn-racing::after { background: var(--bg-dark); }
+#footer .btn-racing::after { background: var(--bg-darker); }
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes racing-border {
+    to { --angle: 360deg; }
+}
+
+/* Sponsor Principal */
+.sponsor-card.principal {
+    grid-column: 1 / -1;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    border: 2px solid var(--accent);
+    background: rgba(0, 242, 255, 0.05);
+    padding: 40px;
+    position: relative;
+}
+
+.sponsor-card.principal::before {
+    content: 'SPONSOR PRINCIPAL';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: black;
+    padding: 2px 15px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+
+.sponsor-logo {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
 }

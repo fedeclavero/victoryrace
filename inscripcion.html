@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Rajdhani:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@400;600;700&display=swap"
         rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -42,7 +42,7 @@
                 <li><a href="categorias.html">Categorías</a></li>
                 <li><a href="wods.html">WODs</a></li>
                 <li><a href="galeria.html">Galería</a></li>
-                <li><a href="inscripcion.html" class="btn btn-accent">¡INSCRIBITE!</a></li>
+                <li><a href="inscripcion.html" class="btn btn-accent btn-racing">¡INSCRIBITE!</a></li>
             </ul>
         </nav>
     </header>
@@ -61,86 +61,210 @@
                     </div>
                     <form id="inscription-form" class="registration-form">
                         <div class="form-steps-container">
-                            <!-- Step 1: Personal Info -->
+                            <!-- STEP 1: DATOS PERSONALES -->
                             <div class="form-step active" data-step="1">
-                                <h3 class="step-title">DATOS PERSONALES</h3>
+                                <h3 class="step-title">PASO 1: DATOS PERSONALES</h3>
                                 <div class="form-grid">
                                     <div class="form-group anime-item">
-                                        <label for="nombre">Nombre</label>
+                                        <label for="nombre">Nombre *</label>
                                         <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
                                     </div>
                                     <div class="form-group anime-item">
-                                        <label for="apellido">Apellido</label>
-                                        <input type="text" id="apellido" name="apellido" required
-                                            placeholder="Tu apellido">
+                                        <label for="apellido">Apellido *</label>
+                                        <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido">
                                     </div>
                                     <div class="form-group anime-item">
-                                        <label for="ciudad">Ciudad</label>
-                                        <input type="text" id="ciudad" name="ciudad" required
-                                            placeholder="Ciudad, Provincia">
+                                        <label for="dni">DNI * (Solo números)</label>
+                                        <input type="text" id="dni" name="dni" required placeholder="Ej: 38123456" pattern="\d+">
                                     </div>
                                     <div class="form-group anime-item">
-                                        <label for="email">Email</label>
+                                        <label for="fechaNacimiento">Fecha de Nacimiento *</label>
+                                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="email">Email *</label>
                                         <input type="email" id="email" name="email" required placeholder="tu@email.com">
                                     </div>
                                     <div class="form-group anime-item">
-                                        <label for="dni">DNI / Documento</label>
-                                        <input type="number" id="dni" name="dni" required
-                                            placeholder="Número de documento">
+                                        <label for="telefono">WhatsApp *</label>
+                                        <input type="tel" id="telefono" name="telefono" required placeholder="+54 9 351 123 4567">
                                     </div>
                                     <div class="form-group anime-item">
-                                        <label for="telefono">WhatsApp * (para confirmación de pago)</label>
-                                        <input type="tel" id="telefono" name="telefono" required
-                                            placeholder="Ej: +54 9 3541 123456">
+                                        <label for="pais">País *</label>
+                                        <input type="text" id="pais" name="pais" required value="Argentina">
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="ciudad">Ciudad *</label>
+                                        <input type="text" id="ciudad" name="ciudad" required placeholder="Tu ciudad">
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="equipoGimnasio">Nombre Equipo / Gimnasio <small>(Opcional)</small></label>
+                                        <input type="text" id="equipoGimnasio" name="equipoGimnasio" placeholder="Opcional">
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="talleRemera">Talle de Remera <small>(Opcional)</small></label>
+                                        <select id="talleRemera" name="talleRemera">
+                                            <option value="">Seleccionar talle...</option>
+                                            <option value="XS">XS</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="XXL">XXL</option>
+                                            <option value="No quiero remera">No quiero remera</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group anime-item">
+                                        <label for="numeroEmergencia">Número de Emergencia <small>(Opcional)</small></label>
+                                        <input type="tel" id="numeroEmergencia" name="numeroEmergencia" placeholder="Contacto ante emergencia">
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-primary next-step anime-item">SIGUIENTE</button>
                             </div>
 
-                            <!-- Step 2: Categories -->
+                            <!-- STEP 2: CATEGORÍA -->
                             <div class="form-step" data-step="2">
-                                <h3 class="step-title">CATEGORÍAS</h3>
-                                <div class="form-group anime-item">
-                                    <label>Elegí una o más categorías</label>
-                                    <div class="categories-selection">
-                                        <!-- Dynamically rendered -->
+                                <h3 class="step-title">PASO 2: SELECCIÓN DE CATEGORÍA</h3>
+                                
+                                <div id="category-selection-flow">
+                                    <!-- Nivel 1: Tipo -->
+                                    <div class="selection-level active" id="level-type">
+                                        <h4>Seleccioná el tipo de inscripción:</h4>
+                                        <div class="card-grid">
+                                            <div class="selection-card" data-value="individual">
+                                                <span class="card-icon">👤</span>
+                                                <h5>INDIVIDUAL</h5>
+                                                <p>Corrés solo contra el crono.</p>
+                                            </div>
+                                            <div class="selection-card" data-value="equipo">
+                                                <span class="card-icon">👥</span>
+                                                <h5>EQUIPO</h5>
+                                                <p>En pareja (Masc, Fem o Mixto).</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Nivel 2: Nivel -->
+                                    <div class="selection-level" id="level-rank">
+                                        <h4>Seleccioná tu nivel:</h4>
+                                        <div class="card-grid" id="rank-options">
+                                            <!-- Dynamically filled -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Nivel 3: Género -->
+                                    <div class="selection-level" id="level-gender">
+                                        <h4>Seleccioná el género:</h4>
+                                        <div class="card-grid" id="gender-options">
+                                            <!-- Dynamically filled -->
+                                        </div>
                                     </div>
                                 </div>
-                                <div id="partner-fields" class="partner-fields anime-item" style="display: none;">
-                                    <h4 class="form-substep">Datos del Compañero/a</h4>
+
+                                <!-- Datos Segundo Atleta (Hidden by default) -->
+                                <div id="second-athlete-fields" style="display: none; margin-top: 40px;">
+                                    <h4 class="form-substep">DATOS DEL SEGUNDO ATLETA</h4>
                                     <div class="form-grid">
                                         <div class="form-group">
-                                            <label for="nombreCompanero">Nombre Compañero</label>
-                                            <input type="text" id="nombreCompanero" name="nombreCompanero"
-                                                placeholder="Nombre">
+                                            <label for="nombre2">Nombre 2 *</label>
+                                            <input type="text" id="nombre2" name="nombre2" placeholder="Nombre compañero">
                                         </div>
                                         <div class="form-group">
-                                            <label for="apellidoCompanero">Apellido Compañero</label>
-                                            <input type="text" id="apellidoCompanero" name="apellidoCompanero"
-                                                placeholder="Apellido">
+                                            <label for="apellido2">Apellido 2 *</label>
+                                            <input type="text" id="apellido2" name="apellido2" placeholder="Apellido compañero">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dni2">DNI 2 *</label>
+                                            <input type="text" id="dni2" name="dni2" placeholder="DNI compañero">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fechaNacimiento2">Fecha Nacimiento 2 *</label>
+                                            <input type="date" id="fechaNacimiento2" name="fechaNacimiento2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email2">Email 2 *</label>
+                                            <input type="email" id="email2" name="email2" placeholder="Email compañero">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono2">WhatsApp 2 *</label>
+                                            <input type="tel" id="telefono2" name="telefono2" placeholder="WhatsApp compañero">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-group anime-item">
+
+                                <div class="price-summary" id="price-display" style="display: none;">
+                                    <span class="price-label">Resumen:</span>
+                                    <span class="price-value">$0</span>
+                                </div>
+
+                                <div class="btn-group anime-item" style="margin-top: 30px;">
                                     <button type="button" class="btn btn-outline prev-step">VOLVER</button>
-                                    <button type="button" class="btn btn-primary next-step">SIGUIENTE</button>
+                                    <button type="button" class="btn btn-primary next-step" id="step2-next" disabled>SIGUIENTE</button>
                                 </div>
                             </div>
 
-                            <!-- Step 3: Disclaimer & Send -->
+                            <!-- STEP 3: APTO MÉDICO -->
                             <div class="form-step" data-step="3">
-                                <h3 class="step-title">FINALIZAR</h3>
-                                <div class="disclaimer-box anime-item">
-                                    <input type="checkbox" id="disclaimer" required>
-                                    <label for="disclaimer">
-                                        He leído y acepto el <strong>deslinde de responsabilidad</strong>. La
-                                        participación es bajo mi propia responsabilidad.
-                                    </label>
+                                <h3 class="step-title">PASO 3: APTO MÉDICO</h3>
+                                <div class="medical-warning">
+                                    <span class="warning-icon">⚕️</span>
+                                    <div>
+                                        <strong>APTO MÉDICO OBLIGATORIO</strong>
+                                        <p>El apto médico es requerido por la aseguradora del evento. Sin este documento no es posible garantizar tu cobertura médica durante la carrera. Podés adjuntar una foto o PDF. Tamaño máximo: 20MB.</p>
+                                    </div>
                                 </div>
+
+                                <div class="upload-container">
+                                    <div class="upload-box" id="upload-atleta1">
+                                        <span class="upload-title">Apto Médico Atleta 1</span>
+                                        <input type="file" id="fileAtleta1" accept="image/*,application/pdf" style="display: none;">
+                                        <button type="button" class="btn btn-accent upload-btn" onclick="document.getElementById('fileAtleta1').click()">SELECCIONAR ARCHIVO</button>
+                                        <div class="upload-status" id="statusAtleta1">Esperando archivo...</div>
+                                        <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta1"></div></div>
+                                    </div>
+
+                                    <div class="upload-box" id="upload-atleta2" style="display: none;">
+                                        <span class="upload-title">Apto Médico Atleta 2</span>
+                                        <input type="file" id="fileAtleta2" accept="image/*,application/pdf" style="display: none;">
+                                        <button type="button" class="btn btn-accent upload-btn" onclick="document.getElementById('fileAtleta2').click()">SELECCIONAR ARCHIVO</button>
+                                        <div class="upload-status" id="statusAtleta2">Esperando archivo...</div>
+                                        <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta2"></div></div>
+                                    </div>
+                                </div>
+
                                 <div class="btn-group anime-item">
                                     <button type="button" class="btn btn-outline prev-step">VOLVER</button>
-                                    <button type="submit" id="submit-btn" class="btn btn-primary btn-glow"
-                                        disabled>ENVIAR INSCRIPCIÓN</button>
+                                    <button type="button" class="btn btn-primary next-step" id="step3-next" disabled>CONTINUAR</button>
+                                </div>
+                            </div>
+
+                            <!-- STEP 4: DESLINDE -->
+                            <div class="form-step" data-step="4">
+                                <h3 class="step-title">PASO 4: FINALIZAR</h3>
+                                <div class="disclaimer-header">
+                                    <span class="disclaimer-icon">⚠️</span>
+                                    <span>DESLINDE DE RESPONSABILIDAD — LECTURA OBLIGATORIA</span>
+                                </div>
+                                <div class="disclaimer-scroll-box" id="disclaimer-scroll">
+                                    <p><strong>DESLINDE DE RESPONSABILIDAD — VICTORY RACE II</strong></p>
+                                    <p>El participante inscripto en Victory Race II declara conocer y aceptar los siguientes términos y condiciones de participación:</p>
+                                    <p>1. CONDICIÓN FÍSICA: El participante declara encontrarse en óptimas condiciones físicas para participar en una competencia de alta intensidad, contando con el apto médico correspondiente.</p>
+                                    <p>2. RIESGOS: El participante conoce y acepta los riesgos inherentes a la práctica deportiva de alta intensidad, incluyendo pero no limitado a: calambres, lesiones musculares, deshidratación y agotamiento físico.</p>
+                                    <p>3. EXENCIÓN: El participante exime de toda responsabilidad civil y penal a los organizadores de Victory Race II, sus colaboradores, sponsors y al Municipio de Villa Carlos Paz por cualquier accidente, lesión o daño que pudiera sufrir durante el evento.</p>
+                                    <p>4. DATOS PERSONALES: El participante autoriza a los organizadores a utilizar su imagen fotográfica y/o video captada durante el evento con fines de difusión en redes sociales y medios de comunicación, sin derecho a compensación económica.</p>
+                                    <p>5. NORMATIVA: El participante se compromete a respetar el reglamento del evento y las indicaciones del personal organizador.</p>
+                                    <p>[TEXTO COMPLETO A COMPLETAR POR EL ORGANIZADOR]</p>
+                                    <p>Al aceptar este deslinde, usted confirma que ha leído íntegramente los puntos anteriores y acepta participar bajo estas condiciones.</p>
+                                </div>
+                                
+                                <div class="disclaimer-check-container">
+                                    <input type="checkbox" id="accept-disclaimer" disabled>
+                                    <label for="accept-disclaimer">He leído y acepto el deslinde de responsabilidad</label>
+                                </div>
+
+                                <div class="btn-group anime-item">
+                                    <button type="button" class="btn btn-outline prev-step">VOLVER</button>
+                                    <button type="submit" id="submit-btn" class="btn btn-primary btn-glow" disabled>FINALIZAR INSCRIPCIÓN</button>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +292,8 @@
                 </div>
             </div>
             <div class="footer-legal">
-                <p>Copyright &copy; 2026 Victory Race. Todos los derechos reservados.</p>
+                <p>Copyright &copy; 2026 Victory Race · <span class="footer-dev">Desarrollado por <a href="https://opussuplementos.com.ar/" target="_blank" rel="noopener noreferrer">Opus Suplementos</a></span></p>
+                <p class="small">La participación es a riesgo del atleta.</p>
             </div>
         </div>
     </footer>
