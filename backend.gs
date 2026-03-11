@@ -193,73 +193,70 @@ function subirAptoMedico(e) {
  * Envía el email de confirmación tras insertar la fila.
  */
 function enviarEmailInscripcion(data) {
-  const nombreDisplay = (data.tipo === "individual") ? data.nombre : data.atleta1.nombre + " y " + data.atleta2.nombre;
-  const emails = (data.tipo === "individual") ? [data.email] : [data.atleta1.email, data.atleta2.email];
-  const monto = (data.tipo === "individual") ? PRECIO_INDIVIDUAL : PRECIO_EQUIPO;
-  const aclaracionEquipo = (data.tipo === "individual") ? "" : " ($45.000 por cada integrante)";
-  
-  const aptoStatus = (data.tipo === "individual") 
-    ? (data.aptoMedicoUrl === "PRESENCIAL" ? "⚠️ Elegiste presentar tu apto médico el día del evento. Recordá llevarlo en papel. Sin apto médico no podrás participar." : "✅ Apto médico recibido correctamente.")
-    : "Verificá el estado de los aptos médicos en la plataforma."; // Simplificado para equipos
-
-  const htmlBody = `
-    <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px;">
-      <h2 style="color: #1a3a5c; border-bottom: 2px solid #1a3a5c;">✅ ¡Inscripción confirmada! Victory Race II</h2>
-      <p>Hola <strong>${nombreDisplay}</strong>,</p>
-      <p>Tu inscripción para la categoría <strong>${data.categoria}</strong> ha sido registrada con éxito.</p>
-      
-      <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; margin: 20px 0;">
-        <h3 style="margin-top: 0; color: #1a3a5c;">📅 Detalles del Evento</h3>
-        <ul style="list-style: none; padding: 0;">
-          <li>📍 <strong>Lugar:</strong> Playón Municipal, Villa Carlos Paz</li>
-          <li>📅 <strong>Fecha:</strong> 11 de Septiembre, 2026</li>
-        </ul>
-      </div>
-
-      <h3 style="color: #1a3a5c;">💰 INSTRUCCIONES DE PAGO</h3>
-      <p>Para asegurar tu lugar, realizá la transferencia por el total:</p>
-      <ul style="list-style: none; padding: 0; background-color: #eef2f7; padding: 15px; border-radius: 8px;">
-        <li>💵 <strong>Monto:</strong> $${monto.toLocaleString('es-AR')}${aclaracionEquipo}</li>
-        <li>🔑 <strong>Alias:</strong> ${ALIAS_PAGO}</li>
-        <li>🏦 <strong>CBU:</strong> ${CBU_PAGO}</li>
-        <li>👤 <strong>Titular:</strong> ${TITULAR_PAGO}</li>
-      </ul>
-      <p><em>"Una vez transferido, enviá el comprobante por WhatsApp al <strong>${WHATSAPP_ORGANIZADOR}</strong> con tu nombre y apellido."</em></p>
-
-      <h3 style="color: #1a3a5c;">🩺 APTO MÉDICO</h3>
-      <p>${aptoStatus}</p>
-
-      <div style="background-color: #f2f2f2; padding: 15px; font-size: 12px; color: #666; margin-top: 30px; border-left: 4px solid #ccc;">
-        <h4 style="margin-top: 0;">DESLINDE DE RESPONSABILIDAD ACEPTADO</h4>
-        <p style="white-space: pre-line;">
-          DESLINDE DE RESPONSABILIDAD — VICTORY RACE II
-          
-          El participante inscripto en Victory Race II declara conocer y aceptar los siguientes términos y condiciones de participación:
-          
-          1. CONDICIÓN FÍSICA: El participante declara encontrarse en óptimas condiciones físicas para participar en una competencia de alta intensidad, contando con el apto médico correspondiente.
-          
-          2. RIESGOS: El participante conoce y acepta los riesgos inherentes a la práctica deportiva de alta intensidad, incluyendo pero no limitado a: calambres, lesiones musculares, deshidratación y agotamiento físico.
-          
-          3. EXENCIÓN: El participante exime de toda responsabilidad civil y penal a los organizadores de Victory Race II, sus colaboradores, sponsors y al Municipio de Villa Carlos Paz por cualquier accidente, lesión o daño que pudiera sufrir durante el evento.
-          
-          4. DATOS PERSONALES: El participante autoriza a los organizadores a utilizar su imagen fotográfica y/o video captada durante el evento con fines de difusión en redes sociales y medios de comunicación, sin derecho a compensación económica.
-          
-          5. NORMATIVA: El participante se compromete a respetar el reglamento del evento y las indicaciones del personal organizador.
-        </p>
-      </div>
-
-      <footer style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; font-size: 14px;">
-        <p><strong>Victory Race</strong> | <a href="https://instagram.com/victoryrace.arg">${INSTAGRAM}</a><br>
-        WhatsApp: ${WHATSAPP_ORGANIZADOR}</p>
-      </footer>
-    </div>
-  `;
-
-  emails.forEach(email => {
-    GmailApp.sendEmail(email.trim(), "✅ ¡Inscripción confirmada! Victory Race II — " + nombreDisplay, "", {
-      htmlBody: htmlBody
+  try {
+    if (!data) {
+      console.error('enviarEmailInscripcion: data es undefined');
+      return;
+    }
+    
+    // Determinar destinatarios
+    var destinatarios = [];
+    
+    if (data.tipo === 'equipo') {
+      // Parsear emails separados por " - "
+      var emails = data.atleta1 ? 
+        [data.atleta1.email, data.atleta2.email] : 
+        data.email.split(' - ').map(function(e) { return e.trim(); });
+      destinatarios = emails.filter(function(e) { return e && e.includes('@'); });
+    } else {
+      // Individual
+      destinatarios = [data.email];
+    }
+    
+    if (destinatarios.length === 0) {
+      console.error('No hay destinatarios válidos');
+      return;
+    }
+    
+    var nombre = data.tipo === 'equipo' ? 
+      (data.atleta1 ? data.atleta1.nombre : data.nombre) : 
+      data.nombre;
+    
+    var categoria = data.categoria || 'No especificada';
+    var monto = data.tipo === 'equipo' ? '90.000' : '50.000';
+    
+    var asunto = '✅ ¡Inscripción confirmada! Victory Race II — ' + nombre;
+    
+    var cuerpo = '<html><body style="font-family:Arial,sans-serif;background:#0a0a0a;color:#ffffff;padding:20px;">' +
+      '<div style="max-width:600px;margin:0 auto;background:#111;padding:30px;border-radius:12px;border:1px solid #00f2ff33;">' +
+      '<h1 style="color:#00f2ff;font-size:24px;">¡Inscripción Confirmada!</h1>' +
+      '<p>Hola <strong>' + nombre + '</strong>,</p>' +
+      '<p>Tu inscripción a <strong>Victory Race II</strong> fue recibida exitosamente. 🔥</p>' +
+      '<hr style="border-color:#00f2ff33;margin:20px 0;">' +
+      '<h2 style="color:#00f2ff;font-size:16px;">📋 RESUMEN</h2>' +
+      '<p>Categoría: <strong>' + categoria + '</strong></p>' +
+      '<p>Fecha: <strong>11 de Septiembre 2026</strong></p>' +
+      '<p>Lugar: <strong>Playón Municipal, Villa Carlos Paz</strong></p>' +
+      '<hr style="border-color:#00f2ff33;margin:20px 0;">' +
+      '<h2 style="color:#00f2ff;font-size:16px;">💳 INSTRUCCIONES DE PAGO</h2>' +
+      '<p>Monto: <strong>$' + monto + '</strong></p>' +
+      '<p>Alias: <strong>erick.cabrera.11</strong></p>' +
+      '<p>Titular: <strong>Erick Cabrera</strong></p>' +
+      '<p style="background:#1a1a1a;padding:12px;border-radius:8px;border-left:3px solid #00f2ff;">' +
+      '⚠️ Una vez realizada la transferencia, enviá el comprobante por WhatsApp al ' +
+      '<strong>+54 9 3541 690852</strong> con tu nombre y apellido.</p>' +
+      '<hr style="border-color:#00f2ff33;margin:20px 0;">' +
+      '<p style="font-size:12px;color:#666;">Victory Race | @victoryrace.arg | +54 9 3541 690852</p>' +
+      '</div></body></html>';
+    
+    destinatarios.forEach(function(email) {
+      GmailApp.sendEmail(email, asunto, '', {htmlBody: cuerpo});
+      console.log('Email enviado a: ' + email);
     });
-  });
+    
+  } catch(error) {
+    console.error('Error en enviarEmailInscripcion:', error.toString());
+  }
 }
 
 /**
