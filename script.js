@@ -144,18 +144,38 @@ function initForm() {
         }
 
         try {
-            const resp = await fetch(GOOGLE_SCRIPT_URL, {
+            // GAS requiere este patrón específico para evitar perder el body en el redirect
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors', // Apps Script requires no-cors sometimes for simple POST
-                body: JSON.stringify(payload)
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
+                body: JSON.stringify(payload),
+                redirect: 'follow'
             });
             
-            // Note: with no-cors we can't read the body, but if it doesn't throw, it likely sent.
-            // For a better UX, we assume success if no error.
-            showConfirmation(payload);
+            const text = await response.text();
+            console.log('Respuesta raw del GAS:', text);
+            
+            let result;
+            try {
+                result = JSON.parse(text);
+            } catch(e) {
+                console.error('Error parseando respuesta:', text);
+                result = { status: 'error', message: 'Respuesta inválida del servidor' };
+            }
+
+            if (result.status === 'ok') {
+                showConfirmation(payload);
+            } else {
+                console.error("Error desde GAS:", result.message);
+                alert("Error del servidor: " + (result.message || "Error desconocido"));
+                submitBtn.disabled = false;
+                submitBtn.innerText = "FINALIZAR INSCRIPCIÓN";
+            }
         } catch (err) {
-            console.error(err);
-            alert("Error al enviar inscripción. Reintentá.");
+            console.error('Error en fetch:', err);
+            alert("Error de conexión al enviar inscripción. Reintentá.");
             submitBtn.disabled = false;
             submitBtn.innerText = "FINALIZAR INSCRIPCIÓN";
         }

@@ -25,6 +25,10 @@ const INSTAGRAM = '@victoryrace.arg';
  * Se invoca mediante POST a la URL de ejecución del script.
  */
 function doPost(e) {
+  // Necesario para requests cross-origin desde el navegador
+  var output = ContentService.createTextOutput();
+  output.setMimeType(ContentService.MimeType.JSON);
+
   // Escribir en una hoja de diagnóstico para confirmar que el código ejecuta
   var ss = SpreadsheetApp.openById('1ysaZQjmrF0Wqkzs3hJmc-USCq36nqX9eGeojFn6Ic1U');
   var logSheet = ss.getSheetByName('_Debug') || ss.insertSheet('_Debug');
