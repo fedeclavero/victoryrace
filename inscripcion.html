@@ -129,33 +129,33 @@
                                 <div id="category-selection-flow">
                                     <!-- Nivel 1: Tipo -->
                                     <div class="selection-level active" id="level-type">
-                                        <h4>Seleccioná el tipo de inscripción:</h4>
-                                        <div class="card-grid">
-                                            <div class="selection-card" data-value="individual">
-                                                <span class="card-icon">👤</span>
-                                                <h5>INDIVIDUAL</h5>
-                                                <p>Corrés solo contra el crono.</p>
+                                        <div class="categoria-label">Seleccioná el tipo de inscripción:</div>
+                                        <div class="categoria-group">
+                                            <div class="categoria-card" data-value="individual">
+                                                <span class="card-icon">🏃</span>
+                                                INDIVIDUAL
+                                                <span class="card-desc">Corrés solo contra el crono</span>
                                             </div>
-                                            <div class="selection-card" data-value="equipo">
+                                            <div class="categoria-card" data-value="equipo">
                                                 <span class="card-icon">👥</span>
-                                                <h5>EQUIPO</h5>
-                                                <p>En pareja (Masc, Fem o Mixto).</p>
+                                                EQUIPO
+                                                <span class="card-desc">En pareja (Masc, Fem o Mixto)</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Nivel 2: Nivel -->
                                     <div class="selection-level" id="level-rank">
-                                        <h4>Seleccioná tu nivel:</h4>
-                                        <div class="card-grid" id="rank-options">
+                                        <div class="categoria-label">Seleccioná tu nivel:</div>
+                                        <div class="categoria-group" id="rank-options">
                                             <!-- Dynamically filled -->
                                         </div>
                                     </div>
 
                                     <!-- Nivel 3: Género -->
                                     <div class="selection-level" id="level-gender">
-                                        <h4>Seleccioná el género:</h4>
-                                        <div class="card-grid" id="gender-options">
+                                        <div class="categoria-label">Seleccioná el género:</div>
+                                        <div class="categoria-group" id="gender-options">
                                             <!-- Dynamically filled -->
                                         </div>
                                     </div>
@@ -192,9 +192,8 @@
                                     </div>
                                 </div>
 
-                                <div class="price-summary" id="price-display" style="display: none;">
-                                    <span class="price-label">Resumen:</span>
-                                    <span class="price-value">$0</span>
+                                <div class="price-summary" id="price-display" style="display: none; justify-content: center; margin-top: 20px; font-weight: bold; font-size: 1.1rem; color: var(--accent);">
+                                    <span class="price-value"></span>
                                 </div>
 
                                 <div class="btn-group anime-item" style="margin-top: 30px;">
@@ -210,25 +209,63 @@
                                     <span class="warning-icon">⚕️</span>
                                     <div>
                                         <strong>APTO MÉDICO OBLIGATORIO</strong>
-                                        <p>El apto médico es requerido por la aseguradora del evento. Sin este documento no es posible garantizar tu cobertura médica durante la carrera. Podés adjuntar una foto o PDF. Tamaño máximo: 20MB.</p>
+                                        <p>El apto médico es requerido por la aseguradora del evento. Sin este documento no es posible garantizar tu cobertura médica durante la carrera.</p>
                                     </div>
                                 </div>
 
                                 <div class="upload-container">
                                     <div class="upload-box" id="upload-atleta1">
                                         <span class="upload-title">Apto Médico Atleta 1</span>
-                                        <input type="file" id="fileAtleta1" accept="image/*,application/pdf" style="display: none;">
-                                        <button type="button" class="btn btn-accent upload-btn" onclick="document.getElementById('fileAtleta1').click()">SELECCIONAR ARCHIVO</button>
-                                        <div class="upload-status" id="statusAtleta1">Esperando archivo...</div>
-                                        <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta1"></div></div>
+                                        <div class="categoria-group">
+                                            <div class="categoria-card apto-option" data-atleta="atleta1" data-type="upload">
+                                                <span class="card-icon">📎</span>
+                                                SUBIR AHORA
+                                                <span class="card-desc">Adjuntá foto o PDF (máx 20MB)</span>
+                                            </div>
+                                            <div class="categoria-card apto-option" data-atleta="atleta1" data-type="papel">
+                                                <span class="card-icon">📋</span>
+                                                EN PAPEL
+                                                <span class="card-desc">Lo llevo el día del evento</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="ui-upload-atleta1" style="display: none; margin-top: 15px;">
+                                            <input type="file" id="fileAtleta1" accept="image/*,application/pdf" style="display: none;">
+                                            <button type="button" class="btn btn-accent upload-btn" onclick="document.getElementById('fileAtleta1').click()">SELECCIONAR ARCHIVO</button>
+                                            <div class="upload-status" id="statusAtleta1">Esperando archivo...</div>
+                                            <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta1"></div></div>
+                                        </div>
+
+                                        <div class="papel-warning" id="warning-papel-atleta1" style="display: none; margin-top: 15px; background: rgba(255,165,0,0.1); border-left: 3px solid orange; padding: 10px; font-size: 0.85rem; color: #ffcc00;">
+                                            ⚠️ Recordá que sin apto médico no podés participar. El personal del evento lo solicitará al momento de acreditarte.
+                                        </div>
                                     </div>
 
                                     <div class="upload-box" id="upload-atleta2" style="display: none;">
                                         <span class="upload-title">Apto Médico Atleta 2</span>
-                                        <input type="file" id="fileAtleta2" accept="image/*,application/pdf" style="display: none;">
-                                        <button type="button" class="btn btn-accent upload-btn" onclick="document.getElementById('fileAtleta2').click()">SELECCIONAR ARCHIVO</button>
-                                        <div class="upload-status" id="statusAtleta2">Esperando archivo...</div>
-                                        <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta2"></div></div>
+                                        <div class="categoria-group">
+                                            <div class="categoria-card apto-option" data-atleta="atleta2" data-type="upload">
+                                                <span class="card-icon">📎</span>
+                                                SUBIR AHORA
+                                                <span class="card-desc">Adjuntá foto o PDF (máx 20MB)</span>
+                                            </div>
+                                            <div class="categoria-card apto-option" data-atleta="atleta2" data-type="papel">
+                                                <span class="card-icon">📋</span>
+                                                EN PAPEL
+                                                <span class="card-desc">Lo llevo el día del evento</span>
+                                            </div>
+                                        </div>
+
+                                        <div id="ui-upload-atleta2" style="display: none; margin-top: 15px;">
+                                            <input type="file" id="fileAtleta2" accept="image/*,application/pdf" style="display: none;">
+                                            <button type="button" class="btn btn-accent upload-btn" onclick="document.getElementById('fileAtleta2').click()">SELECCIONAR ARCHIVO</button>
+                                            <div class="upload-status" id="statusAtleta2">Esperando archivo...</div>
+                                            <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta2"></div></div>
+                                        </div>
+
+                                        <div class="papel-warning" id="warning-papel-atleta2" style="display: none; margin-top: 15px; background: rgba(255,165,0,0.1); border-left: 3px solid orange; padding: 10px; font-size: 0.85rem; color: #ffcc00;">
+                                            ⚠️ Recordá que sin apto médico no podés participar. El personal del evento lo solicitará al momento de acreditarte.
+                                        </div>
                                     </div>
                                 </div>
 
@@ -245,7 +282,10 @@
                                     <span class="disclaimer-icon">⚠️</span>
                                     <span>DESLINDE DE RESPONSABILIDAD — LECTURA OBLIGATORIA</span>
                                 </div>
-                                <div class="disclaimer-scroll-box" id="disclaimer-scroll">
+                                
+                                <p class="scroll-hint">↓ Desplazate hasta el final para habilitar la aceptación</p>
+                                
+                                <div class="deslinde-container" id="deslindeScroll">
                                     <p><strong>DESLINDE DE RESPONSABILIDAD — VICTORY RACE II</strong></p>
                                     <p>El participante inscripto en Victory Race II declara conocer y aceptar los siguientes términos y condiciones de participación:</p>
                                     <p>1. CONDICIÓN FÍSICA: El participante declara encontrarse en óptimas condiciones físicas para participar en una competencia de alta intensidad, contando con el apto médico correspondiente.</p>
@@ -257,9 +297,11 @@
                                     <p>Al aceptar este deslinde, usted confirma que ha leído íntegramente los puntos anteriores y acepta participar bajo estas condiciones.</p>
                                 </div>
                                 
-                                <div class="disclaimer-check-container">
-                                    <input type="checkbox" id="accept-disclaimer" disabled>
-                                    <label for="accept-disclaimer">He leído y acepto el deslinde de responsabilidad</label>
+                                <div class="deslinde-checkbox-wrapper" id="disclaimer-wrapper">
+                                    <div class="disclaimer-check-container">
+                                        <input type="checkbox" id="accept-disclaimer" disabled>
+                                        <label for="accept-disclaimer">He leído y acepto el deslinde de responsabilidad</label>
+                                    </div>
                                 </div>
 
                                 <div class="btn-group anime-item">

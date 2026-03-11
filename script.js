@@ -74,15 +74,22 @@ function initForm() {
     });
 
     // Disclaimer Scroll Detection
-    disclaimerScroll.addEventListener('scroll', () => {
-        const isBottom = disclaimerScroll.scrollHeight - disclaimerScroll.scrollTop <= disclaimerScroll.clientHeight + 10;
-        if (isBottom) {
+    const deslindeScroll = document.getElementById('deslindeScroll');
+    const disclaimerWrapper = document.getElementById('disclaimer-wrapper');
+    
+    acceptCheckbox.disabled = true;
+    submitBtn.disabled = true;
+
+    deslindeScroll.addEventListener('scroll', function() {
+        const scrolledToBottom = this.scrollTop + this.clientHeight >= this.scrollHeight - 10;
+        if (scrolledToBottom) {
             acceptCheckbox.disabled = false;
+            if (disclaimerWrapper) disclaimerWrapper.style.opacity = '1';
         }
     });
 
-    acceptCheckbox.addEventListener('change', () => {
-        submitBtn.disabled = !acceptCheckbox.checked;
+    acceptCheckbox.addEventListener('change', function() {
+        submitBtn.disabled = !this.checked;
     });
 
     // File Upload handling
@@ -217,7 +224,7 @@ function initForm() {
 
 // --- CATEGORY FLOW ---
 function initCategoryFlow() {
-    const cards = document.querySelectorAll('#level-type .selection-card');
+    const cards = document.querySelectorAll('#level-type .categoria-card');
     const rankLevel = document.getElementById('level-rank');
     const genderLevel = document.getElementById('level-gender');
     const rankOptions = document.getElementById('rank-options');
@@ -236,6 +243,7 @@ function initCategoryFlow() {
             renderRanks();
             rankLevel.classList.add('active');
             
+            document.getElementById('step2-next').disabled = true;
             updatePriceDisplay();
             toggleSecondAthleteFields();
             updateStep3Uploads();
@@ -244,19 +252,28 @@ function initCategoryFlow() {
 
     function renderRanks() {
         const ranks = Object.keys(CATEGORY_TREE[registrationData.tipo]);
-        rankOptions.innerHTML = ranks.map(rank => `
-            <div class="selection-card" data-rank="${rank}">
-                <h5>${rank.toUpperCase()}</h5>
+        rankOptions.innerHTML = ranks.map(rank => {
+            let icon = '';
+            if (rank === 'recreativo' || rank === 'principiante') icon = '🟢';
+            else if (rank === 'intermedio') icon = '🔵';
+            else if (rank === 'avanzado') icon = '🔴';
+            
+            return `
+            <div class="categoria-card" data-rank="${rank}">
+                <span class="card-icon">${icon}</span>
+                ${rank.toUpperCase()}
             </div>
-        `).join('');
+            `;
+        }).join('');
 
-        rankOptions.querySelectorAll('.selection-card').forEach(card => {
+        rankOptions.querySelectorAll('.categoria-card').forEach(card => {
             card.addEventListener('click', () => {
-                rankOptions.querySelectorAll('.selection-card').forEach(c => c.classList.remove('selected'));
+                rankOptions.querySelectorAll('.categoria-card').forEach(c => c.classList.remove('selected'));
                 card.classList.add('selected');
                 registrationData.nivel = card.dataset.rank;
                 registrationData.genero = '';
                 
+                document.getElementById('step2-next').disabled = true;
                 renderGenders();
                 genderLevel.classList.add('active');
             });
@@ -265,15 +282,23 @@ function initCategoryFlow() {
 
     function renderGenders() {
         const genders = CATEGORY_TREE[registrationData.tipo][registrationData.nivel];
-        genderOptions.innerHTML = genders.map(gender => `
-            <div class="selection-card" data-gender="${gender}">
-                <h5>${gender.toUpperCase()}</h5>
-            </div>
-        `).join('');
+        genderOptions.innerHTML = genders.map(gender => {
+            let icon = '';
+            if (gender === 'Hombre' || gender === 'Masculino') icon = '♂';
+            else if (gender === 'Mujer' || gender === 'Femenino') icon = '♀';
+            else if (gender === 'Mixto') icon = '⚡';
 
-        genderOptions.querySelectorAll('.selection-card').forEach(card => {
+            return `
+            <div class="categoria-card" data-gender="${gender}">
+                <span class="card-icon">${icon}</span>
+                ${gender.toUpperCase()}
+            </div>
+            `;
+        }).join('');
+
+        genderOptions.querySelectorAll('.categoria-card').forEach(card => {
             card.addEventListener('click', () => {
-                genderOptions.querySelectorAll('.selection-card').forEach(c => c.classList.remove('selected'));
+                genderOptions.querySelectorAll('.categoria-card').forEach(c => c.classList.remove('selected'));
                 card.classList.add('selected');
                 registrationData.genero = card.dataset.gender;
                 
@@ -290,6 +315,35 @@ function initFileUploads() {
 
     file1.addEventListener('change', (e) => handleFile(e, 'atleta1'));
     file2.addEventListener('change', (e) => handleFile(e, 'atleta2'));
+
+    const options = document.querySelectorAll('.apto-option');
+    options.forEach(opt => {
+        opt.addEventListener('click', () => {
+            const atleta = opt.dataset.atleta;
+            const type = opt.dataset.type;
+            
+            // Toggle active visual state
+            document.querySelectorAll(`.apto-option[data-atleta="${atleta}"]`).forEach(c => c.classList.remove('selected'));
+            opt.classList.add('selected');
+            
+            // Handle UI toggles
+            const uiUpload = document.getElementById(`ui-upload-${atleta}`);
+            const uiWarning = document.getElementById(`warning-papel-${atleta}`);
+            
+            if (type === 'upload') {
+                uiUpload.style.display = 'block';
+                uiWarning.style.display = 'none';
+                if (registrationData.aptos[atleta] === "PRESENCIAL") {
+                    registrationData.aptos[atleta] = ""; 
+                }
+            } else if (type === 'papel') {
+                uiUpload.style.display = 'none';
+                uiWarning.style.display = 'block';
+                registrationData.aptos[atleta] = "PRESENCIAL";
+            }
+            checkStep3Ready();
+        });
+    });
 
     async function handleFile(event, key) {
         const file = event.target.files[0];
@@ -369,9 +423,11 @@ function updatePriceDisplay() {
     const display = document.getElementById('price-display');
     const valor = document.querySelector('.price-value');
     display.style.display = 'flex';
-    const price = registrationData.tipo === 'individual' ? PRICE_INDIVIDUAL : PRICE_TEAM;
-    const desc = registrationData.tipo === 'individual' ? '' : ' ($45.000 x atleta)';
-    valor.innerText = `$${price.toLocaleString('es-AR')}${desc}`;
+    if (registrationData.tipo === 'individual') {
+        valor.innerText = "Precio: $50.000";
+    } else {
+        valor.innerText = "Precio: $90.000 ($45.000 por atleta)";
+    }
 }
 
 function toggleSecondAthleteFields() {
