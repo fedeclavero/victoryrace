@@ -25,27 +25,50 @@ const INSTAGRAM = '@victoryrace.arg';
  * Se invoca mediante POST a la URL de ejecución del script.
  */
 function doPost(e) {
+  // Escribir en una hoja de diagnóstico para confirmar que el código ejecuta
+  var ss = SpreadsheetApp.openById('1ysaZQjmrF0Wqkzs3hJmc-USCq36nqX9eGeojFn6Ic1U');
+  var logSheet = ss.getSheetByName('_Debug') || ss.insertSheet('_Debug');
+  
   try {
-    const data = JSON.parse(e.postData.contents);
-    const ss = SpreadsheetApp.openById(SHEET_ID);
-    const sheet = ss.getSheetByName(SHEET_NAME);
+    logSheet.appendRow([new Date(), 'doPost llamado', JSON.stringify(e?.postData)]);
     
-    // 1. Buscar la fila del encabezado de la categoría
-    const values = sheet.getDataRange().getValues();
+    if (!e || !e.postData || !e.postData.contents) {
+      logSheet.appendRow([new Date(), 'ERROR', 'postData vacío o undefined']);
+      return ContentService
+        .createTextOutput(JSON.stringify({status:'error', message:'postData vacio'}))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    logSheet.appendRow([new Date(), 'RAW CONTENTS', e.postData.contents]);
+    
+    var data = JSON.parse(e.postData.contents);
+    logSheet.appendRow([new Date(), 'DATA PARSEADA', JSON.stringify(data)]);
+    logSheet.appendRow([new Date(), 'CATEGORIA RECIBIDA', data.categoria || 'undefined']);
+    
+    // Buscar la categoría en el sheet
+    var sheet = ss.getSheetByName('Datos Atletas');
+    var allData = sheet.getDataRange().getValues();
+    var categoriaEncontrada = false;
+    
     let headerRowIndex = -1;
-    for (let i = 0; i < values.length; i++) {
-      if (values[i][0] === data.categoria) {
+    for (var i = 0; i < allData.length; i++) {
+      if (allData[i][0] === data.categoria) {
+        categoriaEncontrada = true;
         headerRowIndex = i + 1; // 1-indexed
+        logSheet.appendRow([new Date(), 'CATEGORIA ENCONTRADA en fila', headerRowIndex]);
         break;
       }
     }
     
-    if (headerRowIndex === -1) {
+    if (!categoriaEncontrada) {
+      logSheet.appendRow([new Date(), 'ERROR', 'Categoría NO encontrada: ' + data.categoria]);
+      // Loggear todos los valores de columna A para comparar
+      var colA = allData.map(function(r) { return r[0]; }).join(' | ');
+      logSheet.appendRow([new Date(), 'VALORES COL A', colA]);
       throw new Error("Categoría no encontrada en la hoja: " + data.categoria);
     }
     
     // 2. Buscar próxima fila disponible dentro del bloque
-    // Un bloque termina donde empieza otra fila de encabezado o al final de la hoja.
     let targetRowIndex = -1;
     let currentRow = headerRowIndex + 1;
     
@@ -124,12 +147,15 @@ function doPost(e) {
     // 6. Enviar Email de Inscripción
     enviarEmailInscripcion(data);
     
+    logSheet.appendRow([new Date(), 'RESULTADO', 'Completado sin error']);
     return ContentService.createTextOutput(JSON.stringify({status: 'ok'}))
       .setMimeType(ContentService.MimeType.JSON);
       
-  } catch (error) {
-    console.error(error);
-    return ContentService.createTextOutput(JSON.stringify({status: 'error', message: error.toString()}))
+  } catch(error) {
+    logSheet.appendRow([new Date(), 'EXCEPTION', error.toString()]);
+    console.error('Error en doPost:', error.toString(), error.stack);
+    return ContentService
+      .createTextOutput(JSON.stringify({status:'error', message: error.toString()}))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
