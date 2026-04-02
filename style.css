@@ -404,11 +404,11 @@ img {
     content: '';
     position: absolute;
     bottom: -5px;
-    left: 0;
-    width: 60%;
+    left: 50%;
+    transform: translateX(-50%) skewX(-20deg);
+    width: 80px;
     height: 4px;
     background: var(--accent);
-    transform: skewX(-20deg);
 }
 
 .section-subtitle {
@@ -716,17 +716,26 @@ img {
 
 .sponsor-logo-placeholder {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
     color: var(--text-muted);
-    border: 2px dashed #333;
-    padding: 20px 40px;
-    border-radius: 10px;
+    border: 2px dashed rgba(0, 242, 255, 0.2);
+    padding: 25px 35px;
+    border-radius: 12px;
     transition: all var(--transition-fast);
+    background: rgba(0, 242, 255, 0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    min-height: 80px;
 }
 
 .sponsor-card:hover .sponsor-logo-placeholder {
     color: var(--accent);
     border-color: var(--accent);
+    background: rgba(0, 242, 255, 0.05);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
 }
 
 /* Registration Form */
@@ -791,6 +800,27 @@ img {
     .menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(6px, -6px);
     }
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+.nav-links::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav-links.active::before {
+    opacity: 1;
+    pointer-events: all;
 }
 
 @media (max-width: 600px) {
@@ -894,6 +924,45 @@ img {
 /* Coming Soon Text Flicker */
 .cs-content h3 {
     animation: flicker-text 3s infinite alternate;
+}
+
+.cs-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.cs-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+}
+
+.cs-hint {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.wods-preview {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+}
+
+.wod-preview-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.4;
+    filter: grayscale(1);
+}
+
+.wod-preview-item .wod-icon {
+    font-size: 2.5rem;
 }
 
 @keyframes flicker-text {
@@ -1003,6 +1072,122 @@ img {
     background: #444;
     cursor: not-allowed;
     box-shadow: none;
+}
+
+/* Schedule */
+.schedule-grid {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.schedule-grid::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--accent), var(--accent), transparent);
+}
+
+.schedule-item {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.schedule-item::before {
+    content: '';
+    position: absolute;
+    left: 73px;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-glow);
+    z-index: 1;
+}
+
+.schedule-time {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--accent);
+    min-width: 70px;
+    text-align: right;
+    padding-top: 2px;
+}
+
+.schedule-content h4 {
+    font-family: var(--font-accent);
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.schedule-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.schedule-content p:last-child {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Location */
+.location-card {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #222;
+}
+
+.location-info h3 {
+    font-family: var(--font-accent);
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.location-info p {
+    color: var(--text-secondary);
+}
+
+.location-detail {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.location-map-placeholder {
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 242, 255, 0.05);
+    border: 2px dashed rgba(0, 242, 255, 0.3);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .location-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .schedule-grid::before { left: 0; }
+    .schedule-item::before { display: none; }
+    .schedule-item { flex-direction: column; gap: 5px; }
+    .schedule-time { text-align: left; }
 }
 
 /* Spinner */

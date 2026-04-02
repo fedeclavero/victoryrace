@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initForm();
     initCategoryFlow();
     highlightActiveLink();
+    initLightbox();
 });
 
 // --- FORM CORE LOGIC ---
@@ -515,7 +516,38 @@ function copyAlias() {
 // --- STANDARD SCRIPTS (REUSE) ---
 function initNavbar() {
     const navbar = document.getElementById('navbar');
-    window.onscroll = () => window.scrollY > 50 ? navbar.classList.add('scrolled') : navbar.classList.remove('scrolled');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    function updateNavbar() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar(); // Init state
+
+    // Hamburger menu toggle
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+        });
+    }
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggle?.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    });
 }
 
 function initCountdown() {
@@ -523,7 +555,16 @@ function initCountdown() {
     if (elements.some(el => !el)) return;
     const timer = setInterval(() => {
         const dist = RACE_DATE - new Date().getTime();
-        if (dist < 0) return clearInterval(timer);
+        if (dist < 0) {
+            clearInterval(timer);
+            elements.forEach(el => el.innerText = '00');
+            // Show "¡YA ARRANCÓ!" state
+            const countdownContainer = document.querySelector('.countdown-container');
+            if (countdownContainer) {
+                countdownContainer.innerHTML = '<div class="countdown-item" style="grid-column:1/-1"><span style="color:var(--accent);font-size:1.5rem;">¡YA ARRANCÓ! 🎉</span></div>';
+            }
+            return;
+        }
         elements[0].innerText = String(Math.floor(dist / 864e5)).padStart(2, '0');
         elements[1].innerText = String(Math.floor((dist % 864e5) / 36e5)).padStart(2, '0');
         elements[2].innerText = String(Math.floor((dist % 36e5) / 6e4)).padStart(2, '0');
@@ -550,6 +591,60 @@ function highlightActiveLink() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-links a').forEach(link => {
         if (link.getAttribute('href') === currentPath) link.classList.add('active');
+    });
+}
+
+// --- LIGHTBOX KEYBOARD NAVIGATION ---
+function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = lightbox.querySelector('.close-lightbox');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        const item = galleryItems[index];
+        const img = item.querySelector('img');
+        const source = item.querySelector('source');
+        const src = source ? source.srcset : img.src;
+        lightboxImg.src = src;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        currentIndex = index;
+    }
+
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        openLightbox(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        openLightbox(currentIndex);
+    }
+
+    galleryItems.forEach((item, i) => {
+        item.addEventListener('click', () => openLightbox(i));
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === 'flex' || lightbox.style.display === '') {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        }
     });
 }
 

@@ -23,19 +23,55 @@
     <meta name="twitter:description" content="La competencia de alta intensidad vuelve a Villa Carlos Paz.">
     <meta name="twitter:image" content="https://victoryrace.pages.dev/assets/img/hero-bg.webp">
 
-    <!-- Fonts -->
+    <!-- Preload Hero Image -->
+    <link rel="preload" as="image" href="assets/img/hero-bg.webp" fetchpriority="high">
+
+    <!-- Fonts with font-display swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@400;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Libraries -->
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="manifest" href="manifest.json">
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="canonical" href="https://victoryrace.pages.dev/index.html">
     <meta name="theme-color" content="#00f2ff">
+
+    <!-- SEO Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": "Victory Race II",
+      "description": "Competencia de CrossFit de alta intensidad en Villa Carlos Paz",
+      "startDate": "2026-09-11",
+      "endDate": "2026-09-11",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Playón Municipal Villa Carlos Paz",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Villa Carlos Paz",
+          "addressRegion": "Córdoba",
+          "addressCountry": "AR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Victory Race",
+        "url": "https://opussuplementos.com.ar"
+      },
+      "image": "https://victoryrace.pages.dev/assets/img/hero-bg.webp",
+      "url": "https://victoryrace.pages.dev/"
+    }
+    </script>
 </head>
 
 <body class="registration-page">
@@ -45,7 +81,7 @@
                 <span class="victory">VICTORY</span> <span class="race">RACE</span>
             </div>
 
-            <button class="menu-toggle" id="menu-toggle">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -66,7 +102,6 @@
         <!-- Hero Section -->
         <section id="hero">
             <div class="hero-overlay"></div>
-            <div class="lightning-container" id="lightning-container"></div>
 
             <div class="hero-content container">
                 <div class="hero-logo-box">

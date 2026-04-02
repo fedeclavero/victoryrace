@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="canonical" href="https://victoryrace.pages.dev/wods.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#00f2ff">
 
     <!-- SEO & OG -->
@@ -28,12 +30,12 @@
 </head>
 
 <body>
-    <header id="navbar" class="scrolled">
+    <header id="navbar">
         <nav class="container">
             <div class="logo">
                 <span class="victory">VICTORY</span> <span class="race">RACE</span>
             </div>
-            <button class="menu-toggle" id="menu-toggle">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav-links" id="nav-links">
@@ -56,11 +58,28 @@
                 </div>
                 <div class="coming-soon-box reveal active">
                     <div class="cs-content">
+                        <div class="cs-icon">⚡</div>
                         <h3>PRÓXIMAMENTE</h3>
-                        <p>Los workouts serán revelados próximamente. ¡Preparate para lo que viene!</p>
+                        <p class="cs-subtitle">Los workouts serán revelados en las semanas previas al evento.</p>
+                        <p class="cs-hint">Mientras tanto, preparate: cardio, fuerza y mucha actitud.</p>
+                        <div class="wods-preview">
+                            <div class="wod-preview-item">
+                                <span class="wod-icon">🔥</span>
+                                <span>WOD 1</span>
+                            </div>
+                            <div class="wod-preview-item">
+                                <span class="wod-icon">💪</span>
+                                <span>WOD 2</span>
+                            </div>
+                            <div class="wod-preview-item">
+                                <span class="wod-icon">🏆</span>
+                                <span>FINAL</span>
+                            </div>
+                        </div>
                         <div class="loading-bar">
                             <div class="bar-progress"></div>
                         </div>
+                        <a href="inscripcion.html" class="btn btn-primary btn-glow" style="margin-top: 30px;">¡INSCRIBITE Y PREPARATE!</a>
                     </div>
                 </div>
             </div>
