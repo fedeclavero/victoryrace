@@ -4,53 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VICTORY RACE II — 11 de Septiembre 2026</title>
+    <title>VICTORY RACE II | 11.09.2026 | Villa Carlos Paz</title>
 
-    <!-- SEO -->
-    <meta name="description"
-        content="Victory Race II - La competencia de CrossFit más intensa en Villa Carlos Paz. Inscribite ahora y desafiá tus límites.">
+    <!-- PRIMARY SEO -->
+    <meta name="description" content="Victory Race II — La competencia de CrossFit más extrema en Villa Carlos Paz. Desafiá tus límites en la segunda edición de la carrera que une comunidad e intensidad. Inscribite ahora.">
+    <meta name="keywords" content="CrossFit, Villa Carlos Paz, Competencia, Victory Race, Fitness, Argentina, Entrenamiento funcional">
+    <link rel="canonical" href="https://victoryrace.pages.dev/">
+
+    <!-- OPEN GRAPH -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://victoryrace.pages.dev/">
-    <meta property="og:title" content="Victory Race II — 11 de Septiembre 2026 | Villa Carlos Paz">
-    <meta property="og:description"
-        content="La competencia de alta intensidad vuelve a Villa Carlos Paz. Segunda edición. ¿Estás listo?">
+    <meta property="og:title" content="VICTORY RACE II | La Batalla Comienza">
+    <meta property="og:description" content="11 de Septiembre 2026. Preparate para la competencia de alta intensidad que redefine tus límites.">
     <meta property="og:image" content="https://victoryrace.pages.dev/assets/img/hero-bg.webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="es_AR">
+
+    <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Victory Race II — 11 de Septiembre 2026">
-    <meta name="twitter:description" content="La competencia de alta intensidad vuelve a Villa Carlos Paz.">
+    <meta name="twitter:title" content="VICTORY RACE II — 11.09.2026">
+    <meta name="twitter:description" content="La mayor competencia de CrossFit en Villa Carlos Paz. Inscribite hoy.">
     <meta name="twitter:image" content="https://victoryrace.pages.dev/assets/img/hero-bg.webp">
 
-    <!-- Preload Hero Image -->
+    <!-- PERFORMANCE -->
     <link rel="preload" as="image" href="assets/img/hero-bg.webp" fetchpriority="high">
-
-    <!-- Fonts with font-display swap -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@400;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="manifest" href="manifest.json">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="canonical" href="https://victoryrace.pages.dev/index.html">
     <meta name="theme-color" content="#00f2ff">
 
-    <!-- SEO Structured Data -->
+    <!-- STYLES -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- STRUCTURED DATA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SportsEvent",
       "name": "Victory Race II",
-      "description": "Competencia de CrossFit de alta intensidad en Villa Carlos Paz",
-      "startDate": "2026-09-11",
-      "endDate": "2026-09-11",
+      "description": "Competencia de CrossFit de alta intensidad en Villa Carlos Paz. Segunda edición.",
+      "startDate": "2026-09-11T08:00:00-03:00",
+      "endDate": "2026-09-11T20:00:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -58,125 +50,169 @@
         "name": "Playón Municipal Villa Carlos Paz",
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "Av. Illia y San Martín",
           "addressLocality": "Villa Carlos Paz",
           "addressRegion": "Córdoba",
+          "postalCode": "5152",
           "addressCountry": "AR"
         }
       },
+      "image": [
+        "https://victoryrace.pages.dev/assets/img/hero-bg.webp"
+      ],
       "organizer": {
         "@type": "Organization",
         "name": "Victory Race",
-        "url": "https://opussuplementos.com.ar"
+        "url": "https://victoryrace.pages.dev/"
       },
-      "image": "https://victoryrace.pages.dev/assets/img/hero-bg.webp",
-      "url": "https://victoryrace.pages.dev/"
+      "offers": {
+        "@type": "Offer",
+        "url": "https://victoryrace.pages.dev/inscripcion.html",
+        "price": "50000",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2026-03-01"
+      }
     }
     </script>
 </head>
 
-<body class="registration-page">
+<body>
+    <!-- NAVIGATION -->
     <header id="navbar">
-        <nav class="container">
-            <div class="logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">INICIO</a></li>
+                    <li><a href="la-carrera.html">LA CARRERA</a></li>
+                    <li><a href="categorias.html">CATEGORÍAS</a></li>
+                    <li><a href="wods.html">WODs</a></li>
+                    <li><a href="galeria.html">GALERÍA</a></li>
+                </ul>
 
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="la-carrera.html">La Carrera</a></li>
-                <li><a href="categorias.html">Categorías</a></li>
-                <li><a href="wods.html">WODs</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="inscripcion.html" class="btn btn-accent btn-racing">¡INSCRIBITE!</a></li>
-            </ul>
-        </nav>
+                <a href="inscripcion.html" class="btn btn-primary btn-glow">INSCRIBITE</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- HERO -->
         <section id="hero">
+            <div class="hero-bg"></div>
             <div class="hero-overlay"></div>
+            
+            <div class="container hero-content">
+                <div class="hero-tag tech-text">PRÓXIMO EVENTO — 11 SEP 2026</div>
+                
+                <h1 class="hero-title">
+                    <span>VICTORY</span>
+                    <span>RACE II</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    LA BATALLA POR LA VICTORIA VUELVE A LA COSTANERA. 
+                    MÁS INTENSA. MÁS RÁPIDA. MÁS ÉPICA QUE NUNCA.
+                </p>
 
-            <div class="hero-content container">
-                <div class="hero-logo-box">
-                    <h1 class="hero-title" id="main-title">VICTORY RACE</h1>
-                    <h2 class="hero-subtitle" id="sub-title">2DA EDICIÓN</h2>
+                <div class="countdown-minimal tech-text" id="countdown">
+                    <!-- JS WILL INJECT: 154D / 12H / 45M / 10S -->
+                    CARGANDO CRONÓMETRO...
                 </div>
 
-                <div class="hero-info" id="hero-info">
-                    <p class="hero-date">11 de Septiembre 2026</p>
-                    <p class="hero-location">Playón Municipal — Villa Carlos Paz</p>
+                <div class="hero-actions" style="margin-top: 50px; display: flex; gap: 20px;">
+                    <a href="inscripcion.html" class="btn btn-primary"> ASEGURÁ TU LUGAR</a>
+                    <a href="#la-carrera" class="btn btn-outline">VER MÁS</a>
                 </div>
-
-                <div class="countdown-container" id="countdown">
-                    <div class="countdown-item"><span id="days">00</span><label>DÍAS</label></div>
-                    <div class="countdown-item"><span id="hours">00</span><label>HORAS</label></div>
-                    <div class="countdown-item"><span id="minutes">00</span><label>MIN</label></div>
-                    <div class="countdown-item"><span id="seconds">00</span><label>SEG</label></div>
-                </div>
-
-                <a href="inscripcion.html" class="btn btn-primary btn-glow btn-lg pulsate btn-racing">¡INSCRIBITE AHORA!</a>
             </div>
-
-            <a href="#la-carrera" class="scroll-down">
-                <span></span>
-            </a>
         </section>
 
-        <!-- SECCIÓN: SPONSORS -->
-        <section id="sponsors" class="section">
+        <!-- STATS / PILLARS (QUICK VIEW) -->
+        <section class="section" style="background: var(--black-soft); border-bottom: 2px solid var(--gray-mid);">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                    <div class="reveal">
+                        <div class="tech-text" style="font-size: 0.6rem; margin-bottom: 10px;">01. ESCENARIO</div>
+                        <h3 class="heading" style="font-size: 2.5rem;">PLAYÓN MUNICIPAL</h3>
+                        <p style="color: var(--gray-light); font-size: 0.9rem;">El corazón de Villa Carlos Paz recibe a los mejores atletas del país.</p>
+                    </div>
+                    <div class="reveal">
+                        <div class="tech-text" style="font-size: 0.6rem; margin-bottom: 10px;">02. COMPETENCIA</div>
+                        <h3 class="heading" style="font-size: 2.5rem;">+500 ATLETAS</h3>
+                        <p style="color: var(--gray-light); font-size: 0.9rem;">Categorías individuales y equipos en un entorno de máxima exigencia.</p>
+                    </div>
+                    <div class="reveal">
+                        <div class="tech-text" style="font-size: 0.6rem; margin-bottom: 10px;">03. PREMIACIÓN</div>
+                        <h3 class="heading" style="font-size: 2.5rem;">PODIO & GLORIA</h3>
+                        <p style="color: var(--gray-light); font-size: 0.9rem;">Premios de nuestros sponsors y el reconocimiento a la resiliencia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPONSORS -->
+        <section class="section" id="sponsors">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="section-title">NUESTROS SPONSORS</h2>
+                    <div class="tech-text">TRUSTED BY</div>
+                    <h2 class="section-title" data-text="PARTNERS">PARTNERS</h2>
                 </div>
 
-                <div class="sponsors-grid">
-                    <div class="sponsor-card principal reveal">
+                <div class="sponsors-grid reveal">
+                    <div class="sponsor-card principal">
                         <a href="https://opussuplementos.com.ar/" target="_blank">
                             <img src="assets/img/logo.png" alt="Opus Suplementos" class="sponsor-logo">
                         </a>
                     </div>
-                    <div class="sponsor-card reveal">
-                        <div class="sponsor-logo-placeholder">CROSS-WOD</div>
-                    </div>
-                    <div class="sponsor-card reveal">
-                        <div class="sponsor-logo-placeholder">PRO-THLETES</div>
-                    </div>
-                    <div class="sponsor-card reveal">
-                        <div class="sponsor-logo-placeholder">VELOCITY GYM</div>
-                    </div>
+                    <div class="sponsor-card"><div class="tech-text">CROSS-WOD</div></div>
+                    <div class="sponsor-card"><div class="tech-text">PRO-THLETES</div></div>
+                    <div class="sponsor-card"><div class="tech-text">VELOCITY GYM</div></div>
+                    <div class="sponsor-card"><div class="tech-text">NUTRIMAX</div></div>
+                    <div class="sponsor-card"><div class="tech-text">POWER-GEAR</div></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <div class="footer-info">
-                <p>11 de Septiembre 2026 | Villa Carlos Paz</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/victoryrace.arg/" target="_blank">Instagram: @victoryrace.arg</a>
-                    <a href="https://wa.me/5493541690852" target="_blank">WhatsApp: +54 9 3541 690852</a>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+                    <p style="color: var(--gray-light); margin-top: 20px;">
+                        La competencia de CrossFit que une a la comunidad atlética de Córdoba en un escenario único.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/victoryrace.arg/" class="social-link" target="_blank">IG</a>
+                        <a href="https://wa.me/5493541690852" class="social-link" target="_blank">WA</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="heading" style="margin-bottom: 25px;">NAVEGACIÓN</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="la-carrera.html" class="tech-text" style="text-decoration: none;">La Carrera</a></li>
+                        <li><a href="categorias.html" class="tech-text" style="text-decoration: none;">Categorías</a></li>
+                        <li><a href="wods.html" class="tech-text" style="text-decoration: none;">Workouts</a></li>
+                        <li><a href="inscripcion.html" class="tech-text" style="text-decoration: none;">Inscripción</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="heading" style="margin-bottom: 25px;">CONTACTO</h4>
+                    <p class="tech-text" style="color: var(--gray-light);">Villa Carlos Paz, Córdoba</p>
+                    <p class="tech-text" style="margin-top: 10px;">victoryrace.arg@gmail.com</p>
+                    <p class="tech-text" style="margin-top: 20px; color: var(--cyan);">Desarrollado por Opus</p>
                 </div>
             </div>
-            <div class="footer-legal">
-                <p>Copyright &copy; 2026 Victory Race · <span class="footer-dev">Desarrollado por <a href="https://opussuplementos.com.ar/" target="_blank" rel="noopener noreferrer">Opus Suplementos</a></span></p>
-                <p class="small">La participación es a riesgo del atleta.</p>
+            <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--gray-mid); text-align: center;">
+                <p class="tech-text" style="font-size: 0.5rem; color: var(--gray-light);">© 2026 VICTORY RACE — ALL RIGHTS RESERVED</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <!-- Scripts -->
+    <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <script src="script.js" defer></script>
     <script type="module" src="js/lightning-v4.js" defer></script>

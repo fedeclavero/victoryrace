@@ -4,107 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WODs — VICTORY RACE II</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <title>WODs | VICTORY RACE II</title>
+    <meta name="description" content="Descubrí los desafíos de Victory Race II. Los workouts serán revelados próximamente. Mantenete entrenando.">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="canonical" href="https://victoryrace.pages.dev/wods.html">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#00f2ff">
-
-    <!-- SEO & OG -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://victoryrace.pages.dev/wods.html">
-    <meta property="og:title" content="WODs | Victory Race II — Preparate">
-    <meta property="og:description"
-        content="Los desafíos que pondrán a prueba tu temple. Descubrí los workouts de Victory Race II.">
-    <meta property="og:image" content="https://victoryrace.pages.dev/assets/img/hero-bg.webp">
-    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://victoryrace.pages.dev/wods.html">
 </head>
 
 <body>
-    <header id="navbar">
-        <nav class="container">
-            <div class="logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="la-carrera.html">La Carrera</a></li>
-                <li><a href="categorias.html">Categorías</a></li>
-                <li><a href="wods.html">WODs</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="inscripcion.html" class="btn btn-accent btn-racing">¡INSCRIBITE!</a></li>
-            </ul>
-        </nav>
+    <header id="navbar" class="scrolled">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="la-carrera.html">LA CARRERA</a></li>
+                    <li><a href="categorias.html">CATEGORÍAS</a></li>
+                    <li><a href="wods.html" class="active">WODs</a></li>
+                    <li><a href="galeria.html">GALERÍA</a></li>
+                </ul>
+                <a href="inscripcion.html" class="btn btn-primary btn-glow">INSCRIBITE</a>
+            </nav>
+        </div>
     </header>
 
-    <main style="padding-top: 100px;">
-        <section id="wods" class="section">
+    <main>
+        <section class="section" style="padding-top: 180px; min-height: 80vh; display: flex; align-items: center;">
             <div class="container">
-                <div class="section-header reveal active">
-                    <h2 class="section-title">LOS WODs</h2>
-                    <p class="section-subtitle">Los desafíos que pondrán a prueba tu temple.</p>
+                <div class="section-header reveal" style="text-align: center;">
+                    <div class="tech-text">CLASSIFIED INFORMATION</div>
+                    <h1 class="section-title" data-text="WORKOUTS">WORKOUTS</h1>
                 </div>
-                <div class="coming-soon-box reveal active">
-                    <div class="cs-content">
-                        <div class="cs-icon">⚡</div>
-                        <h3>PRÓXIMAMENTE</h3>
-                        <p class="cs-subtitle">Los workouts serán revelados en las semanas previas al evento.</p>
-                        <p class="cs-hint">Mientras tanto, preparate: cardio, fuerza y mucha actitud.</p>
-                        <div class="wods-preview">
-                            <div class="wod-preview-item">
-                                <span class="wod-icon">🔥</span>
-                                <span>WOD 1</span>
-                            </div>
-                            <div class="wod-preview-item">
-                                <span class="wod-icon">💪</span>
-                                <span>WOD 2</span>
-                            </div>
-                            <div class="wod-preview-item">
-                                <span class="wod-icon">🏆</span>
-                                <span>FINAL</span>
-                            </div>
+
+                <div class="reveal" style="max-width: 700px; margin: 0 auto; text-align: center; border: 1px solid var(--gray-mid); padding: 60px; background: var(--black-soft); position: relative;">
+                    <div style="font-size: 5rem; margin-bottom: 20px;">⚡</div>
+                    <h3 class="heading" style="font-size: 3rem; color: var(--cyan); margin-bottom: 20px;">PRÓXIMAMENTE</h3>
+                    <p style="color: var(--gray-light); line-height: 1.8;">
+                        Los Workouts oficiales de Victory Race II están siendo testeados bajo los más altos estándares. 
+                        Serán revelados en las plataformas oficiales semanas antes del evento.
+                    </p>
+                    
+                    <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
+                        <div class="card" style="padding: 20px; text-align: center; min-width: 120px; opacity: 0.5;">
+                            <div class="heading">WOD 1</div>
+                            <div class="tech-text" style="font-size: 0.5rem;">LOCKED</div>
                         </div>
-                        <div class="loading-bar">
-                            <div class="bar-progress"></div>
+                        <div class="card" style="padding: 20px; text-align: center; min-width: 120px; opacity: 0.5;">
+                            <div class="heading">WOD 2</div>
+                            <div class="tech-text" style="font-size: 0.5rem;">LOCKED</div>
                         </div>
-                        <a href="inscripcion.html" class="btn btn-primary btn-glow" style="margin-top: 30px;">¡INSCRIBITE Y PREPARATE!</a>
+                        <div class="card" style="padding: 20px; text-align: center; min-width: 120px; border-color: var(--cyan);">
+                            <div class="heading">FINAL</div>
+                            <div class="tech-text" style="font-size: 0.5rem;">ENCRYPTED</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 50px;">
+                        <div class="tech-text" style="font-size: 0.6rem; margin-bottom: 10px;">PREPARACIÓN RECOMENDADA</div>
+                        <p style="font-size: 0.8rem; color: var(--gray-light); font-style: italic;">"CUALQUIER COSA PUEDE PASAR EN LA ARENA."</p>
+                    </div>
+
+                    <!-- Progress Bar Simulation -->
+                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: var(--gray-mid);">
+                        <div style="width: 70%; height: 100%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan);"></div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <div class="footer-info">
-                <p>11 de Septiembre 2026 | Villa Carlos Paz</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/victoryrace.arg/" target="_blank">Instagram: @victoryrace.arg</a>
-                    <a href="https://wa.me/5493541690852" target="_blank">WhatsApp: +54 9 3541 690852</a>
-                </div>
-            </div>
-            <div class="footer-legal">
-                <p>Copyright &copy; 2026 Victory Race · <span class="footer-dev">Desarrollado por <a href="https://opussuplementos.com.ar/" target="_blank" rel="noopener noreferrer">Opus Suplementos</a></span></p>
-                <p class="small">La participación es a riesgo del atleta.</p>
-            </div>
+    <footer>
+        <div class="container" style="text-align: center;">
+            <p class="tech-text">SEGUINOS EN INSTAGRAM PARA EL REVEAL: <a href="https://www.instagram.com/victoryrace.arg/" target="_blank" style="color: var(--cyan);">@VICTORYRACE.ARG</a></p>
         </div>
     </footer>
-    <!-- Scripts -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <script src="script.js" defer></script>
     <script type="module" src="js/lightning-v4.js" defer></script>

@@ -4,201 +4,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSCRIBITE — VICTORY RACE II</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <title>INSCRIPCIÓN | VICTORY RACE II</title>
+    <meta name="description" content="Completá tu inscripción para Victory Race II. Formulario de registro oficial para atletas individuales y equipos.">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="canonical" href="https://victoryrace.pages.dev/inscripcion.html">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#00f2ff">
-
-    <!-- SEO & OG -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://victoryrace.pages.dev/inscripcion.html">
-    <meta property="og:title" content="¡Inscribite! | Victory Race II — 11 Sep 2026">
-    <meta property="og:description"
-        content="Asegurá tu lugar en la competencia de alta intensidad más esperada de Villa Carlos Paz. Inscribite ahora.">
-    <meta property="og:image" content="https://victoryrace.pages.dev/assets/img/hero-bg.webp">
-    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://victoryrace.pages.dev/inscripcion.html">
 </head>
 
-<body class="registration-page">
-    <header id="navbar">
-        <nav class="container">
-            <div class="logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="la-carrera.html">La Carrera</a></li>
-                <li><a href="categorias.html">Categorías</a></li>
-                <li><a href="wods.html">WODs</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="inscripcion.html" class="btn btn-accent btn-racing">¡INSCRIBITE!</a></li>
-            </ul>
-        </nav>
+<body style="background: radial-gradient(circle at top, #111 0%, #050505 100%);">
+    <header id="navbar" class="scrolled">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="la-carrera.html">LA CARRERA</a></li>
+                    <li><a href="categorias.html">CATEGORÍAS</a></li>
+                    <li><a href="wods.html">WODs</a></li>
+                    <li><a href="galeria.html">GALERÍA</a></li>
+                </ul>
+                <a href="inscripcion.html" class="btn btn-primary btn-glow">INSCRIBITE</a>
+            </nav>
+        </div>
     </header>
 
-    <main style="padding-top: 100px;">
-        <section id="inscripcion" class="section">
+    <main>
+        <section class="section" style="padding-top: 150px;">
             <div class="container">
-                <div class="section-header reveal active">
-                    <h2 class="section-title">INSCRIBITE</h2>
-                    <p class="section-subtitle">Completá tus datos para asegurar tu lugar en la competencia.</p>
+                <div class="section-header reveal">
+                    <div class="tech-text">REGISTRATION FLOW</div>
+                    <h1 class="section-title" data-text="INSCRIBITE">INSCRIBITE</h1>
                 </div>
 
-                <div class="registration-form-container reveal active" id="registration-container">
+                <div class="form-container reveal" id="registration-container" style="background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(10px);">
                     <div class="registration-progress-container">
                         <div class="registration-progress-bar"></div>
                     </div>
-                    <form id="inscription-form" class="registration-form">
+
+                    <form id="inscription-form">
                         <div class="form-steps-container">
+                            
                             <!-- STEP 1: DATOS PERSONALES -->
                             <div class="form-step active" data-step="1">
-                                <h3 class="step-title">PASO 1: DATOS PERSONALES</h3>
-                                <div class="form-grid">
-                                    <div class="form-group anime-item">
-                                        <label for="nombre">Nombre *</label>
-                                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                                <h3 class="step-title">DATOS PERSONALES</h3>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                                    <div class="form-group">
+                                        <label class="label">NOMBRE *</label>
+                                        <input type="text" id="nombre" name="nombre" required placeholder="NOMBRE">
                                     </div>
-                                    <div class="form-group anime-item">
-                                        <label for="apellido">Apellido *</label>
-                                        <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido">
+                                    <div class="form-group">
+                                        <label class="label">APELLIDO *</label>
+                                        <input type="text" id="apellido" name="apellido" required placeholder="APELLIDO">
                                     </div>
-                                    <div class="form-group anime-item">
-                                        <label for="dni">DNI * (Solo números)</label>
-                                        <input type="text" id="dni" name="dni" required placeholder="Ej: 38123456" pattern="\d+">
+                                    <div class="form-group">
+                                        <label class="label">DNI *</label>
+                                        <input type="text" id="dni" name="dni" required placeholder="SOLO NÚMEROS" pattern="\d+">
                                     </div>
-                                    <div class="form-group anime-item">
-                                        <label for="fechaNacimiento">Fecha de Nacimiento *</label>
+                                    <div class="form-group">
+                                        <label class="label">FECHA NACIMIENTO *</label>
                                         <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
                                     </div>
-                                    <div class="form-group anime-item">
-                                        <label for="email">Email *</label>
-                                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                                    <div class="form-group">
+                                        <label class="label">EMAIL *</label>
+                                        <input type="email" id="email" name="email" required placeholder="TU@EMAIL.COM">
                                     </div>
-                                    <div class="form-group anime-item">
-                                        <label for="telefono">WhatsApp *</label>
-                                        <input type="tel" id="telefono" name="telefono" required placeholder="+54 9 351 123 4567">
+                                    <div class="form-group">
+                                        <label class="label">WHATSAPP *</label>
+                                        <input type="tel" id="telefono" name="telefono" required placeholder="+54 9 ...">
                                     </div>
-                                    <div class="form-group anime-item">
-                                        <label for="pais">País *</label>
-                                        <input type="text" id="pais" name="pais" required value="Argentina">
+                                    <div class="form-group">
+                                        <label class="label">CIUDAD *</label>
+                                        <input type="text" id="ciudad" name="ciudad" required placeholder="CIUDAD">
                                     </div>
-                                    <div class="form-group anime-item">
-                                        <label for="ciudad">Ciudad *</label>
-                                        <input type="text" id="ciudad" name="ciudad" required placeholder="Tu ciudad">
-                                    </div>
-                                    <div class="form-group anime-item">
-                                        <label for="equipoGimnasio">Nombre Equipo / Gimnasio <small>(Opcional)</small></label>
-                                        <input type="text" id="equipoGimnasio" name="equipoGimnasio" placeholder="Opcional">
-                                    </div>
-                                    <div class="form-group anime-item">
-                                        <label for="talleRemera">Talle de Remera <small>(Opcional)</small></label>
-                                        <select id="talleRemera" name="talleRemera">
-                                            <option value="">Seleccionar talle...</option>
-                                            <option value="XS">XS</option>
-                                            <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                            <option value="XXL">XXL</option>
-                                            <option value="No quiero remera">No quiero remera</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group anime-item">
-                                        <label for="numeroEmergencia">Número de Emergencia <small>(Opcional)</small></label>
-                                        <input type="tel" id="numeroEmergencia" name="numeroEmergencia" placeholder="Contacto ante emergencia">
+                                    <div class="form-group">
+                                        <label class="label">GIMNASIO / EQUIPO</label>
+                                        <input type="text" id="equipoGimnasio" name="equipoGimnasio" placeholder="BOX">
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary next-step anime-item">SIGUIENTE</button>
+                                <div style="margin-top: 40px; display: flex; justify-content: flex-end;">
+                                    <button type="button" class="btn btn-primary next-step">SIGUIENTE</button>
+                                </div>
                             </div>
 
                             <!-- STEP 2: CATEGORÍA -->
                             <div class="form-step" data-step="2">
-                                <h3 class="step-title">PASO 2: SELECCIÓN DE CATEGORÍA</h3>
+                                <h3 class="step-title">CATEGORÍA</h3>
                                 
                                 <div id="category-selection-flow">
-                                    <!-- Nivel 1: Tipo -->
                                     <div class="selection-level active" id="level-type">
-                                        <div class="categoria-label">Seleccioná el tipo de inscripción:</div>
+                                        <div class="categoria-label">TIPO DE INSCRIPCIÓN</div>
                                         <div class="categoria-group">
                                             <div class="categoria-card" data-value="individual">
                                                 <span class="card-icon">🏃</span>
-                                                INDIVIDUAL
-                                                <span class="card-desc">Corrés solo contra el crono</span>
+                                                <span class="heading">INDIVIDUAL</span>
+                                                <span class="card-desc">CORRÉS SOLO</span>
                                             </div>
                                             <div class="categoria-card" data-value="equipo">
                                                 <span class="card-icon">👥</span>
-                                                EQUIPO
-                                                <span class="card-desc">En pareja (Masc, Fem o Mixto)</span>
+                                                <span class="heading">EQUIPO</span>
+                                                <span class="card-desc">EN PAREJA</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Nivel 2: Nivel -->
                                     <div class="selection-level" id="level-rank">
-                                        <div class="categoria-label">Seleccioná tu nivel:</div>
-                                        <div class="categoria-group" id="rank-options">
-                                            <!-- Dynamically filled -->
-                                        </div>
+                                        <div class="categoria-label">NIVEL</div>
+                                        <div class="categoria-group" id="rank-options"></div>
                                     </div>
 
-                                    <!-- Nivel 3: Género -->
                                     <div class="selection-level" id="level-gender">
-                                        <div class="categoria-label">Seleccioná el género:</div>
-                                        <div class="categoria-group" id="gender-options">
-                                            <!-- Dynamically filled -->
+                                        <div class="categoria-label">GÉNERO</div>
+                                        <div class="categoria-group" id="gender-options"></div>
+                                    </div>
+                                </div>
+
+                                <div id="second-athlete-fields" style="display: none; margin-top: 60px; border-top: 1px solid var(--gray-mid); padding-top: 40px;">
+                                    <div class="tech-text" style="margin-bottom: 20px;">DATOS DEL SEGUNDO ATLETA</div>
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                                        <div class="form-group">
+                                            <label class="label">NOMBRE 2 *</label>
+                                            <input type="text" id="nombre2" name="nombre2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">APELLIDO 2 *</label>
+                                            <input type="text" id="apellido2" name="apellido2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">DNI 2 *</label>
+                                            <input type="text" id="dni2" name="dni2">
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Datos Segundo Atleta (Hidden by default) -->
-                                <div id="second-athlete-fields" style="display: none; margin-top: 40px;">
-                                    <h4 class="form-substep">DATOS DEL SEGUNDO ATLETA</h4>
-                                    <div class="form-grid">
-                                        <div class="form-group">
-                                            <label for="nombre2">Nombre 2 *</label>
-                                            <input type="text" id="nombre2" name="nombre2" placeholder="Nombre compañero">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="apellido2">Apellido 2 *</label>
-                                            <input type="text" id="apellido2" name="apellido2" placeholder="Apellido compañero">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="dni2">DNI 2 *</label>
-                                            <input type="text" id="dni2" name="dni2" placeholder="DNI compañero">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="fechaNacimiento2">Fecha Nacimiento 2 *</label>
-                                            <input type="date" id="fechaNacimiento2" name="fechaNacimiento2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email2">Email 2 *</label>
-                                            <input type="email" id="email2" name="email2" placeholder="Email compañero">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="telefono2">WhatsApp 2 *</label>
-                                            <input type="tel" id="telefono2" name="telefono2" placeholder="WhatsApp compañero">
-                                        </div>
-                                    </div>
+                                <div class="tech-text" id="price-display" style="display: none; text-align: center; margin-top: 40px; color: var(--cyan); font-size: 1.5rem;">
+                                    TOTAL: <span class="price-value"></span>
                                 </div>
 
-                                <div class="price-summary" id="price-display" style="display: none; justify-content: center; margin-top: 20px; font-weight: bold; font-size: 1.1rem; color: var(--accent);">
-                                    <span class="price-value"></span>
-                                </div>
-
-                                <div class="btn-group anime-item" style="margin-top: 30px;">
+                                <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: flex-end;">
                                     <button type="button" class="btn btn-outline prev-step">VOLVER</button>
                                     <button type="button" class="btn btn-primary next-step" id="step2-next" disabled>SIGUIENTE</button>
                                 </div>
@@ -206,142 +148,100 @@
 
                             <!-- STEP 3: APTO MÉDICO -->
                             <div class="form-step" data-step="3">
-                                <h3 class="step-title">PASO 3: APTO MÉDICO</h3>
+                                <h3 class="step-title">DOCUMENTACIÓN</h3>
                                 <div class="medical-warning">
-                                    <span class="warning-icon">⚕️</span>
-                                    <div>
-                                        <strong>APTO MÉDICO OBLIGATORIO</strong>
-                                        <p>El apto médico es requerido por la aseguradora del evento. Sin este documento no es posible garantizar tu cobertura médica durante la carrera.</p>
+                                    <div style="font-size: 2rem;">⚕️</div>
+                                    <div style="font-size: 0.8rem; line-height: 1.4;">
+                                        <strong>EL APTO MÉDICO ES OBLIGATORIO.</strong><br>
+                                        PODÉS SUBIRLO AHORA O PRESENTARLO EN PAPEL EL DÍA DEL EVENTO.
                                     </div>
                                 </div>
 
                                 <div class="upload-container">
                                     <div class="upload-box" id="upload-atleta1">
-                                        <span class="upload-title">Apto Médico Atleta 1</span>
+                                        <div class="upload-title">APTO MÉDICO: ATLETA 1</div>
                                         <div class="categoria-group">
-                                            <div class="categoria-card apto-option" data-atleta="atleta1" data-type="upload">
+                                            <div class="categoria-card" data-atleta="atleta1" data-type="upload">
                                                 <span class="card-icon">📎</span>
-                                                SUBIR AHORA
-                                                <span class="card-desc">Adjuntá foto o PDF (máx 20MB)</span>
+                                                <span class="heading">SUBIR</span>
                                             </div>
-                                            <div class="categoria-card apto-option" data-atleta="atleta1" data-type="papel">
-                                                <span class="card-icon">📋</span>
-                                                EN PAPEL
-                                                <span class="card-desc">Lo llevo el día del evento</span>
+                                            <div class="categoria-card" data-atleta="atleta1" data-type="papel">
+                                                <span class="card-icon">📄</span>
+                                                <span class="heading">PAPEL</span>
                                             </div>
                                         </div>
-                                        
-                                        <div id="ui-upload-atleta1" style="display: none; margin-top: 15px;">
+                                        <div id="ui-upload-atleta1" style="display: none; margin-top: 20px;">
                                             <input type="file" id="fileAtleta1" accept="image/*,application/pdf" style="display: none;">
-                                            <button type="button" class="btn btn-accent upload-btn" onclick="document.getElementById('fileAtleta1').click()">SELECCIONAR ARCHIVO</button>
-                                            <div class="upload-status" id="statusAtleta1">Esperando archivo...</div>
+                                            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('fileAtleta1').click()">ELEGIR ARCHIVO</button>
+                                            <div class="tech-text" id="statusAtleta1" style="font-size: 0.5rem; margin-top: 10px;">ESPERANDO...</div>
                                             <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta1"></div></div>
-                                        </div>
-
-                                        <div class="papel-warning" id="warning-papel-atleta1" style="display: none; margin-top: 15px; background: rgba(255,165,0,0.1); border-left: 3px solid orange; padding: 10px; font-size: 0.85rem; color: #ffcc00;">
-                                            ⚠️ Recordá que sin apto médico no podés participar. El personal del evento lo solicitará al momento de acreditarte.
                                         </div>
                                     </div>
 
                                     <div class="upload-box" id="upload-atleta2" style="display: none;">
-                                        <span class="upload-title">Apto Médico Atleta 2</span>
+                                        <div class="upload-title">APTO MÉDICO: ATLETA 2</div>
                                         <div class="categoria-group">
-                                            <div class="categoria-card apto-option" data-atleta="atleta2" data-type="upload">
+                                            <div class="categoria-card" data-atleta="atleta2" data-type="upload">
                                                 <span class="card-icon">📎</span>
-                                                SUBIR AHORA
-                                                <span class="card-desc">Adjuntá foto o PDF (máx 20MB)</span>
+                                                <span class="heading">SUBIR</span>
                                             </div>
-                                            <div class="categoria-card apto-option" data-atleta="atleta2" data-type="papel">
-                                                <span class="card-icon">📋</span>
-                                                EN PAPEL
-                                                <span class="card-desc">Lo llevo el día del evento</span>
+                                            <div class="categoria-card" data-atleta="atleta2" data-type="papel">
+                                                <span class="card-icon">📄</span>
+                                                <span class="heading">PAPEL</span>
                                             </div>
                                         </div>
-
-                                        <div id="ui-upload-atleta2" style="display: none; margin-top: 15px;">
+                                        <div id="ui-upload-atleta2" style="display: none; margin-top: 20px;">
                                             <input type="file" id="fileAtleta2" accept="image/*,application/pdf" style="display: none;">
-                                            <button type="button" class="btn btn-accent upload-btn" onclick="document.getElementById('fileAtleta2').click()">SELECCIONAR ARCHIVO</button>
-                                            <div class="upload-status" id="statusAtleta2">Esperando archivo...</div>
+                                            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('fileAtleta2').click()">ELEGIR ARCHIVO</button>
+                                            <div class="tech-text" id="statusAtleta2" style="font-size: 0.5rem; margin-top: 10px;">ESPERANDO...</div>
                                             <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta2"></div></div>
-                                        </div>
-
-                                        <div class="papel-warning" id="warning-papel-atleta2" style="display: none; margin-top: 15px; background: rgba(255,165,0,0.1); border-left: 3px solid orange; padding: 10px; font-size: 0.85rem; color: #ffcc00;">
-                                            ⚠️ Recordá que sin apto médico no podés participar. El personal del evento lo solicitará al momento de acreditarte.
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="btn-group anime-item">
+                                <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: flex-end;">
                                     <button type="button" class="btn btn-outline prev-step">VOLVER</button>
-                                    <button type="button" class="btn btn-primary next-step" id="step3-next" disabled>CONTINUAR</button>
+                                    <button type="button" class="btn btn-primary next-step" id="step3-next" disabled>SIGUIENTE</button>
                                 </div>
                             </div>
 
-                            <!-- STEP 4: DESLINDE -->
+                            <!-- STEP 4: FINALIZAR -->
                             <div class="form-step" data-step="4">
-                                <h3 class="step-title">PASO 4: FINALIZAR</h3>
-                                <div class="disclaimer-header">
-                                    <span class="disclaimer-icon">⚠️</span>
-                                    <span>DESLINDE DE RESPONSABILIDAD — LECTURA OBLIGATORIA</span>
-                                </div>
-                                
-                                <p class="scroll-hint">↓ Desplazate hasta el final para habilitar la aceptación</p>
-                                
+                                <h3 class="step-title">REVISIÓN FINAL</h3>
+                                <div class="tech-text" style="margin-bottom: 20px;">DESLINDE DE RESPONSABILIDAD</div>
                                 <div class="deslinde-container" id="deslindeScroll">
-                                    <p><strong>DESLINDE DE RESPONSABILIDAD — VICTORY RACE II</strong></p>
-                                    <p>El participante inscripto en Victory Race II declara conocer y aceptar los siguientes términos y condiciones de participación:</p>
-                                    <p>1. CONDICIÓN FÍSICA: El participante declara encontrarse en óptimas condiciones físicas para participar en una competencia de alta intensidad, contando con el apto médico correspondiente.</p>
-                                    <p>2. RIESGOS: El participante conoce y acepta los riesgos inherentes a la práctica deportiva de alta intensidad, incluyendo pero no limitado a: calambres, lesiones musculares, deshidratación y agotamiento físico.</p>
-                                    <p>3. EXENCIÓN: El participante exime de toda responsabilidad civil y penal a los organizadores de Victory Race II, sus colaboradores, sponsors y al Municipio de Villa Carlos Paz por cualquier accidente, lesión o daño que pudiera sufrir durante el evento.</p>
-                                    <p>4. DATOS PERSONALES: El participante autoriza a los organizadores a utilizar su imagen fotográfica y/o video captada durante el evento con fines de difusión en redes sociales y medios de comunicación, sin derecho a compensación económica.</p>
-                                    <p>5. NORMATIVA: El participante se compromete a respetar el reglamento del evento y las indicaciones del personal organizador.</p>
-                                    <p>[TEXTO COMPLETO A COMPLETAR POR EL ORGANIZADOR]</p>
-                                    <p>Al aceptar este deslinde, usted confirma que ha leído íntegramente los puntos anteriores y acepta participar bajo estas condiciones.</p>
+                                    <p>Al inscribirme en Victory Race II, declaro estar en condiciones físicas óptimas...</p>
+                                    <p>[...Contenido del deslinde...]</p>
+                                    <p>Acepto que la organización no se responsabiliza por...</p>
                                 </div>
-                                
-                                <div class="deslinde-checkbox-wrapper" id="disclaimer-wrapper">
-                                    <div class="disclaimer-check-container">
-                                        <input type="checkbox" id="accept-disclaimer" disabled>
-                                        <label for="accept-disclaimer">He leído y acepto el deslinde de responsabilidad</label>
-                                    </div>
+                                <div class="disclaimer-check-container" id="disclaimer-wrapper">
+                                    <input type="checkbox" id="accept-disclaimer" disabled>
+                                    <label class="tech-text" style="font-size: 0.6rem;">HE LEÍDO Y ACEPTO EL DESLINDE</label>
                                 </div>
 
-                                <div class="btn-group anime-item">
+                                <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: flex-end;">
                                     <button type="button" class="btn btn-outline prev-step">VOLVER</button>
-                                    <button type="submit" id="submit-btn" class="btn btn-primary btn-glow" disabled>FINALIZAR INSCRIPCIÓN</button>
+                                    <button type="submit" id="submit-btn" class="btn btn-primary btn-glow" disabled>FINALIZAR</button>
                                 </div>
                             </div>
                         </div>
                     </form>
 
                     <div id="loading-spinner" style="display: none; text-align: center; padding: 40px;">
-                        <div class="spinner"></div>
-                        <p>Enviando datos...</p>
+                        <div style="font-size: 3rem; animation: spin 1s infinite linear;">⚡</div>
+                        <p class="tech-text" style="margin-top: 20px;">PROCESANDO DATOS...</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <div class="footer-info">
-                <p>11 de Septiembre 2026 | Villa Carlos Paz</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/victoryrace.arg/" target="_blank">Instagram: @victoryrace.arg</a>
-                    <a href="https://wa.me/5493541690852" target="_blank">WhatsApp: +54 9 3541 690852</a>
-                </div>
-            </div>
-            <div class="footer-legal">
-                <p>Copyright &copy; 2026 Victory Race · <span class="footer-dev">Desarrollado por <a href="https://opussuplementos.com.ar/" target="_blank" rel="noopener noreferrer">Opus Suplementos</a></span></p>
-                <p class="small">La participación es a riesgo del atleta.</p>
-            </div>
+    <footer>
+        <div class="container" style="text-align: center;">
+            <p class="tech-text" style="font-size: 0.5rem; color: var(--gray-light);">SOPORTE TÉCNICO: VICTORYRACE.ARG@GMAIL.COM</p>
         </div>
     </footer>
-    <!-- Scripts -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <script src="script.js" defer></script>
     <script type="module" src="js/lightning-v4.js" defer></script>

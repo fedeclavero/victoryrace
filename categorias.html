@@ -4,95 +4,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CATEGORÍAS — VICTORY RACE II</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <title>CATEGORÍAS | VICTORY RACE II</title>
+    <meta name="description" content="Explorá las categorías de Victory Race II. Individuales (Recreativo, Intermedio, Avanzado) y Equipos (Principiante, Intermedio). Encontrá tu lugar en la competencia.">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="canonical" href="https://victoryrace.pages.dev/categorias.html">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#00f2ff">
-
-    <!-- SEO & OG -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://victoryrace.pages.dev/categorias.html">
-    <meta property="og:title" content="Categorías | Victory Race II — Encontrá la tuya">
-    <meta property="og:description"
-        content="Elegí tu desafío. Categorías individuales y por equipos para todos los niveles.">
-    <meta property="og:image" content="https://victoryrace.pages.dev/assets/img/hero-bg.webp">
-    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://victoryrace.pages.dev/categorias.html">
 </head>
 
 <body>
     <header id="navbar" class="scrolled">
-        <nav class="container">
-            <div class="logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="la-carrera.html">La Carrera</a></li>
-                <li><a href="categorias.html">Categorías</a></li>
-                <li><a href="wods.html">WODs</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="inscripcion.html" class="btn btn-accent btn-racing">¡INSCRIBITE!</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="la-carrera.html">LA CARRERA</a></li>
+                    <li><a href="categorias.html" class="active">CATEGORÍAS</a></li>
+                    <li><a href="wods.html">WODs</a></li>
+                    <li><a href="galeria.html">GALERÍA</a></li>
+                </ul>
+                <a href="inscripcion.html" class="btn btn-primary btn-glow">INSCRIBITE</a>
+            </nav>
+        </div>
     </header>
 
-    <main style="padding-top: 100px;">
-        <section id="categorias" class="section">
+    <main>
+        <section class="section" style="padding-top: 180px;">
             <div class="container">
-                <div class="section-header reveal active">
-                    <h2 class="section-title">CATEGORÍAS</h2>
-                    <p class="section-subtitle">Elegí tu desafío. Contamos con categorías individuales y por equipos
-                        (duplas).</p>
+                <div class="section-header reveal">
+                    <div class="tech-text">CLASSIFICATION</div>
+                    <h1 class="section-title" data-text="CATEGORÍAS">CATEGORÍAS</h1>
+                    <p style="margin-top: 20px; color: var(--gray-light);">Seleccioná la categoría que mejor se adapte a tu nivel y experiencia.</p>
                 </div>
 
-                <div class="category-group">
-                    <h3 class="group-title reveal active">INDIVIDUALES</h3>
-                    <div class="categories-grid">
-                        <!-- Rendered by script.js -->
+                <!-- INDIVIDUAL -->
+                <div style="margin-bottom: 80px;">
+                    <div class="tech-text" style="margin-bottom: 20px; color: var(--white); border-bottom: 1px solid var(--cyan); display: inline-block;">INDIVIDUAL</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+                        <div class="card reveal">
+                            <h3 class="heading" style="font-size: 2rem;">RECREATIVO</h3>
+                            <div class="tech-text" style="font-size: 0.6rem; color: #2ecc71; margin: 10px 0;">NIVEL INICIAL</div>
+                            <p style="font-size: 0.85rem; color: var(--gray-light);">Para quienes dan sus primeros pasos en competencia. Estándares accesibles.</p>
+                            <div style="margin-top: 20px; font-weight: 700;">HOMBRE / MUJER</div>
+                        </div>
+                        <div class="card reveal">
+                            <h3 class="heading" style="font-size: 2rem;">INTERMEDIO</h3>
+                            <div class="tech-text" style="font-size: 0.6rem; color: #f1c40f; margin: 10px 0;">NIVEL MEDIO</div>
+                            <p style="font-size: 0.85rem; color: var(--gray-light);">Atletas con experiencia que dominan la mayoría de los movimientos de CrossFit.</p>
+                            <div style="margin-top: 20px; font-weight: 700;">HOMBRE / MUJER</div>
+                        </div>
+                        <div class="card reveal" style="border-right-width: 6px; border-right-color: var(--cyan);">
+                            <h3 class="heading" style="font-size: 2rem;">AVANZADO</h3>
+                            <div class="tech-text" style="font-size: 0.6rem; color: #e74c3c; margin: 10px 0;">NIVEL ÉLITE</div>
+                            <p style="font-size: 0.85rem; color: var(--gray-light);">Sin restricciones. Estándares máximos de peso y dificultad gimnástica.</p>
+                            <div style="margin-top: 20px; font-weight: 700;">HOMBRE / MUJER</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="category-group">
-                    <h3 class="group-title reveal active">EQUIPOS (DUPLAS)</h3>
-                    <div class="categories-grid">
-                        <!-- Rendered by script.js -->
+                <!-- EQUIPO -->
+                <div>
+                    <div class="tech-text" style="margin-bottom: 20px; color: var(--white); border-bottom: 1px solid var(--cyan); display: inline-block;">DUPLAS (EQUIPOS)</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+                        <div class="card reveal">
+                            <h3 class="heading" style="font-size: 2rem;">PRINCIPIANTE</h3>
+                            <div class="tech-text" style="font-size: 0.6rem; color: #2ecc71; margin: 10px 0;">NIVEL INICIAL</div>
+                            <p style="font-size: 0.85rem; color: var(--gray-light);">Ideales para debutar en duplas. Trabajo en equipo y diversión.</p>
+                            <div style="margin-top: 20px; font-weight: 700;">MASC / FEM / MIXTO</div>
+                        </div>
+                        <div class="card reveal">
+                            <h3 class="heading" style="font-size: 2rem;">INTERMEDIO</h3>
+                            <div class="tech-text" style="font-size: 0.6rem; color: #f1c40f; margin: 10px 0;">NIVEL MEDIO</div>
+                            <p style="font-size: 0.85rem; color: var(--gray-light);">Duplas consolidadas con buen manejo de sincronización y skills.</p>
+                            <div style="margin-top: 20px; font-weight: 700;">MASC / FEM / MIXTO</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <div class="footer-info">
-                <p>11 de Septiembre 2026 | Villa Carlos Paz</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/victoryrace.arg/" target="_blank">Instagram: @victoryrace.arg</a>
-                    <a href="https://wa.me/5493541690852" target="_blank">WhatsApp: +54 9 3541 690852</a>
-                </div>
-            </div>
-            <div class="footer-legal">
-                <p>Copyright &copy; 2026 Victory Race · <span class="footer-dev">Desarrollado por <a href="https://opussuplementos.com.ar/" target="_blank" rel="noopener noreferrer">Opus Suplementos</a></span></p>
+    <footer>
+        <div class="container">
+            <div style="text-align: center;">
+                <h4 class="heading" style="margin-bottom: 20px;">¿DUDAS CON TU CATEGORÍA?</h4>
+                <a href="https://wa.me/5493541690852" class="btn btn-outline" target="_blank">CONSULTAR POR WHATSAPP</a>
             </div>
         </div>
     </footer>
-    <!-- Scripts -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <script src="script.js" defer></script>
     <script type="module" src="js/lightning-v4.js" defer></script>

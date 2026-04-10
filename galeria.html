@@ -4,138 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GALERÍA — VICTORY RACE II</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;700&family=Inter:wght@400;500;600&family=Rajdhani:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <title>GALERÍA | VICTORY RACE II</title>
+    <meta name="description" content="Reviví los mejores momentos de Victory Race I. Intensidad, esfuerzo y comunidad capturados en nuestra galería oficial.">
     <link rel="stylesheet" href="style.css">
-    <link rel="canonical" href="https://victoryrace.pages.dev/galeria.html">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#00f2ff">
-
-    <!-- SEO & OG -->
-    <meta name="description"
-        content="Galería de fotos de Victory Race I. Reviví los mejores momentos de la competencia en Villa Carlos Paz.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://victoryrace.pages.dev/galeria.html">
-    <meta property="og:title" content="Galería | Victory Race I — Revivilo">
-    <meta property="og:description"
-        content="Momentos de pura intensidad en nuestra edición anterior. Reviví Victory Race I.">
-    <meta property="og:image" content="https://victoryrace.pages.dev/assets/img/gallery-1.webp">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Galería | Victory Race I">
-    <meta name="twitter:image" content="https://victoryrace.pages.dev/assets/img/gallery-1.webp">
+    <link rel="canonical" href="https://victoryrace.pages.dev/galeria.html">
 </head>
 
 <body>
-    <header id="navbar">
-        <nav class="container">
-            <div class="logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="la-carrera.html">La Carrera</a></li>
-                <li><a href="categorias.html">Categorías</a></li>
-                <li><a href="wods.html">WODs</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="inscripcion.html" class="btn btn-accent btn-racing">¡INSCRIBITE!</a></li>
-            </ul>
-        </nav>
+    <header id="navbar" class="scrolled">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="la-carrera.html">LA CARRERA</a></li>
+                    <li><a href="categorias.html">CATEGORÍAS</a></li>
+                    <li><a href="wods.html">WODs</a></li>
+                    <li><a href="galeria.html" class="active">GALERÍA</a></li>
+                </ul>
+                <a href="inscripcion.html" class="btn btn-primary btn-glow">INSCRIBITE</a>
+            </nav>
+        </div>
     </header>
 
-    <main style="padding-top: 100px;">
-        <section id="galeria" class="section">
+    <main>
+        <section class="section" style="padding-top: 180px;">
             <div class="container">
-                <div class="section-header reveal active">
-                    <h2 class="section-title">VICTORY RACE I — REVIVILA</h2>
-                    <p class="section-subtitle">Momentos de pura intensidad en nuestra edición anterior.</p>
+                <div class="section-header reveal">
+                    <div class="tech-text">THE ARENA</div>
+                    <h1 class="section-title" data-text="GALERÍA">GALERÍA</h1>
+                    <p style="margin-top: 20px; color: var(--gray-light);">Momentos de pura intensidad en nuestra edición anterior.</p>
                 </div>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <picture>
-                            <source srcset="assets/img/gallery-1.webp" type="image/webp">
-                            <img src="assets/img/gallery-1-original.jpg"
-                                alt="Atletas compitiendo en Victory Race I, Villa Carlos Paz" class="gallery-img"
-                                loading="lazy">
-                        </picture>
-                        <div class="gallery-overlay"><span>VER</span></div>
+
+                <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2px; background: var(--gray-mid); border: 2px solid var(--gray-mid);">
+                    <!-- Photo 1 -->
+                    <div class="gallery-item reveal" style="position: relative; overflow: hidden; aspect-ratio: 1; background: var(--black);">
+                        <img src="assets/img/gallery-1.webp" alt="Atletas compitiendo en Victory Race I" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-brutal);" loading="lazy">
+                        <div class="gallery-overlay" style="position: absolute; inset: 0; background: rgba(0, 242, 255, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; cursor: pointer;">
+                            <span class="tech-text" style="color: var(--black); font-weight: 800;">VER IMAGEN</span>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <picture>
-                            <source srcset="assets/img/gallery-2.webp" type="image/webp">
-                            <img src="assets/img/gallery-2-original.jpg"
-                                alt="Esfuerzo máximo en la pista de Victory Race I" class="gallery-img" loading="lazy">
-                        </picture>
-                        <div class="gallery-overlay"><span>VER</span></div>
+                    <!-- Photo 2 -->
+                    <div class="gallery-item reveal" style="position: relative; overflow: hidden; aspect-ratio: 1; background: var(--black);">
+                        <img src="assets/img/gallery-2.webp" alt="Esfuerzo máximo en la pista" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-brutal);" loading="lazy">
+                        <div class="gallery-overlay" style="position: absolute; inset: 0; background: rgba(0, 242, 255, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; cursor: pointer;">
+                            <span class="tech-text" style="color: var(--black); font-weight: 800;">VER IMAGEN</span>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <picture>
-                            <source srcset="assets/img/gallery-3.webp" type="image/webp">
-                            <img src="assets/img/gallery-3-original.jpg" alt="Comunidad CrossFit en Victory Race II"
-                                class="gallery-img" loading="lazy">
-                        </picture>
-                        <div class="gallery-overlay"><span>VER</span></div>
+                    <!-- Photo 3 -->
+                    <div class="gallery-item reveal" style="position: relative; overflow: hidden; aspect-ratio: 1; background: var(--black);">
+                        <img src="assets/img/gallery-3.webp" alt="Comunidad CrossFit en Victory Race" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-brutal);" loading="lazy">
+                        <div class="gallery-overlay" style="position: absolute; inset: 0; background: rgba(0, 242, 255, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; cursor: pointer;">
+                            <span class="tech-text" style="color: var(--black); font-weight: 800;">VER IMAGEN</span>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <picture>
-                            <source srcset="assets/img/gallery-4.webp" type="image/webp">
-                            <img src="assets/img/gallery-4-original.jpg" alt="Podio y premiación Victory Race I"
-                                class="gallery-img" loading="lazy">
-                        </picture>
-                        <div class="gallery-overlay"><span>VER</span></div>
+                    <!-- Photo 4 -->
+                    <div class="gallery-item reveal" style="position: relative; overflow: hidden; aspect-ratio: 1; background: var(--black);">
+                        <img src="assets/img/gallery-4.webp" alt="Podio y premiación" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-brutal);" loading="lazy">
+                        <div class="gallery-overlay" style="position: absolute; inset: 0; background: rgba(0, 242, 255, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; cursor: pointer;">
+                            <span class="tech-text" style="color: var(--black); font-weight: 800;">VER IMAGEN</span>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <picture>
-                            <source srcset="assets/img/gallery-5.webp" type="image/webp">
-                            <img src="assets/img/gallery-5-original.jpg"
-                                alt="Atleta realizando levantamiento olímpico en VR I" class="gallery-img"
-                                loading="lazy">
-                        </picture>
-                        <div class="gallery-overlay"><span>VER</span></div>
+                    <!-- Photo 5 -->
+                    <div class="gallery-item reveal" style="position: relative; overflow: hidden; aspect-ratio: 1; background: var(--black);">
+                        <img src="assets/img/gallery-5.webp" alt="Levantamiento olímpico" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-brutal);" loading="lazy">
+                        <div class="gallery-overlay" style="position: absolute; inset: 0; background: rgba(0, 242, 255, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; cursor: pointer;">
+                            <span class="tech-text" style="color: var(--black); font-weight: 800;">VER IMAGEN</span>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <picture>
-                            <source srcset="assets/img/gallery-6.webp" type="image/webp">
-                            <img src="assets/img/gallery-6-original.jpg"
-                                alt="Obstáculos y barro en la edición anterior de Victory Race" class="gallery-img"
-                                loading="lazy">
-                        </picture>
-                        <div class="gallery-overlay"><span>VER</span></div>
+                    <!-- Photo 6 -->
+                    <div class="gallery-item reveal" style="position: relative; overflow: hidden; aspect-ratio: 1; background: var(--black);">
+                        <img src="assets/img/gallery-6.webp" alt="Obstáculos y barro" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-brutal);" loading="lazy">
+                        <div class="gallery-overlay" style="position: absolute; inset: 0; background: rgba(0, 242, 255, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; cursor: pointer;">
+                            <span class="tech-text" style="color: var(--black); font-weight: 800;">VER IMAGEN</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <div id="lightbox" class="lightbox">
-            <span class="close-lightbox">&times;</span>
-            <img class="lightbox-content" id="lightbox-img">
+
+        <!-- LIGHTBOX -->
+        <div id="lightbox" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; padding: 40px;">
+            <span class="close-lightbox" style="position: absolute; top: 40px; right: 40px; color: var(--white); font-size: 3rem; cursor: pointer; font-family: var(--font-heading);">&times;</span>
+            <img class="lightbox-content" id="lightbox-img" style="max-width: 100%; max-height: 100%; border: 4px solid var(--white); box-shadow: 20px 20px 0px var(--cyan);">
         </div>
     </main>
 
-    <footer id="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <div class="footer-info">
-                <p>11 de Septiembre 2026 | Villa Carlos Paz</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/victoryrace.arg/" target="_blank">Instagram: @victoryrace.arg</a>
-                    <a href="https://wa.me/5493541690852" target="_blank">WhatsApp: +54 9 3541 690852</a>
-                </div>
-            </div>
-            <div class="footer-legal">
-                <p>Copyright &copy; 2026 Victory Race · <span class="footer-dev">Desarrollado por <a href="https://opussuplementos.com.ar/" target="_blank" rel="noopener noreferrer">Opus Suplementos</a></span></p>
-            </div>
+    <footer style="margin-top: 100px;">
+        <div class="container" style="text-align: center;">
+            <p class="tech-text">¿QUERÉS VER MÁS? BUSCATE EN NUESTRAS REDES</p>
         </div>
     </footer>
-    <!-- Scripts -->
+
+    <style>
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+    </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <script src="script.js" defer></script>
     <script type="module" src="js/lightning-v4.js" defer></script>

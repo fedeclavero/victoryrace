@@ -4,182 +4,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LA CARRERA — VICTORY RACE II</title>
-    <!-- SEO -->
-    <meta name="description" content="Conocé Victory Race II: competencia de CrossFit de alta intensidad en Villa Carlos Paz. Segunda edición, 11 de Septiembre 2026.">
+    <title>LA CARRERA | VICTORY RACE II</title>
+    <meta name="description" content="Conocé la historia y el propósito de Victory Race. La competencia que desafía a los atletas en el escenario natural de Villa Carlos Paz.">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="canonical" href="https://victoryrace.pages.dev/la-carrera.html">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="theme-color" content="#00f2ff">
-
-    <!-- SEO & OG -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://victoryrace.pages.dev/la-carrera.html">
-    <meta property="og:title" content="Conocé la Carrera | Victory Race II">
-    <meta property="og:description"
-        content="Una competencia de alta intensidad que desafía tus límites en Villa Carlos Paz. Segunda edición.">
-    <meta property="og:image" content="https://victoryrace.pages.dev/assets/img/hero-bg.webp">
-    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://victoryrace.pages.dev/la-carrera.html">
 </head>
 
 <body>
     <header id="navbar" class="scrolled">
-        <nav class="container">
-            <div class="logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="la-carrera.html">La Carrera</a></li>
-                <li><a href="categorias.html">Categorías</a></li>
-                <li><a href="wods.html">WODs</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="inscripcion.html" class="btn btn-accent btn-racing">¡INSCRIBITE!</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="la-carrera.html" class="active">LA CARRERA</a></li>
+                    <li><a href="categorias.html">CATEGORÍAS</a></li>
+                    <li><a href="wods.html">WODs</a></li>
+                    <li><a href="galeria.html">GALERÍA</a></li>
+                </ul>
+                <a href="inscripcion.html" class="btn btn-primary btn-glow">INSCRIBITE</a>
+            </nav>
+        </div>
     </header>
 
-    <main style="padding-top: 100px;">
-        <section id="la-carrera" class="section">
+    <main>
+        <section class="section" style="padding-top: 200px;">
             <div class="container">
-                <div class="section-header reveal active">
-                    <h2 class="section-title">¿QUÉ ES VICTORY RACE?</h2>
-                    <p class="section-subtitle">Una competencia de CrossFit que desafía tus límites. Diseñada para los
-                        atletas que buscan superarse, forjar comunidad y vivir una experiencia épica en el corazón de
-                        Villa Carlos Paz.</p>
+                <div class="section-header reveal">
+                    <div class="tech-text">THE MISSION</div>
+                    <h1 class="section-title" data-text="VICTORY RACE">VICTORY RACE</h1>
+                    <p style="margin-top: 20px; color: var(--gray-light); font-size: 1.2rem; max-width: 800px;">
+                        No es solo una competencia. Es un ritual de superación en el corazón de las sierras.
+                        Victory Race nace para unir a la comunidad del CrossFit bajo un solo propósito: encontrar la mejor versión de cada atleta.
+                    </p>
                 </div>
-                <div class="pillars-grid">
-                    <div class="pillar-card reveal active">
-                        <div class="pillar-icon">💪</div>
-                        <h3>Intensidad Máxima</h3>
-                        <p>Workouts diseñados para poner a prueba cada capacidad física y mental.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                    <div class="card reveal">
+                        <div class="card-num">01</div>
+                        <h3 class="heading" style="font-size: 2rem; margin-bottom: 20px;">EXIGENCIA</h3>
+                        <p style="color: var(--gray-light);">Workouts diseñados por expertos para testear potencia, resistencia y agilidad mental.</p>
                     </div>
-                    <div class="pillar-card reveal active">
-                        <div class="pillar-icon">🏆</div>
-                        <h3>Competencia Real</h3>
-                        <p>Jueces capacitados y estándares de alto nivel para una competencia justa.</p>
+                    <div class="card reveal">
+                        <div class="card-num">02</div>
+                        <h3 class="heading" style="font-size: 2rem; margin-bottom: 20px;">COMUNIDAD</h3>
+                        <p style="color: var(--gray-light);">Donde el atleta de élite y el recreativo comparten la misma arena y el mismo aliento.</p>
                     </div>
-                    <div class="pillar-card reveal active">
-                        <div class="pillar-icon">👥</div>
-                        <h3>Comunidad</h3>
-                        <p>El espíritu del CrossFit se vive en cada aliento y cada repetición.</p>
-                    </div>
-                    <div class="pillar-card reveal active">
-                        <div class="pillar-icon">📍</div>
-                        <h3>Villa Carlos Paz</h3>
-                        <p>El mejor escenario natural: la costanera y el Playón Municipal.</p>
+                    <div class="card reveal">
+                        <div class="card-num">03</div>
+                        <h3 class="heading" style="font-size: 2rem; margin-bottom: 20px;">TRANSPARENCIA</h3>
+                        <p style="color: var(--gray-light);">Estándares de jueceo rigurosos y una organización pensada para el deportista.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SCHEDULE -->
-        <section id="programacion" class="section alt-bg">
+        <!-- SCHEDULE (BRUTALIST STYLE) -->
+        <section class="section" style="background: var(--black-soft); border-top: 1px solid var(--gray-mid);">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="section-title">CRONOGRAMA</h2>
-                    <p class="section-subtitle"> Así se desarrolará el día de la competencia.</p>
+                    <div class="tech-text">TIMELINE</div>
+                    <h2 class="section-title" data-text="CRONOGRAMA">CRONOGRAMA</h2>
                 </div>
-                <div class="schedule-grid">
-                    <div class="schedule-item reveal">
-                        <div class="schedule-time">08:00</div>
-                        <div class="schedule-content">
-                            <h4>Acreditación</h4>
-                            <p>Retiro de kits y verificación de aptas médicos.</p>
-                        (08:00 - 10:00)
-                        </div>
-                    </div>
-                    <div class="schedule-item reveal">
-                        <div class="schedule-time">10:00</div>
-                        <div class="schedule-content">
-                            <h4>Briefing y Calentamiento</h4>
-                            <p>Jueces, estándares y activación general.</p>
-                        </div>
-                    </div>
-                    <div class="schedule-item reveal">
-                        <div class="schedule-time">11:00</div>
-                        <div class="schedule-content">
-                            <h4>WOD 1 — Qualifier</h4>
-                            <p>Primer workout de la jornada.</p>
-                        </div>
-                    </div>
-                    <div class="schedule-item reveal">
-                        <div class="schedule-time">13:00</div>
-                        <div class="schedule-content">
-                            <h4>Intervalo</h4>
-                            <p>Descanso y recuperación.</p>
-                        </div>
-                    </div>
-                    <div class="schedule-item reveal">
-                        <div class="schedule-time">14:00</div>
-                        <div class="schedule-content">
-                            <h4>WOD 2 — Speed</h4>
-                            <p>Segundo workout con énfasis en velocidad.</p>
-                        </div>
-                    </div>
-                    <div class="schedule-item reveal">
-                        <div class="schedule-time">16:00</div>
-                        <div class="schedule-content">
-                            <h4>WOD Final — Élite</h4>
-                            <p>Los top de cada categoría van por la victoria.</p>
-                        </div>
-                    </div>
-                    <div class="schedule-item reveal">
-                        <div class="schedule-time">18:00</div>
-                        <div class="schedule-content">
-                            <h4>Premiación</h4>
-                            <p>Reconocimiento a los ganadores y cierre del evento.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- LOCATION -->
-        <section id="ubicacion" class="section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">¿DÓNDE ES?</h2>
-                </div>
-                <div class="location-card reveal">
-                    <div class="location-info">
-                        <h3>Playón Municipal</h3>
-                        <p>Villa Carlos Paz, Córdoba, Argentina</p>
-                        <p class="location-detail">Acceso libre y gratuito para espectadores. El evento se desarrolla en un espacio abierto con capacidad para miles de atletas y seguidores.</p>
-                        <a href="https://maps.google.com/?q=Villa+Carlos+Paz+Playon+Municipal" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="margin-top: 20px;">VER EN GOOGLE MAPS</a>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="reveal" style="display: flex; gap: 40px; margin-bottom: 40px; border-left: 4px solid var(--cyan); padding-left: 30px;">
+                        <div class="heading" style="font-size: 2rem; color: var(--cyan); min-width: 100px;">08:00</div>
+                        <div>
+                            <h4 class="heading" style="font-size: 1.2rem;">ACREDITACIÓN</h4>
+                            <p style="color: var(--gray-light);">Check-in, entrega de kits y verificación de aptos médicos.</p>
+                        </div>
                     </div>
-                    <div class="location-map-placeholder">
-                        <span>📍</span>
+                    <div class="reveal" style="display: flex; gap: 40px; margin-bottom: 40px; border-left: 4px solid var(--gray-mid); padding-left: 30px;">
+                        <div class="heading" style="font-size: 2rem; color: var(--gray-light); min-width: 100px;">10:00</div>
+                        <div>
+                            <h4 class="heading" style="font-size: 1.2rem;">BRIEFING GENERAL</h4>
+                            <p style="color: var(--gray-light);">Explicación de WODs, estándares de movimiento y dudas de jueces.</p>
+                        </div>
+                    </div>
+                    <div class="reveal" style="display: flex; gap: 40px; margin-bottom: 40px; border-left: 4px solid var(--cyan); padding-left: 30px;">
+                        <div class="heading" style="font-size: 2rem; color: var(--cyan); min-width: 100px;">11:00</div>
+                        <div>
+                            <h4 class="heading" style="font-size: 1.2rem;">HEAT 1 — QUALIFIERS</h4>
+                            <p style="color: var(--gray-light);">Inicio formal de la competencia en el Playón Municipal.</p>
+                        </div>
+                    </div>
+                    <div class="reveal" style="display: flex; gap: 40px; margin-bottom: 40px; border-left: 4px solid var(--gray-mid); padding-left: 30px;">
+                        <div class="heading" style="font-size: 2rem; color: var(--gray-light); min-width: 100px;">18:00</div>
+                        <div>
+                            <h4 class="heading" style="font-size: 1.2rem;">PREMIACIÓN</h4>
+                            <p style="color: var(--gray-light);">Consagración de campeones y cierre de la jornada.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <span class="victory">VICTORY</span> <span class="race">RACE</span>
-            </div>
-            <div class="footer-info">
-                <p>11 de Septiembre 2026 | Villa Carlos Paz</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/victoryrace.arg/" target="_blank">Instagram: @victoryrace.arg</a>
-                    <a href="https://wa.me/5493541690852" target="_blank">WhatsApp: +54 9 3541 690852</a>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/victoryrace.arg/" class="social-link" target="_blank">IG</a>
+                        <a href="https://wa.me/5493541690852" class="social-link" target="_blank">WA</a>
+                    </div>
                 </div>
-            </div>
-            <div class="footer-legal">
-                <p>Copyright &copy; 2026 Victory Race · <span class="footer-dev">Desarrollado por <a href="https://opussuplementos.com.ar/" target="_blank" rel="noopener noreferrer">Opus Suplementos</a></span></p>
-                <p class="small">La participación es a riesgo del atleta.</p>
+                <div>
+                    <h4 class="heading" style="margin-bottom: 25px;">LEGAL</h4>
+                    <p class="tech-text" style="color: var(--gray-light); font-size: 0.5rem;">La participación es a riesgo del atleta. Se exige apto médico oficial.</p>
+                </div>
+                <div>
+                    <h4 class="heading" style="margin-bottom: 25px;">ORGANIZA</h4>
+                    <p class="tech-text" style="color: var(--cyan);">Opus Suplementos</p>
+                </div>
             </div>
         </div>
     </footer>
-    <!-- Scripts -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <script src="script.js" defer></script>
     <script type="module" src="js/lightning-v4.js" defer></script>
