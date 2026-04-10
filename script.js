@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- CORE UTILITIES ---
 function initNavbar() {
     const navbar = document.getElementById('navbar');
+    const menuTrigger = document.getElementById('mobile-menu-trigger');
+    const navLinks = document.querySelector('.nav-links');
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -58,6 +61,23 @@ function initNavbar() {
             navbar.classList.remove('scrolled');
         }
     }, { passive: true });
+
+    if (menuTrigger) {
+        menuTrigger.addEventListener('click', () => {
+            menuTrigger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+    }
+
+    // Close menu when clicking links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuTrigger?.classList.remove('active');
+            navLinks?.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    });
 }
 
 function initCountdown() {
