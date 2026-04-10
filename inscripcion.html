@@ -5,201 +5,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSCRIPCIÓN | VICTORY RACE II</title>
-    <meta name="description" content="Completá tu inscripción para Victory Race II. Formulario de registro oficial para atletas individuales y equipos.">
+    <meta name="description" content="Inscribite ahora en Victory Race II. Formulario oficial de registro para atletas individuales y equipos. Asegurá tu lugar en la arena de Villa Carlos Paz.">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="canonical" href="https://victoryrace.pages.dev/inscripcion.html">
 </head>
 
-<body style="background: radial-gradient(circle at top, #111 0%, #050505 100%);">
+<body>
     <header id="navbar" class="scrolled">
         <div class="container">
             <nav>
                 <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
                 <ul class="nav-links">
                     <li><a href="index.html">INICIO</a></li>
-                    <li><a href="la-carrera.html">LA CARRERA</a></li>
+                    <li><a href="la-carrera.html">EL DESAFÍO</a></li>
                     <li><a href="categorias.html">CATEGORÍAS</a></li>
-                    <li><a href="wods.html">WODs</a></li>
+                    <li><a href="wods.html">WORKOUTS</a></li>
                     <li><a href="galeria.html">GALERÍA</a></li>
                 </ul>
-                <a href="inscripcion.html" class="btn btn-primary btn-glow">INSCRIBITE</a>
+                <a href="inscripcion.html" class="btn btn-primary" style="border-radius: 50px;">INSCRIBITE</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="section" style="padding-top: 150px;">
+        <section class="section" style="padding-top: 180px;">
             <div class="container">
-                <div class="section-header reveal">
-                    <div class="tech-text">REGISTRATION FLOW</div>
-                    <h1 class="section-title" data-text="INSCRIBITE">INSCRIBITE</h1>
+                <div class="section-header reveal" style="text-align: center;">
+                    <div class="tech-text">SECURE REGISTRATION</div>
+                    <h1 class="section-title">INSCRIPCIÓN</h1>
                 </div>
 
-                <div class="form-container reveal" id="registration-container" style="background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(10px);">
-                    <div class="registration-progress-container">
-                        <div class="registration-progress-bar"></div>
+                <div class="reveal" id="registration-container" style="max-width: 1000px; margin: 0 auto; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--border-radius-lg); overflow: hidden; backdrop-filter: blur(20px);">
+                    
+                    <!-- Progress Bar -->
+                    <div style="height: 4px; background: rgba(255,255,255,0.05); position: relative;">
+                        <div class="registration-progress-bar" style="height: 100%; background: var(--cyan); width: 25%; transition: width 0.6s var(--ease-smooth); box-shadow: 0 0 15px var(--cyan);"></div>
                     </div>
 
-                    <form id="inscription-form">
+                    <form id="inscription-form" style="padding: 60px;">
                         <div class="form-steps-container">
                             
                             <!-- STEP 1: DATOS PERSONALES -->
                             <div class="form-step active" data-step="1">
-                                <h3 class="step-title">DATOS PERSONALES</h3>
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-                                    <div class="form-group">
-                                        <label class="label">NOMBRE *</label>
-                                        <input type="text" id="nombre" name="nombre" required placeholder="NOMBRE">
+                                <h3 class="heading" style="font-size: 2.5rem; color: var(--cyan); margin-bottom: 40px;">DATOS PERSONALES</h3>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                                    <div>
+                                        <label class="tech-text" style="font-size: 0.6rem;">NOMBRE *</label>
+                                        <input type="text" name="nombre" class="input-field" required placeholder="TU NOMBRE">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="label">APELLIDO *</label>
-                                        <input type="text" id="apellido" name="apellido" required placeholder="APELLIDO">
+                                    <div>
+                                        <label class="tech-text" style="font-size: 0.6rem;">APELLIDO *</label>
+                                        <input type="text" name="apellido" class="input-field" required placeholder="TU APELLIDO">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="label">DNI *</label>
-                                        <input type="text" id="dni" name="dni" required placeholder="SOLO NÚMEROS" pattern="\d+">
+                                    <div>
+                                        <label class="tech-text" style="font-size: 0.6rem;">DNI *</label>
+                                        <input type="text" name="dni" class="input-field" required placeholder="SOLO NÚMEROS" pattern="\d+">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="label">FECHA NACIMIENTO *</label>
-                                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                                    <div>
+                                        <label class="tech-text" style="font-size: 0.6rem;">FECHA NACIMIENTO *</label>
+                                        <input type="date" name="fechaNacimiento" class="input-field" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="label">EMAIL *</label>
-                                        <input type="email" id="email" name="email" required placeholder="TU@EMAIL.COM">
+                                    <div>
+                                        <label class="tech-text" style="font-size: 0.6rem;">EMAIL *</label>
+                                        <input type="email" name="email" class="input-field" required placeholder="TU@EMAIL.COM">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="label">WHATSAPP *</label>
-                                        <input type="tel" id="telefono" name="telefono" required placeholder="+54 9 ...">
+                                    <div>
+                                        <label class="tech-text" style="font-size: 0.6rem;">WHATSAPP *</label>
+                                        <input type="tel" name="telefono" class="input-field" required placeholder="+54 9 ...">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="label">CIUDAD *</label>
-                                        <input type="text" id="ciudad" name="ciudad" required placeholder="CIUDAD">
+                                    <div>
+                                        <label class="tech-text" style="font-size: 0.6rem;">CIUDAD *</label>
+                                        <input type="text" name="ciudad" class="input-field" required placeholder="EJ: CÓRDOBA">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="label">GIMNASIO / EQUIPO</label>
-                                        <input type="text" id="equipoGimnasio" name="equipoGimnasio" placeholder="BOX">
+                                    <div>
+                                        <label class="tech-text" style="font-size: 0.6rem;">BOX / EQUIPO</label>
+                                        <input type="text" name="equipoGimnasio" class="input-field" placeholder="NOMBRE DE TU BOX">
                                     </div>
                                 </div>
-                                <div style="margin-top: 40px; display: flex; justify-content: flex-end;">
-                                    <button type="button" class="btn btn-primary next-step">SIGUIENTE</button>
+                                <div style="margin-top: 60px; display: flex; justify-content: flex-end;">
+                                    <button type="button" class="btn btn-primary next-step">SIGUIENTE PASO</button>
                                 </div>
                             </div>
 
                             <!-- STEP 2: CATEGORÍA -->
                             <div class="form-step" data-step="2">
-                                <h3 class="step-title">CATEGORÍA</h3>
+                                <h3 class="heading" style="font-size: 2.5rem; color: var(--cyan); margin-bottom: 40px;">ELINGÍ TU CATEGORÍA</h3>
                                 
                                 <div id="category-selection-flow">
-                                    <div class="selection-level active" id="level-type">
-                                        <div class="categoria-label">TIPO DE INSCRIPCIÓN</div>
-                                        <div class="categoria-group">
-                                            <div class="categoria-card" data-value="individual">
-                                                <span class="card-icon">🏃</span>
+                                    <div class="selection-level active" id="level-type" style="margin-bottom: 50px;">
+                                        <div class="tech-text" style="margin-bottom: 20px; opacity: 0.5;">01. SELECCIONÁ MODALIDAD</div>
+                                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                                            <div class="card categoria-card" data-value="individual" style="padding: 30px; cursor: pointer; text-align: center;">
+                                                <span style="font-size: 2rem; display: block; margin-bottom: 10px;">🏃</span>
                                                 <span class="heading">INDIVIDUAL</span>
-                                                <span class="card-desc">CORRÉS SOLO</span>
                                             </div>
-                                            <div class="categoria-card" data-value="equipo">
-                                                <span class="card-icon">👥</span>
-                                                <span class="heading">EQUIPO</span>
-                                                <span class="card-desc">EN PAREJA</span>
+                                            <div class="card categoria-card" data-value="equipo" style="padding: 30px; cursor: pointer; text-align: center;">
+                                                <span style="font-size: 2rem; display: block; margin-bottom: 10px;">👥</span>
+                                                <span class="heading">DUPLA</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="selection-level" id="level-rank">
-                                        <div class="categoria-label">NIVEL</div>
-                                        <div class="categoria-group" id="rank-options"></div>
+                                    <div class="selection-level" id="level-rank" style="display: none; margin-bottom: 50px;">
+                                        <div class="tech-text" style="margin-bottom: 20px; opacity: 0.5;">02. SELECCIONÁ NIVEL</div>
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;" id="rank-options">
+                                            <!-- OPTIONS INJECTED BY JS -->
+                                        </div>
                                     </div>
 
-                                    <div class="selection-level" id="level-gender">
-                                        <div class="categoria-label">GÉNERO</div>
-                                        <div class="categoria-group" id="gender-options"></div>
+                                    <div class="selection-level" id="level-gender" style="display: none;">
+                                        <div class="tech-text" style="margin-bottom: 20px; opacity: 0.5;">03. SELECCIONÁ GÉNERO / MIX</div>
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;" id="gender-options">
+                                            <!-- OPTIONS INJECTED BY JS -->
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div id="second-athlete-fields" style="display: none; margin-top: 60px; border-top: 1px solid var(--gray-mid); padding-top: 40px;">
-                                    <div class="tech-text" style="margin-bottom: 20px;">DATOS DEL SEGUNDO ATLETA</div>
+                                <div id="second-athlete-fields" style="display: none; margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px;">
+                                    <div class="tech-text" style="margin-bottom: 30px; color: var(--cyan);">DATOS DEL SEGUNDO ATLETA</div>
                                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                                        <div class="form-group">
-                                            <label class="label">NOMBRE 2 *</label>
-                                            <input type="text" id="nombre2" name="nombre2">
+                                        <div>
+                                            <label class="tech-text" style="font-size: 0.6rem;">NOMBRE 2 *</label>
+                                            <input type="text" name="nombre2" class="input-field">
                                         </div>
-                                        <div class="form-group">
-                                            <label class="label">APELLIDO 2 *</label>
-                                            <input type="text" id="apellido2" name="apellido2">
+                                        <div>
+                                            <label class="tech-text" style="font-size: 0.6rem;">APELLIDO 2 *</label>
+                                            <input type="text" name="apellido2" class="input-field">
                                         </div>
-                                        <div class="form-group">
-                                            <label class="label">DNI 2 *</label>
-                                            <input type="text" id="dni2" name="dni2">
+                                        <div>
+                                            <label class="tech-text" style="font-size: 0.6rem;">DNI 2 *</label>
+                                            <input type="text" name="dni2" class="input-field">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="tech-text" id="price-display" style="display: none; text-align: center; margin-top: 40px; color: var(--cyan); font-size: 1.5rem;">
-                                    TOTAL: <span class="price-value"></span>
+                                <div id="price-display" style="display: none; text-align: right; margin-top: 50px;">
+                                    <span class="tech-text" style="opacity: 0.5;">TOTAL A PAGAR:</span>
+                                    <div class="heading price-value" style="font-size: 3rem; color: var(--cyan);"></div>
                                 </div>
 
-                                <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: flex-end;">
+                                <div style="margin-top: 60px; display: flex; gap: 20px; justify-content: flex-end;">
                                     <button type="button" class="btn btn-outline prev-step">VOLVER</button>
                                     <button type="button" class="btn btn-primary next-step" id="step2-next" disabled>SIGUIENTE</button>
                                 </div>
                             </div>
 
-                            <!-- STEP 3: APTO MÉDICO -->
+                            <!-- STEP 3: DOCUMENTACIÓN -->
                             <div class="form-step" data-step="3">
-                                <h3 class="step-title">DOCUMENTACIÓN</h3>
-                                <div class="medical-warning">
-                                    <div style="font-size: 2rem;">⚕️</div>
-                                    <div style="font-size: 0.8rem; line-height: 1.4;">
-                                        <strong>EL APTO MÉDICO ES OBLIGATORIO.</strong><br>
-                                        PODÉS SUBIRLO AHORA O PRESENTARLO EN PAPEL EL DÍA DEL EVENTO.
-                                    </div>
+                                <h3 class="heading" style="font-size: 2.5rem; color: var(--cyan); margin-bottom: 40px;">DOCUMENTACIÓN</h3>
+                                
+                                <div class="card" style="margin-bottom: 40px; border-color: var(--cyan-border); background: var(--cyan-glow);">
+                                    <p style="font-size: 0.9rem; line-height: 1.6; color: var(--white);">
+                                        <strong>IMPORTANTE:</strong> El apto médico es requisito excluyente para competir. 
+                                        Podés subirlo ahora digitalmente o entregarlo impreso el día de la acreditación.
+                                    </p>
                                 </div>
 
-                                <div class="upload-container">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;">
+                                    <!-- Atleta 1 -->
                                     <div class="upload-box" id="upload-atleta1">
-                                        <div class="upload-title">APTO MÉDICO: ATLETA 1</div>
-                                        <div class="categoria-group">
-                                            <div class="categoria-card" data-atleta="atleta1" data-type="upload">
-                                                <span class="card-icon">📎</span>
-                                                <span class="heading">SUBIR</span>
+                                        <div class="tech-text" style="margin-bottom: 20px;">APTO MÉDICO ATLETA 1</div>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                            <div class="card categoria-card" data-atleta="atleta1" data-type="upload" style="padding: 20px; cursor: pointer; text-align: center;">
+                                                <span class="heading" style="font-size: 1rem;">SUBIR DIGITAL</span>
                                             </div>
-                                            <div class="categoria-card" data-atleta="atleta1" data-type="papel">
-                                                <span class="card-icon">📄</span>
-                                                <span class="heading">PAPEL</span>
+                                            <div class="card categoria-card" data-atleta="atleta1" data-type="papel" style="padding: 20px; cursor: pointer; text-align: center;">
+                                                <span class="heading" style="font-size: 1rem;">LLEVO PAPEL</span>
                                             </div>
                                         </div>
-                                        <div id="ui-upload-atleta1" style="display: none; margin-top: 20px;">
+                                        <div id="ui-upload-atleta1" style="display: none; margin-top: 25px;">
                                             <input type="file" id="fileAtleta1" accept="image/*,application/pdf" style="display: none;">
-                                            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('fileAtleta1').click()">ELEGIR ARCHIVO</button>
-                                            <div class="tech-text" id="statusAtleta1" style="font-size: 0.5rem; margin-top: 10px;">ESPERANDO...</div>
-                                            <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta1"></div></div>
+                                            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('fileAtleta1').click()">ARCHIVOS</button>
+                                            <div class="tech-text" id="statusAtleta1" style="font-size: 0.5rem; margin-top: 15px; text-align: center;">PENDIENTE</div>
+                                            <div style="height: 2px; background: rgba(255,255,255,0.05); margin-top: 5px;"><div id="progressAtleta1" style="width: 0; height: 100%; background: var(--cyan); transition: width 0.3s;"></div></div>
                                         </div>
                                     </div>
 
+                                    <!-- Atleta 2 -->
                                     <div class="upload-box" id="upload-atleta2" style="display: none;">
-                                        <div class="upload-title">APTO MÉDICO: ATLETA 2</div>
-                                        <div class="categoria-group">
-                                            <div class="categoria-card" data-atleta="atleta2" data-type="upload">
-                                                <span class="card-icon">📎</span>
-                                                <span class="heading">SUBIR</span>
+                                        <div class="tech-text" style="margin-bottom: 20px;">APTO MÉDICO ATLETA 2</div>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                            <div class="card categoria-card" data-atleta="atleta2" data-type="upload" style="padding: 20px; cursor: pointer; text-align: center;">
+                                                <span class="heading" style="font-size: 1rem;">SUBIR DIGITAL</span>
                                             </div>
-                                            <div class="categoria-card" data-atleta="atleta2" data-type="papel">
-                                                <span class="card-icon">📄</span>
-                                                <span class="heading">PAPEL</span>
+                                            <div class="card categoria-card" data-atleta="atleta2" data-type="papel" style="padding: 20px; cursor: pointer; text-align: center;">
+                                                <span class="heading" style="font-size: 1rem;">LLEVO PAPEL</span>
                                             </div>
                                         </div>
-                                        <div id="ui-upload-atleta2" style="display: none; margin-top: 20px;">
+                                        <div id="ui-upload-atleta2" style="display: none; margin-top: 25px;">
                                             <input type="file" id="fileAtleta2" accept="image/*,application/pdf" style="display: none;">
-                                            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('fileAtleta2').click()">ELEGIR ARCHIVO</button>
-                                            <div class="tech-text" id="statusAtleta2" style="font-size: 0.5rem; margin-top: 10px;">ESPERANDO...</div>
-                                            <div class="progress-bar-container"><div class="progress-bar" id="progressAtleta2"></div></div>
+                                            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('fileAtleta2').click()">ARCHIVOS</button>
+                                            <div class="tech-text" id="statusAtleta2" style="font-size: 0.5rem; margin-top: 15px; text-align: center;">PENDIENTE</div>
+                                            <div style="height: 2px; background: rgba(255,255,255,0.05); margin-top: 5px;"><div id="progressAtleta2" style="width: 0; height: 100%; background: var(--cyan); transition: width 0.3s;"></div></div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: flex-end;">
+                                <div style="margin-top: 60px; display: flex; gap: 20px; justify-content: flex-end;">
                                     <button type="button" class="btn btn-outline prev-step">VOLVER</button>
                                     <button type="button" class="btn btn-primary next-step" id="step3-next" disabled>SIGUIENTE</button>
                                 </div>
@@ -207,38 +210,48 @@
 
                             <!-- STEP 4: FINALIZAR -->
                             <div class="form-step" data-step="4">
-                                <h3 class="step-title">REVISIÓN FINAL</h3>
-                                <div class="tech-text" style="margin-bottom: 20px;">DESLINDE DE RESPONSABILIDAD</div>
-                                <div class="deslinde-container" id="deslindeScroll">
-                                    <p>Al inscribirme en Victory Race II, declaro estar en condiciones físicas óptimas...</p>
-                                    <p>[...Contenido del deslinde...]</p>
-                                    <p>Acepto que la organización no se responsabiliza por...</p>
-                                </div>
-                                <div class="disclaimer-check-container" id="disclaimer-wrapper">
-                                    <input type="checkbox" id="accept-disclaimer" disabled>
-                                    <label class="tech-text" style="font-size: 0.6rem;">HE LEÍDO Y ACEPTO EL DESLINDE</label>
+                                <h3 class="heading" style="font-size: 2.5rem; color: var(--cyan); margin-bottom: 40px;">REVISIÓN FINAL</h3>
+                                
+                                <div class="tech-text" style="margin-bottom: 20px; opacity: 0.5;">POR FAVOR LEE ATENTAMENTE</div>
+                                <div id="deslindeScroll" style="height: 250px; overflow-y: auto; background: rgba(255,255,255,0.02); padding: 30px; border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); font-size: 0.85rem; line-height: 1.8; color: var(--gray-light);">
+                                    <p style="margin-bottom: 20px;"><strong>DESLINDE DE RESPONSABILIDAD - VICTORY RACE II</strong></p>
+                                    <p style="margin-bottom: 20px;">Al inscribirme en esta competencia, declaro voluntariamente que me encuentro en perfecto estado de salud y condición física para realizar esfuerzos extremos...</p>
+                                    <p style="margin-bottom: 20px;">Libero a la organización Victory Race, Opus Suplementos y al Playón Municipal de toda responsabilidad por lesiones o accidentes que puedan ocurrir durante el evento...</p>
+                                    <p>Reconozco que el CrossFit es una actividad de alto impacto y asumo todos los riesgos asociados...</p>
                                 </div>
 
-                                <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: flex-end;">
+                                <div style="margin-top: 30px; display: flex; align-items: center; gap: 15px;">
+                                    <input type="checkbox" id="accept-disclaimer" disabled style="width: 20px; height: 20px; accent-color: var(--cyan);">
+                                    <label class="tech-text" style="font-size: 0.7rem; cursor: pointer;" for="accept-disclaimer">ACEPTO LOS TÉRMINOS Y EL DESLINDE DE RESPONSABILIDAD</label>
+                                </div>
+
+                                <div style="margin-top: 60px; display: flex; gap: 20px; justify-content: flex-end;">
                                     <button type="button" class="btn btn-outline prev-step">VOLVER</button>
-                                    <button type="submit" id="submit-btn" class="btn btn-primary btn-glow" disabled>FINALIZAR</button>
+                                    <button type="submit" id="submit-btn" class="btn btn-primary btn-glow" disabled>CONFIRMAR INSCRIPCIÓN</button>
                                 </div>
                             </div>
                         </div>
                     </form>
 
-                    <div id="loading-spinner" style="display: none; text-align: center; padding: 40px;">
-                        <div style="font-size: 3rem; animation: spin 1s infinite linear;">⚡</div>
-                        <p class="tech-text" style="margin-top: 20px;">PROCESANDO DATOS...</p>
+                    <!-- Loading -->
+                    <div id="loading-spinner" style="display: none; padding: 100px 40px; text-align: center;">
+                        <div style="font-size: 4rem; animation: pulse-glow 1s infinite alternate;">⚡</div>
+                        <p class="tech-text" style="margin-top: 30px; letter-spacing: 2px;">ENVIANDO DATOS AL SERVIDOR...</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <style>
+        .categoria-card.selected { border-color: var(--cyan); background: var(--cyan-glow); }
+        .form-step { width: 100%; }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+    </style>
+
     <footer>
-        <div class="container" style="text-align: center;">
-            <p class="tech-text" style="font-size: 0.5rem; color: var(--gray-light);">SOPORTE TÉCNICO: VICTORYRACE.ARG@GMAIL.COM</p>
+        <div class="container" style="text-align: center; padding: 60px 0;">
+            <p class="tech-text" style="font-size: 0.6rem; opacity: 0.3;">SECURE SSL ENCRYPTED CONNECTION</p>
         </div>
     </footer>
 
