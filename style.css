@@ -122,6 +122,7 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-height: 44px; /* adapt: 44px touch target */
     padding: 14px 36px;
     font-family: var(--font-tech);
     font-size: 0.7rem;
@@ -172,22 +173,31 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 
 /* --- NAVIGATION --- */
 #navbar {
-    height: var(--header-height);
-    width: 100%;
+    height: 80px;
+    width: calc(100% - 60px);
+    max-width: var(--container-max);
     position: fixed;
-    top: 0;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
     transition: all 0.5s var(--ease-smooth);
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    background: rgba(5,5,5,0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: var(--border-radius-md);
     display: flex;
     align-items: center;
 }
 
 #navbar.scrolled {
-    background: var(--black-glass);
-    backdrop-filter: blur(15px);
-    height: 80px;
-    border-bottom: 1px solid var(--cyan-border);
+    top: 15px;
+    background: rgba(5,5,5,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: var(--cyan-border);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 255, 0.05);
 }
 
 #navbar nav {
@@ -228,13 +238,36 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     font-size: 0.85rem;
     color: var(--gray-light);
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.4s var(--ease-smooth);
     letter-spacing: 1px;
-    padding: 10px 0;
+    padding: 12px 10px; /* adapt: increased padding for touch */
+    min-height: 44px; /* adapt: 44px touch target */
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--cyan);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease-smooth);
 }
 
 .nav-links a:hover, .nav-links a.active {
     color: var(--white);
+    text-shadow: 0 0 10px rgba(0,242,255,0.3);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 /* --- MOBILE MENU TRIGGER --- */
@@ -274,7 +307,7 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://litter.catbox.moe/lzaomx.jpg');
+    background-image: url('assets/img/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     transform: scale(1.05);
@@ -606,4 +639,34 @@ footer {
     .btn { width: 100%; }
     body::after { display: none; }
     .sponsors-strip { height: min(120px, 12vh); }
+}
+
+/* --- TOUCH ADAPTATION (impeccable/adapt) --- */
+@media (hover: none) {
+    /* Touch devices keep stuck hovers. We reset them and use active instead. */
+    .btn-primary:active {
+        transform: translateY(-2px);
+        box-shadow: var(--glow-cyan-strong);
+        background: var(--white);
+    }
+    .btn-outline:active {
+        border-color: var(--cyan);
+        color: var(--cyan);
+        background: var(--cyan-glow);
+    }
+    
+    /* Disable stuck hover effects on non-pointer environments */
+    .card:hover { 
+        transform: none; 
+        box-shadow: none; 
+        border-color: rgba(255, 255, 255, 0.05); 
+        background: rgba(255, 255, 255, 0.02);
+    }
+    .card:active { transform: scale(0.98); }
+    .card:hover::before { opacity: 0; }
+    
+    .step-card:hover { transform: none; border-left-color: var(--cyan-border); }
+    .sponsor-logo:hover { transform: none; opacity: 0.4; filter: grayscale(1) invert(1); }
+    .social-icon:hover { transform: none; background: transparent; color: var(--white); border-color: rgba(255,255,255,0.1); }
+    .social-icon:active { background: var(--cyan); border-color: var(--cyan); color: var(--black); }
 }

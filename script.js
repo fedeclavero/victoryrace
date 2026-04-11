@@ -109,10 +109,34 @@ function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
+            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                entry.target.classList.add('animated');
+                
+                // Keep CSS fallback for simple elements, but use anime.js for complex sections
+                if (entry.target.classList.contains('gallery-item') || entry.target.classList.contains('card')) {
+                    anime({
+                        targets: entry.target,
+                        opacity: [0, 1],
+                        translateY: [50, 0],
+                        scale: [0.95, 1],
+                        duration: 1000,
+                        easing: 'easeOutExpo',
+                        delay: anime.stagger(150, {start: 100})
+                    });
+                } else {
+                    entry.target.classList.add('active');
+                }
+            }
         });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    }, { threshold: 0.15 });
+    
+    reveals.forEach(el => {
+        // Remove static CSS transition class if using anime.js to avoid conflicts
+        if (el.classList.contains('gallery-item') || el.classList.contains('card')) {
+            el.style.opacity = 0;
+        }
+        observer.observe(el);
+    });
 }
 
 function highlightActiveLink() {
@@ -392,11 +416,40 @@ function initLightbox() {
         item.addEventListener('click', () => {
             lightboxImg.src = item.querySelector('img').src;
             lightbox.style.display = 'flex';
+            
+            // Glitchy / Cyberpunk entrance
+            anime({
+                targets: lightboxImg,
+                opacity: [0, 1],
+                scale: [1.1, 1],
+                filter: ['blur(10px) drop-shadow(0 0 50px rgba(0,242,255,0.8))', 'blur(0px) drop-shadow(0 0 20px rgba(0,242,255,0.2))'],
+                duration: 800,
+                easing: 'easeOutElastic(1, .8)'
+            });
+            
+            anime({
+                targets: lightbox,
+                opacity: [0, 1],
+                duration: 400,
+                easing: 'linear'
+            });
         });
     });
 
-    close.addEventListener('click', () => lightbox.style.display = 'none');
+    const closeLightbox = () => {
+        anime({
+            targets: [lightbox, lightboxImg],
+            opacity: 0,
+            duration: 300,
+            easing: 'easeInQuad',
+            complete: () => {
+                lightbox.style.display = 'none';
+            }
+        });
+    };
+
+    close.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) lightbox.style.display = 'none';
+        if (e.target === lightbox) closeLightbox();
     });
 }
