@@ -26,7 +26,7 @@
 
     /* --- MEASUREMENTS --- */
     --container-max: 1300px;
-    --header-height: 90px;
+    --header-height: 120px;
     --border-radius-sm: 4px;
     --border-radius-md: 12px;
     --border-radius-lg: 20px;
@@ -179,20 +179,23 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     z-index: 1000;
     transition: all 0.5s var(--ease-smooth);
     border-bottom: 1px solid rgba(255,255,255,0.03);
+    display: flex;
+    align-items: center;
 }
 
 #navbar.scrolled {
     background: var(--black-glass);
     backdrop-filter: blur(15px);
-    height: 75px;
+    height: 80px;
     border-bottom: 1px solid var(--cyan-border);
 }
 
 #navbar nav {
-    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 0;
 }
 
 .logo {
