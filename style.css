@@ -311,7 +311,7 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     background-size: cover;
     background-position: center;
     transform: scale(1.05);
-    z-index: -1;
+    z-index: 0;
     animation: subtle-pan 20s infinite alternate linear;
 }
 
@@ -323,6 +323,7 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 .hero-overlay {
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: 
         linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.6) 100%),
         linear-gradient(to right, rgba(5,5,5,0.3) 0%, transparent 50%);
