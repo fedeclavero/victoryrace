@@ -106,14 +106,18 @@ function initCountdown() {
 }
 
 function initScrollReveal() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
                 entry.target.classList.add('animated');
-                
-                // Keep CSS fallback for simple elements, but use anime.js for complex sections
-                if (entry.target.classList.contains('gallery-item') || entry.target.classList.contains('card')) {
+
+                if (prefersReducedMotion) {
+                    // Skip animations for users who prefer reduced motion
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'none';
+                } else if (entry.target.classList.contains('gallery-item') || entry.target.classList.contains('card')) {
                     anime({
                         targets: entry.target,
                         opacity: [0, 1],
@@ -129,14 +133,16 @@ function initScrollReveal() {
             }
         });
     }, { threshold: 0.15 });
-    
+
     reveals.forEach(el => {
-        // Remove static CSS transition class if using anime.js to avoid conflicts
         if (el.classList.contains('gallery-item') || el.classList.contains('card')) {
-            el.style.opacity = 0;
+            el.style.opacity = '0';
         }
         observer.observe(el);
     });
+
+    // Disconnect observer after all elements have been revealed (one-shot)
+    return observer;
 }
 
 function highlightActiveLink() {
@@ -232,11 +238,22 @@ function initForm() {
                 body: JSON.stringify(payload),
                 mode: 'no-cors'
             });
+            // With no-cors, response is opaque — assume success
             showConfirmation(data.nombre);
         } catch (err) {
             console.error(err);
-            alert("Error al enviar. Por favor reintentá.");
+            // Replace alert with inline error message
+            var errorEl = document.getElementById('form-error-message') || (function() {
+                var el = document.createElement('div');
+                el.id = 'form-error-message';
+                el.style.cssText = 'background: rgba(255,50,50,0.1); border: 1px solid rgba(255,50,50,0.4); padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; color: #ff6b6b; font-family: var(--font-tech); font-size: 0.75rem; text-align: center;';
+                form.insertBefore(el, form.firstChild);
+                return el;
+            })();
+            errorEl.textContent = 'Error al enviar. Por favor reintentá o escribinos por WhatsApp.';
             submitBtn.disabled = false;
+            document.getElementById('loading-spinner').style.display = 'none';
+            form.querySelector('.form-steps-container').style.opacity = '1';
         }
     });
 }
@@ -245,12 +262,44 @@ function validateStep(step) {
     const activeStep = document.querySelector(`.form-step[data-step="${step}"]`);
     const inputs = activeStep.querySelectorAll('input[required]');
     let valid = true;
+
+    // Clear previous error messages
+    activeStep.querySelectorAll('.field-error').forEach(el => el.remove());
     inputs.forEach(input => {
-        if (!input.value) {
+        input.style.borderColor = '';
+        input.removeAttribute('aria-invalid');
+    });
+
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
             valid = false;
-            input.style.borderColor = 'red';
-        } else {
-            input.style.borderColor = '';
+            input.style.borderColor = '#ff6b6b';
+            input.setAttribute('aria-invalid', 'true');
+
+            // Add inline error message
+            var errorMsg = document.createElement('div');
+            errorMsg.className = 'field-error';
+            errorMsg.style.cssText = 'color: #ff6b6b; font-family: var(--font-tech); font-size: 0.6rem; margin-top: 5px;';
+            errorMsg.textContent = 'Este campo es obligatorio';
+            input.parentNode.appendChild(errorMsg);
+        } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            valid = false;
+            input.style.borderColor = '#ff6b6b';
+            input.setAttribute('aria-invalid', 'true');
+            var errorMsg = document.createElement('div');
+            errorMsg.className = 'field-error';
+            errorMsg.style.cssText = 'color: #ff6b6b; font-family: var(--font-tech); font-size: 0.6rem; margin-top: 5px;';
+            errorMsg.textContent = 'Email inválido';
+            input.parentNode.appendChild(errorMsg);
+        } else if (input.type === 'tel' && input.value && !/^\+?[0-9\s]{8,}$/.test(input.value)) {
+            valid = false;
+            input.style.borderColor = '#ff6b6b';
+            input.setAttribute('aria-invalid', 'true');
+            var errorMsg = document.createElement('div');
+            errorMsg.className = 'field-error';
+            errorMsg.style.cssText = 'color: #ff6b6b; font-family: var(--font-tech); font-size: 0.6rem; margin-top: 5px;';
+            errorMsg.textContent = 'Teléfono inválido';
+            input.parentNode.appendChild(errorMsg);
         }
     });
     return valid;

@@ -19,13 +19,13 @@
     <meta name="twitter:title" content="INSCRIPCIÓN | VICTORY RACE II">
     <meta name="twitter:description" content="Asegurá tu lugar en la arena de Villa Carlos Paz.">
     <meta name="twitter:image" content="https://files.catbox.moe/x56mvd.jpg">
+    <meta name="theme-color" content="#00f2ff">
 </head>
 
 <body>
-    <header id="navbar">
+    <nav id="navbar" aria-label="Navegación principal">
         <div class="container">
-            <nav>
-                <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+            <a href="index.html" class="logo" aria-label="Victory Race — Inicio">VICTORY<span>RACE</span></a>
                 <ul class="nav-links">
                     <li><a href="index.html">INICIO</a></li>
                     <li><a href="la-carrera.html">EL DESAFÍO</a></li>
@@ -35,14 +35,13 @@
                     <li><a href="inscripcion.html" class="active">INSCRIPCIÓN</a></li>
                 </ul>
                 <a href="inscripcion.html" class="btn btn-primary">INSCRIBITE</a>
-                <div class="menu-trigger" id="mobile-menu-trigger">
+                <div class="menu-trigger" id="mobile-menu-trigger" aria-label="Abrir menú" role="button" tabindex="0">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-            </nav>
         </div>
-    </header>
+    </nav>
 
     <main>
         <section class="section page-content">
@@ -67,36 +66,36 @@
                                 <h3 class="heading" style="color: var(--cyan); margin-bottom: 40px;">DATOS PERSONALES</h3>
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
                                     <div>
-                                        <label class="tech-text" style="font-size: 0.6rem;">NOMBRE *</label>
-                                        <input type="text" name="nombre" class="input-field" required placeholder="TU NOMBRE">
+                                        <label class="tech-text" for="nombre" style="font-size: 0.6rem;">NOMBRE *</label>
+                                        <input type="text" id="nombre" name="nombre" class="input-field" required placeholder="TU NOMBRE" autocomplete="given-name">
                                     </div>
                                     <div>
-                                        <label class="tech-text" style="font-size: 0.6rem;">APELLIDO *</label>
-                                        <input type="text" name="apellido" class="input-field" required placeholder="TU APELLIDO">
+                                        <label class="tech-text" for="apellido" style="font-size: 0.6rem;">APELLIDO *</label>
+                                        <input type="text" id="apellido" name="apellido" class="input-field" required placeholder="TU APELLIDO" autocomplete="family-name">
                                     </div>
                                     <div>
-                                        <label class="tech-text" style="font-size: 0.6rem;">DNI *</label>
-                                        <input type="text" name="dni" class="input-field" required placeholder="SOLO NÚMEROS" pattern="\d+">
+                                        <label class="tech-text" for="dni" style="font-size: 0.6rem;">DNI *</label>
+                                        <input type="text" id="dni" name="dni" class="input-field" required placeholder="SOLO NÚMEROS" pattern="[0-9]{7,8}" autocomplete="off">
                                     </div>
                                     <div>
-                                        <label class="tech-text" style="font-size: 0.6rem;">FECHA NACIMIENTO *</label>
-                                        <input type="date" name="fechaNacimiento" class="input-field" required>
+                                        <label class="tech-text" for="fechaNacimiento" style="font-size: 0.6rem;">FECHA NACIMIENTO *</label>
+                                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="input-field" required>
                                     </div>
                                     <div>
-                                        <label class="tech-text" style="font-size: 0.6rem;">EMAIL *</label>
-                                        <input type="email" name="email" class="input-field" required placeholder="TU@EMAIL.COM">
+                                        <label class="tech-text" for="email" style="font-size: 0.6rem;">EMAIL *</label>
+                                        <input type="email" id="email" name="email" class="input-field" required placeholder="TU@EMAIL.COM" autocomplete="email">
                                     </div>
                                     <div>
-                                        <label class="tech-text" style="font-size: 0.6rem;">WHATSAPP *</label>
-                                        <input type="tel" name="telefono" class="input-field" required placeholder="+54 9 ...">
+                                        <label class="tech-text" for="telefono" style="font-size: 0.6rem;">WHATSAPP *</label>
+                                        <input type="tel" id="telefono" name="telefono" class="input-field" required placeholder="+54 9 ..." autocomplete="tel">
                                     </div>
                                     <div>
-                                        <label class="tech-text" style="font-size: 0.6rem;">CIUDAD *</label>
-                                        <input type="text" name="ciudad" class="input-field" required placeholder="EJ: CÓRDOBA">
+                                        <label class="tech-text" for="ciudad" style="font-size: 0.6rem;">CIUDAD *</label>
+                                        <input type="text" id="ciudad" name="ciudad" class="input-field" required placeholder="EJ: CÓRDOBA" autocomplete="address-level2">
                                     </div>
                                     <div>
-                                        <label class="tech-text" style="font-size: 0.6rem;">BOX / EQUIPO</label>
-                                        <input type="text" name="equipoGimnasio" class="input-field" placeholder="NOMBRE DE TU BOX">
+                                        <label class="tech-text" for="equipoGimnasio" style="font-size: 0.6rem;">BOX / EQUIPO</label>
+                                        <input type="text" id="equipoGimnasio" name="equipoGimnasio" class="input-field" placeholder="NOMBRE DE TU BOX" autocomplete="organization">
                                     </div>
                                 </div>
                                 <div style="margin-top: 60px; display: flex; justify-content: flex-end;">
@@ -106,7 +105,7 @@
 
                             <!-- STEP 2: CATEGORÍA -->
                             <div class="form-step" data-step="2">
-                                <h3 class="heading" style="color: var(--cyan); margin-bottom: 40px;">ELINGÍ TU CATEGORÍA</h3>
+                                <h3 class="heading" style="color: var(--cyan); margin-bottom: 40px;">ELEGÍ TU CATEGORÍA</h3>
                                 
                                 <div id="category-selection-flow">
                                     <div class="selection-level active" id="level-type" style="margin-bottom: 50px;">
@@ -267,13 +266,13 @@
 
     <footer>
         <div class="container" style="text-align: center; padding: 60px 0;">
-            <p class="tech-text" style="font-size: 0.6rem; opacity: 0.3;">SECURE SSL ENCRYPTED CONNECTION</p>
+            <p class="tech-text" style="font-size: 0.6rem; opacity: 0.3;">DATOS PROTEGIDOS — VICTORY RACE II</p>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <script src="script.js" defer></script>
-    <script type="module" src="js/lightning-v4.js" defer></script>
+    <script src="js/lightning-v4.js" defer></script>
 </body>
 
 </html>

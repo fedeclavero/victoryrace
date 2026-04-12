@@ -46,10 +46,9 @@
 </head>
 
 <body>
-    <header id="navbar">
+    <nav id="navbar" aria-label="Navegación principal">
         <div class="container">
-            <nav>
-                <a href="index.html" class="logo">VICTORY<span>RACE</span></a>
+            <a href="index.html" class="logo" aria-label="Victory Race — Inicio">VICTORY<span>RACE</span></a>
                 <ul class="nav-links">
                     <li><a href="index.html">INICIO</a></li>
                     <li><a href="la-carrera.html">EL DESAFÍO</a></li>
@@ -59,14 +58,13 @@
                     <li><a href="inscripcion.html">INSCRIPCIÓN</a></li>
                 </ul>
                 <a href="inscripcion.html" class="btn btn-outline">RESERVÁ TU LUGAR</a>
-                <div class="menu-trigger" id="mobile-menu-trigger">
+                <div class="menu-trigger" id="mobile-menu-trigger" aria-label="Abrir menú" role="button" tabindex="0">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-            </nav>
         </div>
-    </header>
+    </nav>
 
     <main>
         <section class="section page-content">
@@ -182,7 +180,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <script src="script.js" defer></script>
-    <script type="module" src="js/lightning-v4.js" defer></script>
+    <script src="js/lightning-v4.js" defer></script>
 </body>
 
 </html>

@@ -17,7 +17,7 @@
     --cyan-border: rgba(0, 242, 255, 0.2);
     --gray-dark: #111111;
     --gray-mid: #222222;
-    --gray-light: #a0a0a0;
+    --gray-light: #b0b0b0;
     
     /* --- TYPOGRAPHY --- */
     --font-main: 'Inter', sans-serif;
@@ -162,6 +162,22 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     transform: translateY(-2px);
 }
 
+/* Focus visible styles */
+:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+    border-radius: var(--border-radius-sm);
+}
+
 .btn-glow {
     animation: pulse-glow 3s infinite;
 }
@@ -278,6 +294,10 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     cursor: pointer;
     z-index: 1100;
     padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
 }
 
 .menu-trigger span {
@@ -313,6 +333,7 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     transform: scale(1.05);
     z-index: 0;
     animation: subtle-pan 20s infinite alternate linear;
+    will-change: transform;
 }
 
 @keyframes subtle-pan {
@@ -628,7 +649,12 @@ footer {
     }
     .nav-links.active { transform: translateX(0); }
     .nav-links a { font-size: 1.5rem; }
-    #navbar .btn { display: none; }
+    #navbar .btn {
+        display: flex;
+        margin-top: 20px;
+        min-width: 200px;
+        justify-content: center;
+    }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 
@@ -640,6 +666,18 @@ footer {
     .btn { width: 100%; }
     body::after { display: none; }
     .sponsors-strip { height: min(120px, 12vh); }
+}
+
+/* --- REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .hero-bg { animation: none !important; }
+    .btn-glow { animation: none !important; }
 }
 
 /* --- TOUCH ADAPTATION (impeccable/adapt) --- */
