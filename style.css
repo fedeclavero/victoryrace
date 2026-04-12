@@ -638,72 +638,103 @@ footer {
     background: var(--cyan-border);
 }
 
-/* --- NAV CTA — ULTRA VIBRANT ANIMATED BUTTON --- */
+/* --- NAV CTA — ULTRA VIBRANT *** VISIBLE EVERYWHERE *** --- */
+.nav-cta {
+    display: block !important;
+}
+
 .nav-cta .btn {
     position: relative;
-    overflow: hidden;
-    animation: nav-cta-breathe 2s ease-in-out infinite, nav-cta-glow-pulse 1.5s ease-in-out infinite;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: visible;
+    background: linear-gradient(135deg, #00f2ff 0%, #00c8ff 50%, #00f2ff 100%) !important;
+    background-size: 200% 200% !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    border: 2px solid rgba(0, 242, 255, 0.8) !important;
+    animation: nav-cta-gradient-shift 3s ease infinite, nav-cta-shadow-pulse 1.5s ease-in-out infinite !important;
+    box-shadow:
+        0 0 10px rgba(0, 242, 255, 0.4),
+        0 0 25px rgba(0, 242, 255, 0.25),
+        0 0 50px rgba(0, 242, 255, 0.1),
+        inset 0 0 15px rgba(255, 255, 255, 0.1) !important;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5) !important;
+    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
-/* Shimmer sweep */
-.nav-cta .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.4) 50%,
-        transparent 100%
-    );
-    animation: nav-cta-shimmer 2.5s ease-in-out infinite;
-    z-index: 1;
-    pointer-events: none;
+/* Shimmer sweep — only on desktop where it has room */
+@media (min-width: 1001px) {
+    .nav-cta .btn::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -100%;
+        width: 60%;
+        height: calc(100% + 4px);
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.6) 40%,
+            rgba(255, 255, 255, 0.9) 50%,
+            rgba(255, 255, 255, 0.6) 60%,
+            transparent 100%
+        );
+        animation: nav-cta-shimmer 2s ease-in-out infinite;
+        z-index: 0;
+        pointer-events: none;
+        border-radius: inherit;
+    }
 }
 
-/* Continuous breathing glow */
-@keyframes nav-cta-breathe {
+/* Gradient shift — electric flow */
+@keyframes nav-cta-gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Shadow breathing */
+@keyframes nav-cta-shadow-pulse {
     0%, 100% {
-        box-shadow: 0 0 8px rgba(0, 242, 255, 0.3), 0 0 20px rgba(0, 242, 255, 0.1);
+        box-shadow:
+            0 0 10px rgba(0, 242, 255, 0.4),
+            0 0 25px rgba(0, 242, 255, 0.25),
+            0 0 50px rgba(0, 242, 255, 0.1),
+            inset 0 0 15px rgba(255, 255, 255, 0.1);
     }
     50% {
-        box-shadow: 0 0 15px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 242, 255, 0.2), 0 0 60px rgba(0, 242, 255, 0.1);
+        box-shadow:
+            0 0 20px rgba(0, 242, 255, 0.7),
+            0 0 45px rgba(0, 242, 255, 0.4),
+            0 0 80px rgba(0, 242, 255, 0.2),
+            0 0 120px rgba(0, 242, 255, 0.1),
+            inset 0 0 20px rgba(255, 255, 255, 0.15);
     }
-}
-
-/* Glow intensity pulse */
-@keyframes nav-cta-glow-pulse {
-    0%, 100% { background: var(--cyan); }
-    50% { background: #33f7ff; }
 }
 
 /* Shimmer sweep across button */
 @keyframes nav-cta-shimmer {
     0% { left: -100%; }
-    60% { left: 100%; }
-    100% { left: 100%; }
+    70% { left: 150%; }
+    100% { left: 150%; }
 }
 
-/* Hover — intense surge */
+/* Hover — MEGA surge */
 .nav-cta .btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    background: #33f7ff;
-    box-shadow: 0 0 20px rgba(0, 242, 255, 0.8), 0 0 50px rgba(0, 242, 255, 0.4), 0 0 80px rgba(0, 242, 255, 0.2);
-    animation: none;
+    transform: translateY(-3px) scale(1.08) !important;
+    background-position: 100% 50% !important;
+    box-shadow:
+        0 0 30px rgba(0, 242, 255, 1),
+        0 0 60px rgba(0, 242, 255, 0.6),
+        0 0 100px rgba(0, 242, 255, 0.3),
+        0 0 150px rgba(0, 242, 255, 0.15),
+        inset 0 0 20px rgba(255, 255, 255, 0.3) !important;
+    animation: none !important;
+    border-color: #00f2ff !important;
 }
 
 .nav-cta .btn:active {
-    transform: translateY(-1px) scale(1.02);
+    transform: translateY(-1px) scale(1.04) !important;
 }
-
-/* Hide CTA in desktop nav (only shown in hero) */
-.nav-cta { display: none; }
 
 /* --- MOBILE ADJUSTMENTS --- */
 @media (max-width: 1000px) {
