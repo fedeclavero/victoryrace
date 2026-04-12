@@ -865,3 +865,154 @@ body.no-scroll { overflow: hidden; }
     .social-icon:hover { transform: none; background: transparent; color: var(--white); border-color: rgba(255,255,255,0.1); }
     .social-icon:active { background: var(--cyan); border-color: var(--cyan); color: var(--black); }
 }
+
+/* ── LIGHTNING STORM CONFIRMATION SCREEN ── */
+.confirmation-storm {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.confirmation-storm.active {
+    opacity: 1;
+}
+
+/* Dark storm clouds — drifting gradients */
+.storm-clouds {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.storm-cloud {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0;
+    background: radial-gradient(circle, rgba(30, 30, 40, 0.8) 0%, transparent 70%);
+}
+
+.storm-cloud.drifting {
+    animation: cloudDrift 8s ease-in-out infinite;
+}
+
+@keyframes cloudDrift {
+    0% { transform: translateX(-100%) scale(0.8); opacity: 0; }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.6; }
+    100% { transform: translateX(200vw) scale(1.2); opacity: 0; }
+}
+
+/* Lightning bolt paths */
+.storm-bolt {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    filter: drop-shadow(0 0 8px var(--bolt-color, #00f2ff)) drop-shadow(0 0 20px var(--bolt-color, #00f2ff)) drop-shadow(0 0 40px var(--bolt-color, #00f2ff));
+}
+
+/* Flash overlay for lightning strike effect */
+.storm-flash {
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Confirmation content */
+.storm-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.8);
+    padding: 40px 20px;
+    max-width: 700px;
+}
+
+.storm-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    text-shadow: 0 0 20px rgba(0, 242, 255, 0.5), 0 0 60px rgba(0, 242, 255, 0.3), 0 0 100px rgba(0, 242, 255, 0.15);
+    margin-bottom: 15px;
+}
+
+.storm-subtitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 40px;
+}
+
+.storm-payment-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--cyan-border);
+    border-radius: var(--border-radius-md);
+    padding: 30px;
+    text-align: left;
+    margin: 30px auto;
+    max-width: 500px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.storm-payment-card .tech-text {
+    color: var(--cyan);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.storm-alias {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--gray-mid);
+    padding: 15px 20px;
+    border-radius: var(--border-radius-sm);
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: var(--cyan);
+    text-align: center;
+    margin: 15px 0;
+    letter-spacing: 0.1em;
+}
+
+.storm-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.storm-home-link {
+    display: inline-block;
+    margin-top: 25px;
+    color: var(--gray-light);
+    text-decoration: none;
+    font-family: var(--font-tech);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.storm-home-link:hover {
+    color: var(--cyan);
+}

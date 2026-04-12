@@ -3,7 +3,10 @@
     "allow": [
       "Bash(grep -n \"nav-inner\\\\|RESERVÁ TU LUGAR\" *.html)",
       "Bash(grep -n \"anime.min.js defer\" *.html)",
-      "Bash(grep -n \"anime.min.js\" *.html)"
+      "Bash(grep -n \"anime.min.js\" *.html)",
+      "Bash(pip install:*)",
+      "Bash(playwright install:*)",
+      "Bash(pkill -f \"http.server\")"
     ]
   }
 }

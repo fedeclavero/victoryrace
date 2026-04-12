@@ -162,7 +162,7 @@ function initNavbar() {
     const navLinks = document.querySelector('.nav-links');
     const isMobile = () => window.innerWidth <= 1000;
 
-    // ── FORCE mobile menu styles inline (bulletproof — ignores CSS cache) ──
+    // ── MOBILE ONLY: force menu styles inline (bulletproof) ──
     function applyMobileMenuStyles() {
         if (!navLinks) return;
         navLinks.style.position = 'fixed';
@@ -191,7 +191,7 @@ function initNavbar() {
         navLinks.style.overflowY = 'auto';
     }
 
-    // ── FORCE navbar styles inline (bulletproof) ──
+    // ── MOBILE ONLY: force navbar styles inline ──
     function applyMobileNavbarStyles() {
         if (!navbar) return;
         navbar.style.width = '100%';
@@ -207,31 +207,83 @@ function initNavbar() {
         navbar.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease, box-shadow 0.5s ease';
     }
 
-    // Apply inline styles on init
-    if (isMobile()) {
-        applyMobileMenuStyles();
-        applyMobileNavbarStyles();
+    // ── DESKTOP: clear ALL inline styles — let CSS handle everything ──
+    function clearDesktopInlineStyles() {
+        if (!navbar) return;
+        navbar.style.width = '';
+        navbar.style.maxWidth = '';
+        navbar.style.left = '';
+        navbar.style.top = '';
+        navbar.style.borderRadius = '';
+        navbar.style.padding = '';
+        navbar.style.height = '';
+        navbar.style.background = '';
+        navbar.style.border = '';
+        navbar.style.transform = '';
+        navbar.style.transition = '';
+        navbar.style.backdropFilter = '';
+        navbar.style.webkitBackdropFilter = '';
+        navbar.style.boxShadow = '';
+
+        if (navLinks) {
+            navLinks.style.position = '';
+            navLinks.style.top = '';
+            navLinks.style.right = '';
+            navLinks.style.bottom = '';
+            navLinks.style.left = '';
+            navLinks.style.width = '';
+            navLinks.style.height = '';
+            navLinks.style.display = '';
+            navLinks.style.flexDirection = '';
+            navLinks.style.justifyContent = '';
+            navLinks.style.alignItems = '';
+            navLinks.style.gap = '';
+            navLinks.style.margin = '';
+            navLinks.style.padding = '';
+            navLinks.style.background = '';
+            navLinks.style.backdropFilter = '';
+            navLinks.style.webkitBackdropFilter = '';
+            navLinks.style.transform = '';
+            navLinks.style.transition = '';
+            navLinks.style.zIndex = '';
+            navLinks.style.opacity = '';
+            navLinks.style.visibility = '';
+            navLinks.style.listStyle = '';
+            navLinks.style.overflowY = '';
+        }
     }
 
-    // Re-apply on resize to mobile
+    // ── Apply correct styles based on current viewport ──
+    function applyCorrectStyles() {
+        if (isMobile()) {
+            applyMobileMenuStyles();
+            applyMobileNavbarStyles();
+        } else {
+            clearDesktopInlineStyles();
+        }
+    }
+
+    // Run on init
+    applyCorrectStyles();
+
+    // ── On resize: re-apply, close menu if going desktop ──
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            if (isMobile()) {
-                applyMobileMenuStyles();
-                applyMobileNavbarStyles();
-                // Close menu if resizing to mobile
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuTrigger?.classList.remove('active');
-                    document.body.classList.remove('no-scroll');
-                }
+            applyCorrectStyles();
+            if (!isMobile() && navLinks?.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                navLinks.style.transform = '';
+                navLinks.style.opacity = '';
+                navLinks.style.visibility = '';
+                menuTrigger?.classList.remove('active');
+                document.body.classList.remove('no-scroll');
             }
         }, 150);
     });
 
-    // Scroll behavior: hide on scroll down, show on scroll up (mobile only)
+    // ── Scroll behavior ──
     let lastScrollY = window.scrollY;
     let ticking = false;
 
@@ -239,35 +291,32 @@ function initNavbar() {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 const currentY = window.scrollY;
-                const scrolled = currentY > 50;
 
-                // Toggle .scrolled class for visual change
-                if (scrolled) {
-                    navbar.classList.add('scrolled');
-                    navbar.style.background = 'rgba(5, 5, 5, 0.95)';
-                    navbar.style.backdropFilter = 'blur(20px)';
-                    navbar.style.webkitBackdropFilter = 'blur(20px)';
-                    navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 242, 255, 0.08)';
-                } else {
-                    navbar.classList.remove('scrolled');
-                    navbar.style.background = '#050505';
-                    navbar.style.backdropFilter = 'none';
-                    navbar.style.webkitBackdropFilter = 'none';
-                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.5)';
-                }
-
-                // Hide/show on scroll direction (mobile only)
-                if (isMobile() && currentY > 100) {
-                    if (currentY > lastScrollY) {
-                        // Scrolling down → hide
-                        navbar.style.transform = 'translateY(-100%)';
-                    } else {
-                        // Scrolling up → show
-                        navbar.style.transform = 'translateY(0)';
+                // Mobile only: hide/show on scroll direction
+                if (isMobile()) {
+                    if (currentY > 100) {
+                        if (currentY > lastScrollY) {
+                            navbar.style.transform = 'translateY(-100%)';
+                        } else {
+                            navbar.style.transform = 'translateY(0)';
+                        }
                     }
-                } else if (!isMobile()) {
-                    navbar.style.transform = 'none';
+                    // Mobile: toggle .scrolled for visual change
+                    if (currentY > 50) {
+                        navbar.classList.add('scrolled');
+                        navbar.style.background = 'rgba(5, 5, 5, 0.95)';
+                        navbar.style.backdropFilter = 'blur(20px)';
+                        navbar.style.webkitBackdropFilter = 'blur(20px)';
+                        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 242, 255, 0.08)';
+                    } else {
+                        navbar.classList.remove('scrolled');
+                        navbar.style.background = '#050505';
+                        navbar.style.backdropFilter = 'none';
+                        navbar.style.webkitBackdropFilter = 'none';
+                        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.5)';
+                    }
                 }
+                // Desktop: only toggle .scrolled class — NO inline styles
 
                 lastScrollY = currentY;
                 ticking = false;
@@ -276,6 +325,7 @@ function initNavbar() {
         }
     }, { passive: true });
 
+    // ── Menu open/close (mobile only) ──
     function openMenu() {
         menuTrigger.classList.add('active');
         navLinks.classList.add('active');
@@ -294,7 +344,7 @@ function initNavbar() {
         document.body.classList.remove('no-scroll');
     }
 
-    if (menuTrigger) {
+    if (menuTrigger && isMobile()) {
         menuTrigger.addEventListener('click', () => {
             if (navLinks.classList.contains('active')) {
                 closeMenu();
@@ -303,7 +353,6 @@ function initNavbar() {
             }
         });
 
-        // Also support keyboard enter/space
         menuTrigger.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -680,31 +729,218 @@ function checkStep3Ready() {
     }
 }
 
-// --- CONFIRMATION ---
+// --- CONFIRMATION — LIGHTNING STORM ---
+function createBoltPath(x1, y1, x2, y2, depth) {
+    if (depth === 0) return `M ${x1} ${y1} L ${x2} ${y2}`;
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    const dx = x2 - x1, dy = y2 - y1;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    const disp = (Math.random() - 0.5) * len * 0.5;
+    const nx = -dy / len, ny = dx / len;
+    const ox = mx + nx * disp, oy = my + ny * disp;
+    return createBoltPath(x1, y1, ox, oy, depth - 1).slice(1) + ' ' + createBoltPath(ox, oy, x2, y2, depth - 1);
+}
+
 function showConfirmation(name) {
-    const container = document.getElementById('registration-container');
-    container.innerHTML = `
-        <div style="text-align: center; padding: 40px;">
-            <div style="font-size: 5rem; margin-bottom: 20px;">🏆</div>
-            <h2 class="heading" style="font-size: 3rem; color: var(--cyan);">¡INSCRIPCIÓN RECIBIDA!</h2>
-            <p style="margin: 20px 0; font-size: 1.2rem;">Gracias ${name}. Tu lugar está casi asegurado.</p>
-            
-            <div class="card" style="text-align: left; margin: 40px 0; border-color: var(--cyan);">
-                <div class="tech-text" style="margin-bottom: 20px;">PRÓXIMO PASO: PAGO</div>
-                <p>Realizá la transferencia a:</p>
-                <div style="background: var(--black); padding: 20px; border: 1px solid var(--gray-mid); margin: 20px 0; font-family: monospace; font-size: 1.2rem; color: var(--cyan);">
-                    ALIAS: ${BANK_ALIAS}
-                </div>
+    // Lock body
+    document.body.classList.add('no-scroll');
+
+    // Create storm overlay
+    const storm = document.createElement('div');
+    storm.className = 'confirmation-storm';
+    storm.innerHTML = `
+        <div class="storm-clouds" id="storm-clouds"></div>
+        <div class="storm-flash" id="storm-flash"></div>
+        <div class="storm-content" id="storm-content">
+            <h1 class="storm-title">INSCRIPCIÓN RECIBIDA</h1>
+            <p class="storm-subtitle">PREPARATE PARA LA GUERRA</p>
+            <p style="color: var(--gray-light); margin-bottom: 10px;">Gracias ${name}. Tu lugar está casi asegurado.</p>
+            <div class="storm-payment-card" id="storm-payment">
+                <span class="tech-text">PRÓXIMO PASO: PAGO</span>
+                <p style="color: var(--gray-light); margin-bottom: 10px;">Realizá la transferencia a:</p>
+                <div class="storm-alias">ALIAS: ${BANK_ALIAS}</div>
                 <p style="font-size: 0.8rem; color: var(--gray-light);">Una vez realizado, enviá el comprobante por WhatsApp.</p>
             </div>
-            
-            <a href="https://wa.me/5493541690852" class="btn btn-primary" target="_blank">ENVIAR COMPROBANTE</a>
-            <div style="margin-top: 30px;">
-                <a href="index.html" class="tech-text" style="color: var(--gray-light); text-decoration: none;">VOLVER AL INICIO</a>
+            <div class="storm-cta">
+                <a href="https://wa.me/5493541690852" class="btn btn-primary btn-glow" target="_blank">ENVIAR COMPROBANTE</a>
             </div>
+            <a href="index.html" class="storm-home-link">VOLVER AL INICIO</a>
         </div>
     `;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.body.appendChild(storm);
+
+    // Phase 0: Storm appears
+    setTimeout(() => storm.classList.add('active'), 50);
+
+    // Phase 1 (0-600ms): Dark clouds drift in
+    const cloudsContainer = document.getElementById('storm-clouds');
+    for (let i = 0; i < 6; i++) {
+        const cloud = document.createElement('div');
+        cloud.className = 'storm-cloud drifting';
+        const size = 300 + Math.random() * 400;
+        cloud.style.width = size + 'px';
+        cloud.style.height = size * 0.5 + 'px';
+        cloud.style.top = (Math.random() * 80) + '%';
+        cloud.style.left = '-20%';
+        cloud.style.animationDelay = (i * 1.2) + 's';
+        cloud.style.animationDuration = (6 + Math.random() * 4) + 's';
+        cloudsContainer.appendChild(cloud);
+    }
+
+    // Phase 2 (600-2200ms): Lightning bolts converge
+    const boltColors = ['#00f2ff', '#b400ff', '#00c8ff', '#8b00ff', '#00f2ff', '#d400ff'];
+    const boltCount = 14;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const cx = w / 2, cy = h / 2;
+
+    function spawnBolt(index) {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', w);
+        svg.setAttribute('height', h);
+        svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5;';
+        svg.classList.add('storm-bolt');
+
+        const color = boltColors[index % boltColors.length];
+
+        // Generate 2-4 bolt paths from random edges toward center
+        const boltCount2 = 2 + Math.floor(Math.random() * 3);
+        for (let b = 0; b < boltCount2; b++) {
+            // Random starting edge
+            const edge = Math.floor(Math.random() * 4);
+            let sx, sy, ex, ey;
+            switch (edge) {
+                case 0: sx = Math.random() * w; sy = 0; break;         // top
+                case 1: sx = w; sy = Math.random() * h; break;          // right
+                case 2: sx = Math.random() * w; sy = h; break;          // bottom
+                case 3: sx = 0; sy = Math.random() * h; break;          // left
+            }
+            ex = cx + (Math.random() - 0.5) * w * 0.4;
+            ey = cy + (Math.random() - 0.5) * h * 0.4;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', createBoltPath(sx, sy, ex, ey, 6));
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', color);
+            path.setAttribute('stroke-width', 2 + Math.random() * 3);
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            path.style.cssText = `--bolt-color:${color};opacity:0;`;
+            svg.appendChild(path);
+
+            // Animate bolt: quick flash in, hold briefly, fade out
+            const delay = 600 + index * 120 + b * 60;
+            setTimeout(() => {
+                const length = path.getTotalLength?.() || 500;
+                path.style.strokeDasharray = length;
+                path.style.strokeDashoffset = length;
+
+                anime({
+                    targets: path,
+                    strokeDashoffset: [length, 0],
+                    opacity: [0, 1, 0.8, 0],
+                    duration: 400 + Math.random() * 200,
+                    easing: 'easeOutExpo',
+                    complete: () => {
+                        setTimeout(() => svg.remove(), 300);
+                    }
+                });
+            }, delay);
+        }
+
+        document.body.appendChild(svg);
+    }
+
+    // Spawn all bolts over time
+    for (let i = 0; i < boltCount; i++) {
+        spawnBolt(i);
+    }
+
+    // Storm flashes at key moments
+    const flash = document.getElementById('storm-flash');
+    [800, 1200, 1800, 2400].forEach((time, i) => {
+        setTimeout(() => {
+            anime({
+                targets: flash,
+                opacity: [0, 0.4 + Math.random() * 0.3, 0],
+                duration: 150 + i * 50,
+                easing: 'easeOutQuad'
+            });
+        }, time);
+    });
+
+    // Phase 3 (2200ms): White flash → reveal content
+    setTimeout(() => {
+        anime({
+            targets: flash,
+            opacity: [0, 0.8, 0],
+            duration: 300,
+            easing: 'easeOutQuad'
+        });
+    }, 2200);
+
+    // Phase 4 (2500ms): Content appears
+    setTimeout(() => {
+        anime({
+            targets: '#storm-content',
+            opacity: [0, 1],
+            scale: [0.85, 1],
+            duration: 800,
+            easing: 'easeOutExpo'
+        });
+    }, 2500);
+
+    // Phase 5 (3200ms): Payment card slides in
+    setTimeout(() => {
+        anime({
+            targets: '#storm-payment',
+            opacity: [0, 1],
+            translateY: [20, 0],
+            duration: 600,
+            easing: 'easeOutExpo'
+        });
+    }, 3200);
+
+    // Phase 6: Ongoing lightning (bolts flash every 3-5 seconds)
+    function ongoingBolts() {
+        if (!document.body.contains(storm)) return;
+        for (let i = 0; i < 2; i++) {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', w);
+            svg.setAttribute('height', h);
+            svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5;';
+            svg.classList.add('storm-bolt');
+
+            const color = boltColors[Math.floor(Math.random() * boltColors.length)];
+            const sx = Math.random() * w;
+            const sy = Math.random() < 0.5 ? 0 : h;
+            const ex = cx + (Math.random() - 0.5) * w * 0.5;
+            const ey = cy + (Math.random() - 0.5) * h * 0.5;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', createBoltPath(sx, sy, ex, ey, 5));
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', color);
+            path.setAttribute('stroke-width', 1.5 + Math.random() * 2);
+            path.style.cssText = `--bolt-color:${color};opacity:0;`;
+            svg.appendChild(path);
+            document.body.appendChild(svg);
+
+            const len = path.getTotalLength?.() || 400;
+            path.style.strokeDasharray = len;
+            path.style.strokeDashoffset = len;
+            anime({
+                targets: path,
+                strokeDashoffset: [len, 0],
+                opacity: [0, 1, 0],
+                duration: 300,
+                easing: 'easeOutExpo',
+                complete: () => setTimeout(() => svg.remove(), 200)
+            });
+        }
+        setTimeout(ongoingBolts, 3000 + Math.random() * 2000);
+    }
+    setTimeout(ongoingBolts, 4000);
 }
 
 function initLightbox() {
