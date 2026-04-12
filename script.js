@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initCountdown();
     initScrollReveal();
+    initNavCtaAnimation();
     initCtaAnimation();
     if (document.getElementById('inscription-form')) {
         initForm();
@@ -49,7 +50,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- CTA ANIMATION ---
+// --- NAV CTA — ULTRA VIBRANT ANIMATION ---
+function initNavCtaAnimation() {
+    const navCtaBtn = document.querySelector('.nav-cta .btn');
+    if (!navCtaBtn) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    // Entrance: scale from 0.8 + fade in
+    navCtaBtn.style.opacity = '0';
+    navCtaBtn.style.transform = 'scale(0.8)';
+    anime({
+        targets: navCtaBtn,
+        opacity: [0, 1],
+        scale: [0.8, 1],
+        duration: 600,
+        easing: 'easeOutBack',
+        complete: () => startUrgentPulse()
+    });
+
+    let urgencyLoop = null;
+
+    function startUrgentPulse() {
+        // Urgent pulse every 4 seconds: quick scale burst + intense glow surge
+        urgencyLoop = setInterval(() => {
+            if (document.hidden) return;
+            anime({
+                targets: navCtaBtn,
+                scale: [1, 1.12, 1],
+                boxShadow: [
+                    '0 0 8px rgba(0, 242, 255, 0.3)',
+                    '0 0 30px rgba(0, 242, 255, 0.9)',
+                    '0 0 10px rgba(0, 242, 255, 0.3)'
+                ],
+                duration: 500,
+                easing: 'easeOutQuint'
+            });
+        }, 4000);
+    }
+
+    // Cleanup on page hide
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden && urgencyLoop) {
+            clearInterval(urgencyLoop);
+            urgencyLoop = null;
+        } else if (!document.hidden && !urgencyLoop) {
+            startUrgentPulse();
+        }
+    });
+}
+
+// --- HERO CTA ANIMATION ---
 function initCtaAnimation() {
     const heroActions = document.querySelector('.hero-actions');
     if (!heroActions) return;

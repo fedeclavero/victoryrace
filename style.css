@@ -638,6 +638,70 @@ footer {
     background: var(--cyan-border);
 }
 
+/* --- NAV CTA — ULTRA VIBRANT ANIMATED BUTTON --- */
+.nav-cta .btn {
+    position: relative;
+    overflow: hidden;
+    animation: nav-cta-breathe 2s ease-in-out infinite, nav-cta-glow-pulse 1.5s ease-in-out infinite;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Shimmer sweep */
+.nav-cta .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    animation: nav-cta-shimmer 2.5s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Continuous breathing glow */
+@keyframes nav-cta-breathe {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(0, 242, 255, 0.3), 0 0 20px rgba(0, 242, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 242, 255, 0.2), 0 0 60px rgba(0, 242, 255, 0.1);
+    }
+}
+
+/* Glow intensity pulse */
+@keyframes nav-cta-glow-pulse {
+    0%, 100% { background: var(--cyan); }
+    50% { background: #33f7ff; }
+}
+
+/* Shimmer sweep across button */
+@keyframes nav-cta-shimmer {
+    0% { left: -100%; }
+    60% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Hover — intense surge */
+.nav-cta .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: #33f7ff;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.8), 0 0 50px rgba(0, 242, 255, 0.4), 0 0 80px rgba(0, 242, 255, 0.2);
+    animation: none;
+}
+
+.nav-cta .btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
 /* Hide CTA in desktop nav (only shown in hero) */
 .nav-cta { display: none; }
 
