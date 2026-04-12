@@ -662,29 +662,8 @@ footer {
     transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
-/* Shimmer sweep — only on desktop where it has room */
-@media (min-width: 1001px) {
-    .nav-cta .btn::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -100%;
-        width: 60%;
-        height: calc(100% + 4px);
-        background: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.6) 40%,
-            rgba(255, 255, 255, 0.9) 50%,
-            rgba(255, 255, 255, 0.6) 60%,
-            transparent 100%
-        );
-        animation: nav-cta-shimmer 2s ease-in-out infinite;
-        z-index: 0;
-        pointer-events: none;
-        border-radius: inherit;
-    }
-}
+/* Shimmer sweep — disabled (was obscuring button) */
+/* .nav-cta .btn::before { display: none; } */
 
 /* Gradient shift — electric flow */
 @keyframes nav-cta-gradient-shift {
