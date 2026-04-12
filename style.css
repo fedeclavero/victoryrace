@@ -718,9 +718,17 @@ footer {
 body.no-scroll { overflow: hidden; }
 @media (max-width: 1000px) {
     #navbar {
-        width: calc(100% - 30px);
+        width: calc(100% - 40px);
         max-width: none;
+        left: 20px;
+        top: 15px;
+        transform: none;
+        border-radius: 12px;
         padding: 0 15px;
+        height: 70px;
+        background: rgba(5, 5, 5, 0.75);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
     }
     .menu-trigger { display: flex; }
     .menu-trigger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -732,7 +740,9 @@ body.no-scroll { overflow: hidden; }
     .nav-links {
         position: fixed;
         inset: 0;
-        background: var(--black);
+        background: rgba(5, 5, 5, 0.88);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -759,6 +769,8 @@ body.no-scroll { overflow: hidden; }
     .btn { width: 100%; padding: 16px 20px; }
     body::after { display: none; }
     .sponsors-strip { height: min(100px, 12vh); flex-wrap: wrap; gap: 20px; }
+    .page-content,
+    .section-internal { padding-top: 90px; }
     /* Form responsive */
     #inscription-form { padding: 30px 20px !important; }
     .form-step > div[style*="grid-template-columns: repeat(auto-fit"] {
