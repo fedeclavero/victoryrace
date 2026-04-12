@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep -n \"nav-inner\\\\|RESERVÁ TU LUGAR\" *.html)"
+      "Bash(grep -n \"nav-inner\\\\|RESERVÁ TU LUGAR\" *.html)",
+      "Bash(grep -n \"anime.min.js defer\" *.html)",
+      "Bash(grep -n \"anime.min.js\" *.html)"
     ]
   }
 }
