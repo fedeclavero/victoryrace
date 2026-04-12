@@ -718,9 +718,17 @@ footer {
 body.no-scroll { overflow: hidden; }
 @media (max-width: 1000px) {
     #navbar {
-        width: calc(100% - 30px);
+        width: 100%;
         max-width: none;
-        padding: 0 15px;
+        left: 0;
+        top: 0;
+        transform: none;
+        border-radius: 0;
+        padding: 0 20px;
+        height: 70px;
+        background: rgba(5, 5, 5, 0.7);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
     }
     .menu-trigger { display: flex; }
     .menu-trigger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -729,18 +737,25 @@ body.no-scroll { overflow: hidden; }
     #mobile-menu-trigger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     #mobile-menu-trigger.active span:nth-child(2) { opacity: 0; }
     #mobile-menu-trigger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .menu-trigger {
+        background: rgba(255,255,255,0.05);
+        border-radius: 8px;
+    }
     .nav-links {
         position: fixed;
         inset: 0;
-        background: var(--black);
+        background: rgba(5, 5, 5, 0.92);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 35px;
         transform: translateX(100%);
-        transition: transform 0.6s var(--ease-smooth);
+        transition: transform 0.6s var(--ease-smooth), background 0.3s ease;
         z-index: 1000;
         padding: 20px;
+        padding-top: 80px;
     }
     .nav-links.active { transform: translateX(0); }
     .nav-links a { font-size: 1.5rem; min-height: 44px; }
@@ -751,7 +766,13 @@ body.no-scroll { overflow: hidden; }
 
 @media (max-width: 600px) {
     .container { padding: 0 15px; }
-    #navbar { width: calc(100% - 20px); left: 10px; transform: none; border-radius: 8px; }
+    #navbar {
+        width: 100%;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+        height: 65px;
+    }
     .section { padding: 60px 0; }
     .hero-title { font-size: clamp(2.5rem, 12vw, 3.5rem); }
     .footer-grid { grid-template-columns: 1fr; }
@@ -759,6 +780,9 @@ body.no-scroll { overflow: hidden; }
     .btn { width: 100%; padding: 16px 20px; }
     body::after { display: none; }
     .sponsors-strip { height: min(100px, 12vh); flex-wrap: wrap; gap: 20px; }
+    /* Internal pages - less top padding since navbar is smaller on mobile */
+    .page-content { padding-top: 90px; }
+    .section-internal { padding-top: 90px; }
     /* Form responsive */
     #inscription-form { padding: 30px 20px !important; }
     .form-step > div[style*="grid-template-columns: repeat(auto-fit"] {
