@@ -1,0 +1,141 @@
+# Victory Race II — Auditoría Completa
+
+## MODOS DE AGENTE USADOS
+- 4 agentes de auditoría paralelos: UX, SEO, Diseño/Código, Rendimiento
+- 1 agente de UI Guidelines (secuencial)
+- Modo: Sequential (fallback)
+
+---
+
+## RESUMEN EJECUTIVO
+
+### 🔴 CRÍTICO (arreglar inmediato)
+
+| # | Problema | Archivo | Tipo |
+|---|----------|---------|------|
+| 1 | Anime.js v3 Y v4 cargan simultáneamente (conflicto) | Todos los HTML + lightning-v4.js | Código |
+| 2 | El lightning bolt effect NO funciona (v4 import fails silently) | js/lightning-v4.js:5 | Código |
+| 3 | Form usa `mode: 'no-cors'` — éxito indistinguible de error | script.js:233 | UX |
+| 4 | No hay mensajes de validación inline en el form | script.js:244-257 | UX |
+| 5 | Galería: 20 imágenes sin `width`/`height` → CLS alto | galeria.html:61+ | Performance |
+| 6 | Placeholder text como único label en el form | inscripcion.html:71-100 | Accesibilidad |
+| 7 | `#navbar` es `<div>` en vez de `<nav>` | Todos los HTML | Semántico |
+| 8 | Falsa promesa "SECURE SSL ENCRYPTED" en footer | inscripcion.html:270 | UX/Confianza |
+| 9 | Alt text genérico en galería ("Victory Race 1"...) | galeria.html:61+ | SEO/Accesibilidad |
+| 10 | Console.log en producción | lightning-v4.js:7 | Código |
+
+### 🟡 ALTO
+
+| # | Problema | Archivo |
+|---|----------|---------|
+| 11 | Sponsors placeholder visibles (VELOCITY, NUTRIMAX...) | index.html:187-190 |
+| 12 | No hay política de privacidad / términos | (ausente) |
+| 13 | Nav en mobile oculta el CTA principal | style.css:631 |
+| 14 | Mobile menu trigger 24x24px (debe ser 44px) | style.css:283 |
+| 15 | `background-attachment: fixed` roto en iOS | index.html:165 |
+| 16 | No focus-visible styles en ningún elemento interactivo | style.css (ausente) |
+| 17 |gray-light #a0a0a0 sobre #050505 → contraste 2.9:1 (falla WCAG AA) | style.css:20 |
+| 18 | El form no persiste datos (refresco = pérdida total) | inscripcion.html |
+| 19 | No hay skip-to-content link | (todos) |
+| 20 | Fetch a Google Script sin manejo de errores real | script.js:228-241 |
+| 21 | File upload es simulado (1500ms timeout hardcodeado) | script.js:354-371 |
+| 22 | Typo "ELINGÍ" en vez de "ELEGÍ" | inscripcion.html:109 |
+| 23 | JSON-LD: `price` como string en vez de número | index.html:71 |
+| 24 | No hay privacy policy link | (ausente) |
+| 25 | SVG glow filter consume mucho thread principal | lightning-v4.js:28-40 |
+
+### 🟠 MEDIO
+
+| # | Problema | Archivo |
+|---|----------|---------|
+| 26 | Inline styles excesivos (rompen reusabilidad) | Todos los HTML |
+| 27 | Google Fonts vía @import (bloquea render) | style.css:6 |
+| 28 | No font-display: swap → posible FOIT | style.css:6 |
+| 29 | @import fonts.google.com sin preconnect | style.css:6 |
+| 30 | 13 archivos de fuente cargados (150KB+ bloat) | style.css:6 |
+| 31 | Hero bg animation causa jank en mobile | style.css:304-321 |
+| 32 | Touch adaptation incompleta (hover residuales) | style.css:646-673 |
+| 33 | IntersectionObserver nunca se disconnect | script.js:108-140 |
+| 34 | Lightbox close button no es `<button>` ni tiene aria-label | galeria.html:205 |
+| 35 | Breadcrumb schema ausentes | Todos (excepto index) |
+| 36 | FAQPage schema usa `name` en vez de `text` | categorias.html:28,36 |
+| 37 | No srcset en imágenes de galería (20 imágenes) | galeria.html:61+ |
+| 38 | No decoding="async" en galería | galeria.html:61+ |
+| 39 | WODs page sin contenido indexable | wods.html |
+| 40 | Cross-links mínimos entre páginas | global |
+| 41 | Consola de errors sin SRI en CDN scripts | index.html:246 |
+| 42 | body gradients complejos (3 radial + mask) | style.css:65-92 |
+| 43 | No existe sitemap para imágenes de galería | sitemap |
+| 44 | prefers-reduced-motion no respetado | (todos) |
+| 45 | Contenido en inglésmezclado con español inconsistente | global |
+
+### 🟢 BAJO
+
+| # | Problema | Archivo |
+|---|----------|---------|
+| 46 | Scanline keyframe definido inline en HTML | wods.html:96-101 |
+| 47 | Estilos de footer inconsistentes entre páginas | global |
+| 48 | Tech-text 0.65rem muy pequeño para labels | style.css:113-118 |
+| 49 | Countdown interval nunca limpiado | script.js:105 |
+| 50 | Dual bolt streams (2 setTimeout con startLoop) | lightning-v4.js:129-133 |
+| 51 | CSS classes no usadas (.medical-warning, .deslinde-container) | style.css:595-612 |
+| 52 | Nav active state no visible en mobile menu abierto | style.css:629 |
+| 53 | overflow:hidden innecesario en SVG overlay | lightning-v4.js:23 |
+| 54 | Meta theme-color solo en index.html | inner pages |
+| 55 | aria-label mínimo en social links | index.html:205-214 |
+
+---
+
+## WEB INTERFACE GUIDELINES — CUMPLIMIENTO
+
+### ❌ Critical Issues (must fix)
+
+- `index.html:82` — `#navbar` es `<div>` en vez de `<nav>` — semantic landmark
+- `inscripcion.html:71-100` — Placeholder como único label — usar `<label for>` visible
+- `style.css:646-673` — `outline: none` en hover:none, sin focus-visible replacement
+- `style.css:631` — Mobile nav esconde el `.btn` CTA principal
+- `script.js:238` — `alert()` para errores — usar toast/snackbar
+- `script.js:233` — `mode: 'no-cors'` hace éxito y error indistinguibles
+- `galeria.html:205` — Close button del lightbox no es `<button>`, sin aria-label
+- (todos) — No hay skip-to-content link
+
+### ⚠️ Warnings (should fix)
+
+- `style.css:20` — gray-light #a0a0a0 sobre #050505 = 2.9:1 (falla WCAG AA mínimo 4.5:1)
+- `style.css:112-118` — .tech-text cyan #00f2ff sobre negro = ~9:1 ✓ (pasa), pero puede fallar en secciones claras
+- `script.js:108-140` — IntersectionObserver nunca disconnect (memory leak)
+- `lightning-v4.js:28-40` — SVG filter con feGaussianBlur + feColorMatrix es main-thread pesado
+- `index.html:165` — background-attachment: fixed roto en iOS Safari
+- `style.css:274` — `.menu-trigger` no es `<button>`, no keyboard accessible
+- `la-carrera.html:95` — h4 sin h2/h3 previos en jerarquía
+
+### 💡 Suggestions (nice to have)
+
+- `style.css` — Agregar `cursor: pointer` a elementos clickeables que no son links
+- `script.js` — Respetar `prefers-reduced-motion` antes de anime.js
+- `style.css` — Agregar `will-change: transform` a elementos animados
+- `wods.html:96-101` — Mover @keyframes scanline a style.css
+- `style.css:560-574` — Scrollbar custom ya existe, pero el thumb hover podría mejorar
+
+---
+
+## TOP 5 FIXES PRIORIDAD (más impacto, menos esfuerzo)
+
+1. **Agregar `width`/`height` a las 20 imágenes de galería** → Elimina ~0.2 CLS
+2. **Reemplazar SVG filter glow por CSS `filter: drop-shadow()`** → Libera main thread
+3. **Cambiar `@import` de Google Fonts a `<link>` con `preconnect` y `display=swap`** → Ahorra ~300ms FCP
+4. **Cambiar `#navbar` de `<div>` a `<nav>`** → Semántica correcta
+5. **Reemplazar `mode: 'no-cors'` por respuesta real o abandonar Google Script** → Fix crítico de UX
+
+---
+
+## ESTADO GENERAL
+
+| Área | Puntuación | Comentario |
+|------|------------|------------|
+| UX | 4/10 | Form sin feedback, mobile nav rota, trust signals falsos |
+| SEO | 6/10 | Meta tags OK, schema partial, falta sitemap imágenes |
+| Performance | 4/10 | CLS alto en galería, JS blocking, fuentes pesadas |
+| Accesibilidad | 3/10 | Sin focus-visible, contraste bajo, sin skip links |
+| Código | 5/10 | Inline styles excesivos, anime conflict, CSS unused |
+| Diseño | 7/10 | Sistema visual consistente, pero inconsistencias en componentes |
