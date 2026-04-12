@@ -203,8 +203,14 @@ textarea:focus-visible {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.05);
     border-radius: var(--border-radius-md);
+}
+
+.nav-inner {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 30px;
 }
 
 #navbar.scrolled {
@@ -632,6 +638,9 @@ footer {
     background: var(--cyan-border);
 }
 
+/* Hide CTA in desktop nav (only shown in hero) */
+.nav-cta { display: none; }
+
 /* --- MOBILE ADJUSTMENTS --- */
 @media (max-width: 1000px) {
     .menu-trigger { display: flex; }
@@ -649,12 +658,8 @@ footer {
     }
     .nav-links.active { transform: translateX(0); }
     .nav-links a { font-size: 1.5rem; }
-    #navbar .btn {
-        display: flex;
-        margin-top: 20px;
-        min-width: 200px;
-        justify-content: center;
-    }
+    .nav-cta { margin-top: 10px; }
+    .nav-cta .btn { width: 100%; text-align: center; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 

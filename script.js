@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initCountdown();
     initScrollReveal();
+    initCtaAnimation();
     if (document.getElementById('inscription-form')) {
         initForm();
         initCategoryFlow();
@@ -47,6 +48,60 @@ document.addEventListener('DOMContentLoaded', () => {
         initLightbox();
     }
 });
+
+// --- CTA ANIMATION ---
+function initCtaAnimation() {
+    const heroActions = document.querySelector('.hero-actions');
+    if (!heroActions) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const buttons = heroActions.querySelectorAll('.btn');
+    if (!buttons.length) return;
+
+    // Create a glitch/scan overlay for the primary button
+    const primaryBtn = buttons[0];
+    primaryBtn.style.opacity = '0';
+    primaryBtn.style.transform = 'translateY(20px)';
+
+    // Clip-path reveal animation with glitch layers
+    setTimeout(() => {
+        anime({
+            targets: primaryBtn,
+            opacity: [0, 1],
+            translateY: [20, 0],
+            duration: 800,
+            easing: 'easeOutQuint',
+            complete: () => {
+                // Glitch pulse after entrance
+                anime({
+                    targets: primaryBtn,
+                    scale: [1, 1.03, 1],
+                    boxShadow: [
+                        '0 0 10px rgba(0, 242, 255, 0.2)',
+                        '0 0 30px rgba(0, 242, 255, 0.6)',
+                        '0 0 10px rgba(0, 242, 255, 0.2)'
+                    ],
+                    duration: 600,
+                    easing: 'easeInOutQuad'
+                });
+            }
+        });
+
+        // Secondary button staggers in
+        if (buttons[1]) {
+            anime({
+                targets: buttons[1],
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 600,
+                delay: 200,
+                easing: 'easeOutQuint'
+            });
+        }
+    }, 800);
+}
 
 // --- CORE UTILITIES ---
 function initNavbar() {
