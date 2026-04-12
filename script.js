@@ -160,12 +160,42 @@ function initNavbar() {
     const navbar = document.getElementById('navbar');
     const menuTrigger = document.getElementById('mobile-menu-trigger');
     const navLinks = document.querySelector('.nav-links');
+    const isMobile = () => window.innerWidth <= 1000;
+
+    // Scroll behavior: hide on scroll down, show on scroll up (mobile only)
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const currentY = window.scrollY;
+                const scrolled = currentY > 50;
+
+                // Toggle .scrolled class for visual change
+                if (scrolled) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Hide/show on scroll direction (mobile only)
+                if (isMobile() && currentY > 100) {
+                    if (currentY > lastScrollY) {
+                        // Scrolling down → hide
+                        navbar.classList.add('navbar-hidden');
+                    } else {
+                        // Scrolling up → show
+                        navbar.classList.remove('navbar-hidden');
+                    }
+                } else if (!isMobile()) {
+                    navbar.classList.remove('navbar-hidden');
+                }
+
+                lastScrollY = currentY;
+                ticking = false;
+            });
+            ticking = true;
         }
     }, { passive: true });
 
@@ -174,6 +204,16 @@ function initNavbar() {
             menuTrigger.classList.toggle('active');
             navLinks.classList.toggle('active');
             document.body.classList.toggle('no-scroll');
+        });
+
+        // Also support keyboard enter/space
+        menuTrigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                menuTrigger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            }
         });
     }
 
@@ -184,6 +224,15 @@ function initNavbar() {
             navLinks?.classList.remove('active');
             document.body.classList.remove('no-scroll');
         });
+    });
+
+    // Close menu on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks?.classList.contains('active')) {
+            menuTrigger?.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
     });
 }
 
