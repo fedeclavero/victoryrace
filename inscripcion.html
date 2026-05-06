@@ -26,10 +26,16 @@
 </head>
 
 <body>
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor"></div>
+    <div class="scanlines"></div>
+
     <nav id="navbar" aria-label="Navegación principal">
         <div class="container">
             <nav class="nav-inner">
-                <a href="index.html" class="logo" aria-label="Victory Race — Inicio">VICTORY<span>RACE</span></a>
+                <div class="nav-left">
+                    <a href="index.html" class="logo" aria-label="Victory Race — Inicio">VICTORY<span>RACE</span></a>
+                </div>
 
                 <ul class="nav-links">
                     <li><a href="index.html">INICIO</a></li>
@@ -37,14 +43,16 @@
                     <li><a href="categorias.html">CATEGORÍAS</a></li>
                     <li><a href="wods.html">WORKOUTS</a></li>
                     <li><a href="galeria.html">GALERÍA</a></li>
-                    <li><a href="inscripcion.html" class="active">INSCRIPCIÓN</a></li>
                     <li class="nav-cta"><a href="inscripcion.html" class="btn btn-primary">INSCRIBITE</a></li>
                 </ul>
 
-                <div class="menu-trigger" id="mobile-menu-trigger" aria-label="Abrir menú" role="button" tabindex="0">
+                <div class="nav-right">
+                    <a href="inscripcion.html" class="btn btn-primary nav-cta-desktop">RESERVÁ TU LUGAR</a>
+                    <div class="menu-trigger" id="mobile-menu-trigger" aria-label="Abrir menú" role="button" tabindex="0">
                     <span></span>
                     <span></span>
                     <span></span>
+                    </div>
                 </div>
             </nav>
         </div>
