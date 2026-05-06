@@ -85,6 +85,7 @@
 <body>
     <!-- CUSTOM CURSOR -->
     <div class="custom-cursor"></div>
+    <div class="scanlines"></div>
 
     <!-- NAVIGATION -->
     <nav id="navbar" aria-label="Navegación principal">
@@ -127,6 +128,7 @@
                     </h1>
                     
                     <p class="hero-subtitle">
+                        <span class="text-yellow" style="font-family: var(--font-tech); font-weight: 700;">// SYSTEM ONLINE</span><br>
                         La élite del CrossFit se reúne en las sierras. Un escenario único, 
                         una comunidad imparable y el desafío técnico más exigente del año.
                     </p>
@@ -137,8 +139,38 @@
                     </div>
 
                     <div class="hero-actions" style="display: flex; gap: 20px;">
-                        <a href="inscripcion.html" class="btn btn-primary btn-glow">ASEGURÁ TU LUGAR (FASE 1)</a>
-                        <a href="#la-carrera" class="btn btn-outline">EXPLORAR DESAFÍO</a>
+                        <a href="inscripcion.html" class="btn btn-primary btn-glow" style="border-color: var(--yellow-acid);">ASEGURÁ TU LUGAR (FASE 1)</a>
+                        <a href="#la-carrera" class="btn btn-outline" style="color: var(--purple-neon); box-shadow: inset 0 0 0 2px var(--purple-neon);">EXPLORAR DESAFÍO</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS / MANIFESTO SECTION -->
+        <section class="section" style="background: var(--black-soft); border-top: 2px solid var(--yellow-acid); border-bottom: 2px solid var(--cyan-border);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="tech-text text-yellow">[DATA.LINK]</div>
+                    <h2 class="section-title">TELEMETRÍA</h2>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                    <div class="stat-card reveal stagger-1 tech-grid-bg">
+                        <div class="sys-ready-badge">ACTIVE</div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">ATLETAS REGISTRADOS</div>
+                        <p style="color: var(--gray-light); font-size: 0.85rem; margin-top: 15px;">La competencia atrae a la élite absoluta. Solo los mejores sobreviven al filtro.</p>
+                    </div>
+                    <div class="stat-card reveal stagger-2 tech-grid-bg">
+                        <div class="sys-ready-badge" style="color: var(--purple-neon); border-color: var(--purple-neon);">WARNING</div>
+                        <div class="stat-number" style="color: var(--yellow-acid); text-shadow: 2px 2px 0px var(--red-blood);">15%</div>
+                        <div class="stat-label text-purple">TASA DE ABANDONO</div>
+                        <p style="color: var(--gray-light); font-size: 0.85rem; margin-top: 15px;">El castigo físico pondrá a prueba tu voluntad. No hay piedad en la arena.</p>
+                    </div>
+                    <div class="stat-card reveal stagger-3 tech-grid-bg">
+                        <div class="sys-ready-badge">ACTIVE</div>
+                        <div class="stat-number">03</div>
+                        <div class="stat-label">WODS EXTREMOS</div>
+                        <p style="color: var(--gray-light); font-size: 0.85rem; margin-top: 15px;">Diseñados para llevar tu frecuencia cardíaca al límite absoluto.</p>
                     </div>
                 </div>
             </div>

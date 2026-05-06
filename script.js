@@ -1011,4 +1011,39 @@ function initCustomCursor() {
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
 }
-document.addEventListener('DOMContentLoaded', initCustomCursor);
+
+// --- DYNAMIC COUNTERS ---
+function initCounters() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    if (statNumbers.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                
+                const rawText = entry.target.innerText;
+                const finalNumber = parseInt(rawText.replace(/\D/g, '')) || 0;
+                const suffix = rawText.replace(/[0-9]/g, '');
+
+                anime({
+                    targets: entry.target,
+                    innerHTML: [0, finalNumber],
+                    round: 1,
+                    easing: 'easeOutExpo',
+                    duration: 2000,
+                    update: function(a) {
+                        entry.target.innerHTML = a.animations[0].currentValue + suffix;
+                    }
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(el => observer.observe(el));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initCustomCursor();
+    initCounters();
+});
