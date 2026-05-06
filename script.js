@@ -989,3 +989,26 @@ function initLightbox() {
         if (e.target === lightbox) closeLightbox();
     });
 }
+
+// --- BRUTALIST CURSOR ---
+function initCustomCursor() {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
+    
+    let cursor = document.querySelector('.custom-cursor');
+    if (!cursor) {
+        cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        document.body.appendChild(cursor);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('a, button, .card, .categoria-card, .btn').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+}
+document.addEventListener('DOMContentLoaded', initCustomCursor);
