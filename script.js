@@ -10,6 +10,24 @@ const RACE_DATE = new Date("2026-09-11T08:00:00").getTime();
 const PRICE_INDIVIDUAL = 50000;
 const PRICE_TEAM = 90000;
 
+// --- BACKGROUND MUSIC ---
+const bgMusic = new Audio('assets/audio/bg-music.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
+
+let musicStarted = false;
+
+function startBgMusic() {
+    if (musicStarted) return;
+    bgMusic.play().then(() => {
+        musicStarted = true;
+    }).catch(() => {});
+}
+
+document.addEventListener('click', startBgMusic, { once: false });
+document.addEventListener('touchstart', startBgMusic, { once: false });
+document.addEventListener('keydown', startBgMusic, { once: false });
+
 // --- DYNAMIC DATA ---
 const CATEGORY_TREE = {
     individual: {
@@ -34,6 +52,7 @@ let registrationData = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    startBgMusic();
     initNavbar();
     initCountdown();
     initScrollReveal();
