@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://victoryrace.pages.dev/sitemap.xml
+
+# Crawl-delay opcional
+Crawl-delay: 1
